@@ -1,0 +1,33 @@
+✓ Keychain'den key alındı (uzunluk: 235)
+
+============================================================
+[VETO_KURALI] Edison'a soruluyor (PRECEDENT)...
+Sorgu: Has anyone formalized irreversibility as a distinct category in ethical decision-making or AI value alignment frameworks?
+============================================================
+
+✓ Edison çağrısı tamamlandı (505.2s)
+Response type: list
+Response liste, uzunluk: 1
+İlk öge tipi: PQATaskResponse
+Response attributes: ['agent_name', 'answer', 'answer_reasoning', 'build_owner', 'clean_verbose', 'construct', 'copy', 'created_at', 'dict', 'environment_name', 'formatted_answer', 'from_orm', 'has_successful_answer', 'job_name', 'json']...
+
+✓ YANIT (ilk 2000 karakter):
+────────────────────────────────────────────────────────────
+Yes. ## Finding
+Yes. Irreversibility has been formalized as a distinct category (i.e., a separate decision-relevant property, constraint, or penalty term) in both (a) decision-analytic/ethics-adjacent frameworks and (b) AI safety/value-alignment frameworks, though in many “ethical AI principles” documents it is treated more qualitatively than formally.
+
+## Evidence in ethical decision-making / decision analysis
+A clear formalization appears in precaution/option-value models where *irreversibility is represented structurally as a loss of future feasible options*. In a two-period model, the first-period decision determines a second-period opportunity set \(D(\alpha_1)\); a decision is defined as “more irreversible” when it yields a subset of feasible future choices (\(D(\alpha_1) \subseteq D(\alpha'_1)\)). This makes irreversibility a distinct category in the framework (separate from payoff magnitude) because it is encoded as a constraint on future action rather than merely an outcome cost, and it underpins an “option value of waiting” rationale for precaution under uncertainty. (gollier2003decisionmakingunderscientific pages 5-8)
+
+## Evidence in AI value alignment / AI safety
+### 1) Irreversibility as a distinct *side-effect* category via impact measures
+In work on negative side effects/impact regularization, irreversibility is treated as a distinct property of transitions that can be directly targeted by the penalty definition. For example, reachability-based penalties (relative reachability) are explicitly discussed in terms of whether they penalize *irreversible transitions*; the undiscounted form is described as penalizing only irreversible transitions. This makes “irreversibility” a separable design target inside the metric, not just an informal concern. (krakovna2018penalizingsideeffects pages 11-13, krakovna2018penalizingsideeffects pages 3-5)
+
+Related survey work on negative side effects explicitly tracks “reversibility/irreversibility” as a characteristic of
+
+... [+6387 karakter daha, JSON'da tam metin]
+
+============================================================
+✓ Tam yanıt JSON: test_single_result.json
+✓ Süre: 505.2 saniye
+✓ has_successful_answer: True

@@ -1,0 +1,48 @@
+✓ Keychain'den key alındı (uzunluk: 235)
+
+======================================================================
+YBF × Edison Mode 3 Batch — 6 paralel sorgu başlatılıyor
+======================================================================
+Sorgular:
+  1. MULTI_JUDGE_SCORING            (LITERATURE) [HIGH]
+  2. RLHF_REPLICATION               (LITERATURE) [HIGH]
+  3. BARRIER_METHODS_CRL            (LITERATURE) [BLOCKER]
+  4. PER_AXIS_REWARD_NOVELTY        (PRECEDENT ) [HIGH]
+  5. FIDELITY_GAP_PRIOR_ART         (PRECEDENT ) [HIGH]
+  6. DUAL_LAYER_NOVELTY             (PRECEDENT ) [BLOCKER]
+======================================================================
+
+[1/6 MULTI_JUDGE_SCORING] Başlatıldı (job=LITERATURE)
+[2/6 RLHF_REPLICATION] Başlatıldı (job=LITERATURE)
+[3/6 BARRIER_METHODS_CRL] Başlatıldı (job=LITERATURE)
+[4/6 PER_AXIS_REWARD_NOVELTY] Başlatıldı (job=PRECEDENT)
+[5/6 FIDELITY_GAP_PRIOR_ART] Başlatıldı (job=PRECEDENT)
+[6/6 DUAL_LAYER_NOVELTY] Başlatıldı (job=PRECEDENT)
+[5/6 FIDELITY_GAP_PRIOR_ART] ✗ HATA (2.6s): HTTPStatusError: Client error '402 Payment Required' for url 'https://api.platform.edisonscientific.com/v0.1/crows'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/402
+[6/6 DUAL_LAYER_NOVELTY] ✓ TAMAM (642.1s, 13279 char, success=True) → edison_mode3_06_DUAL_LAYER_NOVELTY.json
+[4/6 PER_AXIS_REWARD_NOVELTY] ✓ TAMAM (883.3s, 13553 char, success=True) → edison_mode3_04_PER_AXIS_REWARD_NOVELTY.json
+[2/6 RLHF_REPLICATION] ✓ TAMAM (925.5s, 13889 char, success=True) → edison_mode3_02_RLHF_REPLICATION.json
+[1/6 MULTI_JUDGE_SCORING] ✓ TAMAM (1098.5s, 18084 char, success=True) → edison_mode3_01_MULTI_JUDGE_SCORING.json
+[3/6 BARRIER_METHODS_CRL] ✓ TAMAM (1103.5s, 19145 char, success=True) → edison_mode3_03_BARRIER_METHODS_CRL.json
+
+======================================================================
+✓ BATCH TAMAMLANDI
+======================================================================
+Toplam süre: 1103.5s (18.4 dk)
+Başarılı: 5/6
+Hatalı:   1/6
+
+Detaylı sonuçlar:
+  ✓ [1] MULTI_JUDGE_SCORING            1098.5s success=True
+  ✓ [2] RLHF_REPLICATION               925.5s success=True
+  ✓ [3] BARRIER_METHODS_CRL            1103.5s success=True
+  ✓ [4] PER_AXIS_REWARD_NOVELTY        883.3s success=True
+  ✗ [5] FIDELITY_GAP_PRIOR_ART         2.6s HTTPStatusError
+  ✓ [6] DUAL_LAYER_NOVELTY             642.1s success=True
+
+Çıktılar:
+  edison_mode3_NN_LABEL.json (6 dosya)
+  batch_mode3_summary.json (özet)
+
+Sıradaki: bu dosyaları wiki/ciktilar/'a kopyala + sentez yaz

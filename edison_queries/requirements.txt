@@ -1,0 +1,14 @@
+# YBF × Edison Test Sorguları — Bağımlılıklar
+#
+# Kurulum:
+#   python3 -m venv venv
+#   source venv/bin/activate
+#   pip install -r requirements.txt
+#
+# Test edilmiş ortam: Python 3.14.5 (Intel x86_64, macOS 13.7.8), 2026-06-08
+
+# Ana paket — Edison Scientific Python client
+# PyPI: https://pypi.org/project/edison-client/
+# Author: Edison Scientific technical staff <support@edisonscientific.com>
+# Kurulum cinsiyle ~80 transitif bağımlılık çekiyor (paper-qa, openai, litellm, fhaviary, ldp, vs.)
+edison-client>=0.11.1
