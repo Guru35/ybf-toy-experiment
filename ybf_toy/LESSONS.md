@@ -193,6 +193,35 @@ mv data/scores_cache.json data/scores_cache_v2_4axis.json
 
 ---
 
+## C19 — Repo Restructure: ybf_toy/ → AI-Egitmek/ Root (2026-06-08)
+
+**Olay:** GitHub repo başlangıçta `~/Documents/AI-Egitmek/ybf_toy/` köküne bağlıydı. Üç sistem mimarisinde "AI Eğitim" canonical scope parent klasör olduğu için, `.git` parent'a taşındı.
+
+**Sonuç:**
+- Repo URL aynı: `github.com/Guru35/ybf-toy-experiment`
+- 87 dosya rename detect edildi (git auto-detect)
+- edison_queries/ alt-projesi de versiyonlandı (venv hariç)
+- Parent CLAUDE.md tracked oldu
+- ybf_toy/.gitignore silindi (parent .gitignore geçerli)
+
+**Path implications:**
+- Clone sonrası repo kök = AI-Egitmek perspektifi
+- ybf_toy deneyleri için: `cd ybf-toy-experiment/ybf_toy/`
+- Modal script (`ybf_dpo_modal.py`) `/root/repo/ybf_toy`'a cd ediyor — doğru
+- Colab notebook (`ybf_dpo_colab.ipynb`) `repo/ybf_toy`'a cd ediyor — restructure sonrası düzeltildi
+
+**Backup:** `.git` taşıma öncesi tar backup `/tmp/ybf-toy-git-backup-*.tgz` (2.6 MB). 7 günden sonra otomatik silinir.
+
+**Bayatlamış path'ler için kontrol komutu (gelecek restructure'lar için):**
+```bash
+# README/notebook/MD'lerde stale cd path'leri
+grep -rn "cd ybf_toy$\|cd ./ybf_toy" --include="*.md" --include="*.ipynb"
+# Notebook cell'leri için:
+python3 -c "import json,sys; [print(''.join(c['source'][:3])) for c in json.load(open(sys.argv[1]))['cells'] if c['cell_type']=='code']" notebook.ipynb
+```
+
+---
+
 ## Genel Operasyonel Kurallar (Hard-Won)
 
 1. **Cache backup al** önemli deneyler arasında: `cp data/scores_cache.json data/scores_cache.json.bak`

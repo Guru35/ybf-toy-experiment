@@ -37,6 +37,18 @@ Embedding-blind ablation (Test 5b) proved the 384-dim TF-IDF embedding contribut
 
 ## How to Reproduce
 
+### 0. Clone
+
+```bash
+git clone https://github.com/Guru35/ybf-toy-experiment.git
+cd ybf-toy-experiment/ybf_toy        # the toy experiment lives in a subfolder
+```
+
+The repository root is the AI-Egitmek project root; the toy experiment code,
+data, and reports live under `ybf_toy/`. The sibling `edison_queries/` folder
+is a separate Edison Scientific literature-query subproject and is not required
+for reproducing the experiments below.
+
 ### 1. Environment
 
 ```bash
