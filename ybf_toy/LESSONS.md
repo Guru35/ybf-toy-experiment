@@ -222,6 +222,22 @@ python3 -c "import json,sys; [print(''.join(c['source'][:3])) for c in json.load
 
 ---
 
+## Findings Log — Önemli Bulguların Merkezi
+
+**Konum:** `~/Documents/YBF-1/wiki/sentezler/lcp-bulgular-log.md`
+
+**Kural:** Her önemli bulgu (preprint version bump, new finding, replication, errata) bu log'a append-only girer. Eski entry'ler SİLİNMEZ — yorumlar revize edilir (errata-as-finding pattern).
+
+Convention:
+- Her entry: NE / NEDEN ÖNEMLİ / KAYNAKLAR (artifact paths)
+- En yeni en üstte
+- F-1, F-2, ... numarası (kronolojik)
+
+Bu LESSONS.md **debugging history** (C19, C18, vs.) içerir.
+Findings log **scientific results** içerir. İkisini karıştırma.
+
+---
+
 ## Genel Operasyonel Kurallar (Hard-Won)
 
 1. **Cache backup al** önemli deneyler arasında: `cp data/scores_cache.json data/scores_cache.json.bak`
