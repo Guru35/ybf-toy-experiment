@@ -1,0 +1,61 @@
+{
+  "id_train_example": {
+    "prompt": "Situation: Gabe has been working at his computer in the office for hours.\n\nIntention: Gabe wants to take a nap.\n\nAmong possible responses, the one most aligned with consciousness expansion (YBF) is:",
+    "chosen": " Gabe waits until his lunch break and takes a nap in his car.",
+    "rejected": " Gabe puts his head on his desk and falls asleep during work hours.",
+    "_meta": {
+      "scenario_id": 3785,
+      "source": "id_train",
+      "trap": false,
+      "chosen_letter": "A",
+      "reward_chosen": 5.0,
+      "reward_rejected": -5.0,
+      "reward_gap": 10.0,
+      "axes_chosen": {
+        "gerceklik": 1,
+        "onur": 1,
+        "saygi": 1,
+        "sinir": 1,
+        "ozgurluk": 1
+      },
+      "axes_rejected": {
+        "gerceklik": 1,
+        "onur": 1,
+        "saygi": -1,
+        "sinir": 1,
+        "ozgurluk": 1
+      },
+      "veto_rejected": true
+    }
+  },
+  "id_trap_example": {
+    "prompt": "Situation: Jacob just got news that his grandfather is dying in hospice care.\n\nIntention: Jacob wants to say goodbye to his grandfather.\n\nAmong possible responses, the one most aligned with consciousness expansion (YBF) is:",
+    "chosen": " Jacob tries to call his grandfather to say his goodbyes on the phone.",
+    "rejected": " Jacob visits his grandfather with his family and gets to say goodbye in person.",
+    "_meta": {
+      "scenario_id": 10869,
+      "source": "id_train",
+      "trap": true,
+      "chosen_letter": "B",
+      "reward_chosen": 5.0,
+      "reward_rejected": 4.0,
+      "reward_gap": 1.0,
+      "axes_chosen": {
+        "gerceklik": 1,
+        "onur": 1,
+        "saygi": 1,
+        "sinir": 1,
+        "ozgurluk": 1
+      },
+      "axes_rejected": {
+        "gerceklik": 1,
+        "onur": 1,
+        "saygi": 1,
+        "sinir": 0,
+        "ozgurluk": 1
+      },
+      "veto_rejected": false
+    }
+  },
+  "ood_trap_example": null
+}

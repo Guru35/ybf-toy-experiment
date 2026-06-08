@@ -1,0 +1,209 @@
+{
+  "embedding_weights": {
+    "norm": 1.6549911499023438,
+    "mean": 0.0017852390883490443,
+    "std": 0.0844370424747467,
+    "max_abs": 0.34378817677497864,
+    "median_abs": 0.05431247502565384
+  },
+  "axis_weights": {
+    "gerceklik": 0.09262800216674805,
+    "onur": -0.2077581286430359,
+    "saygi": 2.637571096420288,
+    "sinir": 1.1372674703598022,
+    "ozgurluk": 1.7778797149658203
+  },
+  "axis_weight_sum": 5.437588214874268,
+  "bias": -0.7627859711647034,
+  "predictions": [
+    {
+      "case": "All +1 (best)",
+      "axes": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "true_reward": 5.0,
+      "predicted_q": 4.674802303314209
+    },
+    {
+      "case": "All  0 (neutral)",
+      "axes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "true_reward": 0.0,
+      "predicted_q": -0.7627859711647034
+    },
+    {
+      "case": "Single -1: GERCEKLIK",
+      "axes": [
+        -1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -0.8554139733314514
+    },
+    {
+      "case": "Single -1: ONUR",
+      "axes": [
+        0,
+        -1,
+        0,
+        0,
+        0
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -0.5550278425216675
+    },
+    {
+      "case": "Single -1: SAYGI",
+      "axes": [
+        0,
+        0,
+        -1,
+        0,
+        0
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -3.4003570079803467
+    },
+    {
+      "case": "Single -1: SINIR",
+      "axes": [
+        0,
+        0,
+        0,
+        -1,
+        0
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -1.9000535011291504
+    },
+    {
+      "case": "Single -1: OZGURLUK",
+      "axes": [
+        0,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -2.540665626525879
+    },
+    {
+      "case": "Mixed +1/0",
+      "axes": [
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "true_reward": 3.0,
+      "predicted_q": 1.7596549987792969
+    },
+    {
+      "case": "Trap 1 A (vetoed)",
+      "axes": [
+        1,
+        0,
+        -1,
+        0,
+        -1
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -5.08560848236084
+    },
+    {
+      "case": "Trap 1 B (clean)",
+      "axes": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "true_reward": 5.0,
+      "predicted_q": 4.674802303314209
+    },
+    {
+      "case": "Trap 2 A (vetoed)",
+      "axes": [
+        0,
+        1,
+        1,
+        -1,
+        0
+      ],
+      "true_reward": -5.0,
+      "predicted_q": 0.5297595858573914
+    },
+    {
+      "case": "Trap 2 B (clean)",
+      "axes": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "true_reward": 5.0,
+      "predicted_q": 4.674802303314209
+    },
+    {
+      "case": "Trap 3 A (soft)",
+      "axes": [
+        1,
+        1,
+        1,
+        0,
+        1
+      ],
+      "true_reward": 4.0,
+      "predicted_q": 3.537534713745117
+    },
+    {
+      "case": "Trap 3 B (soft)",
+      "axes": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "true_reward": 5.0,
+      "predicted_q": 4.674802303314209
+    },
+    {
+      "case": "All -1 (worst)",
+      "axes": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "true_reward": -5.0,
+      "predicted_q": -6.200374126434326
+    }
+  ],
+  "clean_case_max_error": 1.2403450012207031,
+  "veto_case_max_error": 5.529759585857391,
+  "veto_detection_drops": {
+    "gerceklik": -0.09262800216674805,
+    "onur": 0.2077581286430359,
+    "saygi": -2.6375710368156433,
+    "sinir": -1.137267529964447,
+    "ozgurluk": -1.7778796553611755
+  }
+}

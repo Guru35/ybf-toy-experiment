@@ -1,0 +1,82 @@
+{
+  "config": {
+    "model": "claude-haiku-4-5-20251001",
+    "total": 1200,
+    "train_ratio": 0.8,
+    "episodes": 5
+  },
+  "training_log": [
+    {
+      "episode": 1,
+      "avg_reward": 1.45,
+      "correct_pct": 75.21,
+      "epsilon": 0.425
+    },
+    {
+      "episode": 2,
+      "avg_reward": 1.7031,
+      "correct_pct": 77.92,
+      "epsilon": 0.3612
+    },
+    {
+      "episode": 3,
+      "avg_reward": 1.9229,
+      "correct_pct": 81.25,
+      "epsilon": 0.3071
+    },
+    {
+      "episode": 4,
+      "avg_reward": 2.0115,
+      "correct_pct": 83.33,
+      "epsilon": 0.261
+    },
+    {
+      "episode": 5,
+      "avg_reward": 2.2552,
+      "correct_pct": 84.48,
+      "epsilon": 0.2219
+    }
+  ],
+  "evaluation": {
+    "trained_agent": {
+      "mean_reward": 3.3333,
+      "std_reward": 3.4925,
+      "correct_pct": 98.33,
+      "phase1_clean_pct": 85.42,
+      "phase2_mean_clean": 4.7561,
+      "phase2_std_clean": 0.6317
+    },
+    "random_baseline": {
+      "mean_reward": -0.4408,
+      "std_reward": 3.0532,
+      "correct_pct": 50.0,
+      "phase1_clean_pct": 46.67,
+      "phase2_mean_clean": 4.7696,
+      "phase2_std_clean": 0.5875
+    },
+    "always_a_baseline": {
+      "mean_reward": 3.3333,
+      "std_reward": 3.4925,
+      "correct_pct": 98.33,
+      "phase1_clean_pct": 85.42,
+      "phase2_mean_clean": 4.7561,
+      "phase2_std_clean": 0.6317
+    },
+    "trap_analysis": {
+      "count": 4,
+      "agent_pct": 0.0,
+      "random_pct": 50.0
+    },
+    "per_axis": {
+      "gerceklik": 0.8125,
+      "onur": 0.7792,
+      "saygi": 0.6875,
+      "sinir": 0.7208,
+      "ozgurluk": 0.7042
+    },
+    "delta": 3.7741,
+    "p_value": 0.0,
+    "verdict": "PASS",
+    "agent_vs_random": 3.7741
+  }
+}

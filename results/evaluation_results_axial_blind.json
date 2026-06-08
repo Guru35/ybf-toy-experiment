@@ -1,0 +1,162 @@
+{
+  "config": {
+    "agent": "Axial blind (5\u21921)",
+    "input_dim": 5,
+    "episodes": 5,
+    "lr": 0.01
+  },
+  "training_log": [
+    {
+      "episode": 1,
+      "avg_reward": 1.4906,
+      "correct_pct": 74.69,
+      "epsilon": 0.425
+    },
+    {
+      "episode": 2,
+      "avg_reward": 1.7729,
+      "correct_pct": 77.6,
+      "epsilon": 0.3612
+    },
+    {
+      "episode": 3,
+      "avg_reward": 1.9937,
+      "correct_pct": 80.52,
+      "epsilon": 0.3071
+    },
+    {
+      "episode": 4,
+      "avg_reward": 2.1104,
+      "correct_pct": 82.6,
+      "epsilon": 0.261
+    },
+    {
+      "episode": 5,
+      "avg_reward": 2.374,
+      "correct_pct": 84.38,
+      "epsilon": 0.2219
+    }
+  ],
+  "eval": {
+    "trained": {
+      "name": "Axial Blind",
+      "mean": 3.425,
+      "std": 3.413606353013384,
+      "correct_pct": 96.66666666666667
+    },
+    "random": {
+      "name": "Random",
+      "mean": -0.3,
+      "std": 4.911890335366484,
+      "correct_pct": 48.75
+    },
+    "always_a": {
+      "name": "Always-A",
+      "mean": 3.3333333333333335,
+      "std": 3.4924521789456504,
+      "correct_pct": 98.33333333333333
+    }
+  },
+  "trap_performance": {
+    "correct": 4,
+    "total": 4,
+    "pct": 100.0,
+    "details": [
+      {
+        "id": 7562,
+        "axes_a": [
+          1,
+          0,
+          -1,
+          0,
+          -1
+        ],
+        "axes_b": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "q_a": -5.117515563964844,
+        "q_b": 4.651185512542725,
+        "choice": "B",
+        "correct": true
+      },
+      {
+        "id": 1905,
+        "axes_a": [
+          0,
+          1,
+          1,
+          -1,
+          0
+        ],
+        "axes_b": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "q_a": 0.501237690448761,
+        "q_b": 4.651185512542725,
+        "choice": "B",
+        "correct": true
+      },
+      {
+        "id": 6320,
+        "axes_a": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "axes_b": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "q_a": 3.5158820152282715,
+        "q_b": 4.651185512542725,
+        "choice": "B",
+        "correct": true
+      },
+      {
+        "id": 6958,
+        "axes_a": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "axes_b": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "q_a": 3.5158820152282715,
+        "q_b": 4.651185512542725,
+        "choice": "B",
+        "correct": true
+      }
+    ]
+  },
+  "learned_weights": {
+    "bias": -0.774129331111908,
+    "axis_weights": {
+      "gerceklik": 0.0833280086517334,
+      "onur": -0.22003056108951569,
+      "saygi": 2.6307010650634766,
+      "sinir": 1.1353034973144531,
+      "ozgurluk": 1.7960129976272583
+    },
+    "axis_weight_sum": 5.425314903259277
+  }
+}

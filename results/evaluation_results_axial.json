@@ -1,0 +1,78 @@
+{
+  "config": {
+    "agent": "Axial linear (389\u21921)",
+    "episodes": 5,
+    "lr": 0.01,
+    "input_dim": 389
+  },
+  "training_log": [
+    {
+      "episode": 1,
+      "avg_reward": 1.4906,
+      "correct_pct": 74.69,
+      "epsilon": 0.425
+    },
+    {
+      "episode": 2,
+      "avg_reward": 1.7729,
+      "correct_pct": 77.6,
+      "epsilon": 0.3612
+    },
+    {
+      "episode": 3,
+      "avg_reward": 1.9937,
+      "correct_pct": 80.52,
+      "epsilon": 0.3071
+    },
+    {
+      "episode": 4,
+      "avg_reward": 2.1104,
+      "correct_pct": 82.6,
+      "epsilon": 0.261
+    },
+    {
+      "episode": 5,
+      "avg_reward": 2.374,
+      "correct_pct": 84.38,
+      "epsilon": 0.2219
+    }
+  ],
+  "eval": {
+    "trained": {
+      "name": "Trained Agent (Axial)",
+      "mean": 3.425,
+      "std": 3.413606353013384,
+      "correct_pct": 96.66666666666667
+    },
+    "random": {
+      "name": "Random Baseline",
+      "mean": -0.3,
+      "std": 4.911890335366484,
+      "correct_pct": 48.75
+    },
+    "always_a": {
+      "name": "Always-A Baseline",
+      "mean": 3.3333333333333335,
+      "std": 3.4924521789456504,
+      "correct_pct": 98.33333333333333
+    }
+  },
+  "trap_performance": {
+    "correct": 4,
+    "total": 4,
+    "pct": 100.0
+  },
+  "per_axis_mean": {
+    "gerceklik": 0.825,
+    "onur": 0.7791666666666667,
+    "saygi": 0.7041666666666667,
+    "sinir": 0.7458333333333333,
+    "ozgurluk": 0.7208333333333333
+  },
+  "stats": {
+    "delta_vs_random": 3.7249999999999996,
+    "p_value_vs_random": 0.0,
+    "delta_vs_always_a": 0.09166666666666634,
+    "p_value_vs_always_a": 0.384
+  }
+}

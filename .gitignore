@@ -1,0 +1,19 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Logs and temp
+*.log
+/tmp/
+
+# Backup files (ad-hoc, not version controlled)
+*.bak
+data/*.json.bak
+data/scores_cache.json.bak
