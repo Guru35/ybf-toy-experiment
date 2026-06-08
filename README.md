@@ -150,4 +150,4 @@ Preprint preparation in progress (target: June 2026). Citation block will be add
 
 ## License
 
-Code: TBD (recommend Apache 2.0 or MIT). Data scoring artifacts derive from the [demelin/moral_stories](https://huggingface.co/datasets/demelin/moral_stories) dataset (their license applies).
+Code: [Apache License 2.0](LICENSE). Data scoring artifacts derive from the [demelin/moral_stories](https://huggingface.co/datasets/demelin/moral_stories) dataset (their license applies).
