@@ -40,6 +40,7 @@ app = modal.App("ybf-toy-dpo-persistent")
 
 image = (
     modal.Image.debian_slim(python_version="3.11")
+    .apt_install("git")
     .pip_install(
         "torch",
         "transformers",
