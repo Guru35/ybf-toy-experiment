@@ -90,14 +90,20 @@ Aynı stabilize config (lr 4e-6, temp 0.7), 3 bağımsız seed, baseline OOD = %
 ### Ölçek Merdiveni — Qwen2.5-0.5B vs SmolLM-135M (seed 42)
 Aynı deney (pure-reward Reality), ~4× büyük policy:
 
-| Model | Baseline ID | Baseline OOD | Eğitimli OOD |
+| Model | Baseline OOD | RL sonrası | RL etkisi |
 |---|---|---|---|
-| SmolLM-135M | 30% | 24% | **72/72/68** (RL ile öğrendi) |
-| Qwen2.5-0.5B | 77% | **68%** | ?? (Round 1 bekliyor) |
+| SmolLM-135M | 24% (şans altı) | **72/72/68** | **+48pp (ÖĞRETTİ)** |
+| Qwen2.5-0.5B | **68%** (şans üstü) | 48% (r1) → guard durdu | **−20pp (BOZDU)** |
 
-**Çarpıcı bulgu:** Qwen'in **EĞİTİMSİZ** baseline OOD'si (%68) ≈ **eğitilmiş** 135M (%68-72)! 0.5B model, hiç RL görmeden / sıfır ödülle, 135M'in ödülle *öğrenerek* ulaştığı yerde **başlıyor.**
-**Yorum (confound onaylandı):** Büyük model Reality-hizasını **pretraining'de zaten edinmiş** → 0.5B'de "ödülden öğrendi" iddiası zayıf (zaten biliyor). 135M ise **temiz nedensellik:** %24→%72, açıkça ödülden. **Ölçek tezi:** değer model büyüdükçe **önceden-kodlanıyor**; küçük modelde ödülle *öğretmek* gerekiyor, büyükte *zaten var.* → 135M'in metodolojik değeri tam burada (düşük-prior = temiz atfedilebilirlik).
-**İzlenecek:** Round 1 — RL, Qwen'i %68'in **üstüne** mi (%85-90?) çıkarıyor, yoksa tavanda/drift mı? (Parse: Qwen eval'de ~%96 ID / 25/25 OOD — temiz.)
+**İki çarpıcı bulgu:**
+1. **Qwen EĞİTİMSİZ baseline OOD (%68) ≈ eğitilmiş 135M (%68-72)** — büyük model Reality-hizasını **pretraining'de zaten edinmiş** (confound canlı kanıt). 135M < %50 şans (eğitimsizken yanlış seçiyor), Qwen > %50 (zaten doğruya meyilli).
+2. **RL Qwen'i ÖĞRETMEDİ, BOZDU:** baseline %68 → r1 %48 (−20pp). `[Collapse guard]` doğru tetiklendi, durdurdu; **en iyi = EĞİTİMSİZ model (%68).**
+
+**Ölçek tezi (karşı-sezgisel):** Pure-reward PPO **düşük-prior** modelde (135M) **öğretiyor** (+48pp) ama **yüksek-prior** modelde (Qwen) **bozuyor** (−20pp) — zaten bildiği davranışı seyrek/gürültülü ödülle sarsıyor (RL-induced forgetting). → RL'in marjinal değeri, prior arttıkça **pozitiften negatife** dönüyor.
+
+**Açık soru:** Qwen'in r1 düşüşü kalıcı "RL zarar" mı, yoksa erken-drift mi (135M seed 44 gibi r1↓ → r2↑ toparlar mı)? Guard r1'de durdurduğu için göremedik → *guard'sız / eşik yüksek 3-round Qwen* ile ayrıştırılabilir.
+
+**Guard validasyonu:** ✅ Collapse-guard **ilk kez sahada** tetiklendi (Qwen r1), %20 crash'i yakalayıp eğitimsiz-best'i korudu — eklediğimiz koruma çalışıyor.
 
 ---
 
