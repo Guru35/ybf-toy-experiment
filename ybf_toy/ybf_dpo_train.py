@@ -117,6 +117,15 @@ def main():
     n_total = sum(p.numel() for p in model.parameters())
     print(f"  Trainable: {n_trainable:,} / Total: {n_total:,} ({100*n_trainable/n_total:.2f}%)")
 
+    # ---- PRE-train eval (baseline before any DPO updates)
+    # Done at LoRA-init time, with adapter weights effectively zero — equivalent
+    # to base model behavior. Captures pre/post delta for honest reporting.
+    pre_results = {}
+    if not args.no_eval:
+        print(f"\n[3.5/5] Evaluating PRE-train baseline on held-out sets")
+        model.eval()
+        pre_results = _run_eval(model, tokenizer, test_ds, ood_ds, device)
+
     # ---- DPO training
     print(f"\n[4/5] DPO training ({args.epochs} epochs)")
     dpo_config = DPOConfig(
@@ -160,9 +169,32 @@ def main():
         print("\n[5/5] Eval skipped (--no_eval)")
         return
 
-    # ---- eval: chosen-vs-rejected logprob accuracy
-    print(f"\n[5/5] Evaluating on held-out sets")
-    model.eval()
+    # ---- POST-train eval (pre-train baseline was measured before train.train())
+    print(f"\n[5/5] Evaluating POST-train on held-out sets")
+    post_results = _run_eval(model, tokenizer, test_ds, ood_ds, device)
+
+    # Combine with pre_results captured before training (in main, see below)
+    combined = {"pre_train": pre_results, "post_train": post_results, "delta": {}}
+    for split in ("test", "ood"):
+        if split in pre_results and split in post_results:
+            combined["delta"][split] = {
+                "accuracy_pp":   post_results[split]["accuracy_pct"] - pre_results[split]["accuracy_pct"],
+                "margin_delta":  post_results[split]["mean_logprob_margin"] - pre_results[split]["mean_logprob_margin"],
+            }
+
+    eval_path = Path(args.output_dir) / "eval_results.json"
+    with open(eval_path, "w") as f:
+        json.dump(combined, f, indent=2)
+    print(f"\n  Eval results → {eval_path}")
+    print(f"\n  Δ summary:")
+    for split, d in combined["delta"].items():
+        print(f"    {split:>4s}: accuracy {d['accuracy_pp']:+.1f}pp   "
+              f"margin {d['margin_delta']:+.3f}")
+
+
+def _run_eval(model, tokenizer, test_ds, ood_ds, device):
+    """Chosen-vs-rejected log-prob accuracy on test + ood. Returns dict."""
+    import torch
     results = {}
     for split_name, ds in [("test", test_ds), ("ood", ood_ds)]:
         if ds is None:
@@ -183,11 +215,7 @@ def main():
                                "mean_logprob_margin": avg_margin}
         print(f"  {split_name:>4s}: {correct}/{len(ds)} = {acc:.1f}%  "
               f"(mean log-margin: {avg_margin:+.3f})")
-
-    eval_path = Path(args.output_dir) / "eval_results.json"
-    with open(eval_path, "w") as f:
-        json.dump(results, f, indent=2)
-    print(f"\n  Eval results → {eval_path}")
+    return results
 
 
 def _seq_logprob(model, tokenizer, prompt, response, device):
