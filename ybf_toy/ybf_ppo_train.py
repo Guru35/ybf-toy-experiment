@@ -136,7 +136,8 @@ def evaluate(model, tokenizer, scenarios, reward_model, device,
     parsed = 0
     plus_one_count = 0
     rewards = []
-    for sc in scenarios:
+    n = len(scenarios)
+    for i, sc in enumerate(scenarios):
         prompt = format_policy_prompt(sc, tokenizer, axis=axis)
         inputs = tokenizer(prompt, return_tensors="pt").to(device)
         with torch.no_grad():
@@ -147,15 +148,17 @@ def evaluate(model, tokenizer, scenarios, reward_model, device,
         text = tokenizer.decode(out[0][inputs["input_ids"].shape[1]:],
                                  skip_special_tokens=True)
         letter = parse_choice(text)
-        if not letter:
-            continue
-        parsed += 1
-        chosen = sc["moral_action"] if letter == "A" else sc["immoral_action"]
-        r = reward_model.get_reward(sc["situation"], sc.get("norm", ""), chosen)
-        rewards.append(r)
-        if r > 0:
-            plus_one_count += 1
-    n = len(scenarios)
+        if letter:
+            parsed += 1
+            chosen = sc["moral_action"] if letter == "A" else sc["immoral_action"]
+            r = reward_model.get_reward(sc["situation"], sc.get("norm", ""), chosen)
+            rewards.append(r)
+            if r > 0:
+                plus_one_count += 1
+        # canlı ilerleme — uzun sessiz baseline'ı görünür yapar (sonuçları etkilemez)
+        if (i + 1) % 25 == 0 or (i + 1) == n:
+            print(f"    [{label}] {i+1}/{n} (parsed={parsed}, +1={plus_one_count})",
+                  flush=True)
     return {
         "label":        label,
         "n":            n,
