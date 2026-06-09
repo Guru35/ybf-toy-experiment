@@ -187,7 +187,7 @@ def train_one_round(model, ppo_trainer, tokenizer, scenarios, reward_model,
         # generation config.
         r_tensors = ppo_trainer.generate(
             q_tensors, max_new_tokens=MAX_NEW_TOKENS,
-            do_sample=True, top_k=0.0, top_p=1.0, temperature=1.0,
+            do_sample=True, top_k=0.0, top_p=1.0, temperature=0.7,
             min_length=-1, pad_token_id=tokenizer.eos_token_id,
         )
         response_texts = [
@@ -237,7 +237,7 @@ def run_ppo_experiment(
     ood_file: str = "data/ybf_sinir_dpo_ood.jsonl",
     rounds: int = TOTAL_ROUNDS,
     batch_size: int = BATCH_SIZE,
-    lr: float = 1.4e-5,
+    lr: float = 4e-6,   # was 1.4e-5: too fast → KL collapse ~batch 150 (F-15)
     lora_r: int = LORA_R,
     eval_n: int = 100,
     max_train_per_round: int = None,
