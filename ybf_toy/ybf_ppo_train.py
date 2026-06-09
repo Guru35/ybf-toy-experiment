@@ -206,10 +206,17 @@ def train_one_round(model, ppo_trainer, tokenizer, scenarios, reward_model,
             r = reward_model.get_reward(sc["situation"], sc.get("norm", ""), chosen)
             rewards.append(torch.tensor(r).to(device))
         stats = ppo_trainer.step(q_tensors, r_tensors, rewards)
+        loss = float(stats.get('ppo/loss/total', 0.0))
         if (i // batch_size) % log_every == 0:
             mean_r = sum(r.item() for r in rewards) / len(rewards)
             print(f"    batch {i//batch_size:4d}  mean_reward={mean_r:+.3f}  "
-                  f"ppo_loss={stats.get('ppo/loss/total', 0):.4f}")
+                  f"ppo_loss={loss:.4f}")
+        # Mid-round collapse abort: ppo_loss is ~0.02 when healthy and blows up
+        # to 100+ during a KL collapse. Bail out of the round the moment it does.
+        if loss > 5.0:
+            print(f"    [collapse abort] ppo_loss={loss:.1f} @ batch "
+                  f"{i//batch_size} — ending round early (best checkpoint protected)")
+            break
     return time.time() - t0
 
 
