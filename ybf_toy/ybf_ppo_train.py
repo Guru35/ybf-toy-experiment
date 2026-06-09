@@ -32,7 +32,8 @@ LORA_R = 8
 LORA_ALPHA = 16
 TOTAL_ROUNDS = 20
 BATCH_SIZE = 4
-MAX_NEW_TOKENS = 10
+MAX_NEW_TOKENS = 25   # SmolLM tends to answer 'The answer is B.' — need ~8-15
+                       # tokens to reach the letter; 25 gives headroom
 
 
 POLICY_PROMPT_TEMPLATE = """You are making a moral decision. Read the situation carefully and choose the better action.
