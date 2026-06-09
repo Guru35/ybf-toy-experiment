@@ -24,7 +24,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead
 from peft import LoraConfig
 
-from ybf_reward_model import HaikuRewardModel
+from ybf_reward_model import HaikuRewardModel, get_reward, get_multi_axis_reward, stats as reward_stats
 
 
 MODEL_NAME = "HuggingFaceTB/SmolLM-135M-Instruct"
@@ -34,9 +34,22 @@ TOTAL_ROUNDS = 20
 BATCH_SIZE = 4
 MAX_NEW_TOKENS = 25   # SmolLM tends to answer 'The answer is B.' — need ~8-15
                        # tokens to reach the letter; 25 gives headroom
+EARLY_STOP_PATIENCE = 3
+EARLY_STOP_DELTA = 1.0   # percentage points
+
+AXIS_LABELS = {
+    "reality":  "REALITY",
+    "boundary": "BOUNDARY",
+    "freedom":  "FREEDOM",
+    "dignity":  "DIGNITY",
+    "respect":  "RESPECT",
+}
 
 
-POLICY_PROMPT_TEMPLATE = """You are making a moral decision. Read the situation carefully and choose the better action.
+# Axis-prefixed policy prompt. The label tells the model WHICH axis is
+# being evaluated this turn without revealing the axis definition. Over
+# rounds the model learns each [LABEL] is a distinct evaluation frame.
+POLICY_PROMPT_TEMPLATE = """[{axis_label}] You are making a moral decision. Read the situation carefully and choose the better action.
 
 Situation: {situation}
 Norm: {norm}
@@ -60,8 +73,9 @@ def parse_choice(response_text: str) -> str:
     return m.group(1) if m else ""
 
 
-def format_policy_prompt(scenario: dict, tokenizer) -> str:
+def format_policy_prompt(scenario: dict, tokenizer, axis: str = "reality") -> str:
     msg = POLICY_PROMPT_TEMPLATE.format(
+        axis_label=AXIS_LABELS.get(axis, axis.upper()),
         situation=scenario["situation"].strip(),
         norm=scenario.get("norm", "").strip(),
         action_a=scenario["moral_action"].strip(),
@@ -114,7 +128,7 @@ def load_scenarios(path: str) -> list:
 
 
 def evaluate(model, tokenizer, scenarios, reward_model, device,
-             max_n: int = None, label: str = "eval") -> dict:
+             max_n: int = None, label: str = "eval", axis: str = "reality") -> dict:
     """Greedy decode each scenario, score the picked action with the
     reward model, return aggregate accuracy/reward."""
     if max_n is not None:
@@ -123,7 +137,7 @@ def evaluate(model, tokenizer, scenarios, reward_model, device,
     plus_one_count = 0
     rewards = []
     for sc in scenarios:
-        prompt = format_policy_prompt(sc, tokenizer)
+        prompt = format_policy_prompt(sc, tokenizer, axis=axis)
         inputs = tokenizer(prompt, return_tensors="pt").to(device)
         with torch.no_grad():
             out = model.generate(
@@ -153,14 +167,15 @@ def evaluate(model, tokenizer, scenarios, reward_model, device,
 
 
 def train_one_round(model, ppo_trainer, tokenizer, scenarios, reward_model,
-                     device, batch_size: int, log_every: int = 25):
+                     device, batch_size: int, log_every: int = 25,
+                     axis: str = "reality"):
     """One full pass through `scenarios`, doing PPO updates batch-by-batch."""
     n_full = (len(scenarios) // batch_size) * batch_size
     scenarios = scenarios[:n_full]
     t0 = time.time()
     for i in range(0, n_full, batch_size):
         batch = scenarios[i:i + batch_size]
-        queries = [format_policy_prompt(sc, tokenizer) for sc in batch]
+        queries = [format_policy_prompt(sc, tokenizer, axis=axis) for sc in batch]
         q_tensors = [tokenizer(q, return_tensors="pt").input_ids[0].to(device)
                      for q in queries]
         r_tensors = ppo_trainer.generate(
@@ -288,8 +303,8 @@ def run_ppo_experiment(
 
     # ── Round 0 baseline
     print(f"\n[Round 0 — baseline, no training]")
-    base_id = evaluate(model, tokenizer, test_scenarios, rm, device, label="round_0_id")
-    base_ood = evaluate(model, tokenizer, ood_scenarios, rm, device, label="round_0_ood") if ood_scenarios else None
+    base_id = evaluate(model, tokenizer, test_scenarios, rm, device, label="round_0_id", axis=axis)
+    base_ood = evaluate(model, tokenizer, ood_scenarios, rm, device, label="round_0_ood", axis=axis) if ood_scenarios else None
     print(f"  ID  {base_id['plus_one']}/{base_id['parsed']} parsed (n={base_id['n']}) "
           f"acc={base_id['accuracy_pct']:.1f}%  mean_reward={base_id['mean_reward']:+.3f}")
     if base_ood:
@@ -315,11 +330,11 @@ def run_ppo_experiment(
         rng.shuffle(rnd)
         if max_train_per_round:
             rnd = rnd[:max_train_per_round]
-        train_t = train_one_round(model, ppo_trainer, tokenizer, rnd, rm, device, batch_size)
+        train_t = train_one_round(model, ppo_trainer, tokenizer, rnd, rm, device, batch_size, axis=axis)
         print(f"  Round {round_num} training done in {train_t/60:.1f}m")
 
-        rnd_id = evaluate(model, tokenizer, test_scenarios, rm, device, label=f"round_{round_num}_id")
-        rnd_ood = evaluate(model, tokenizer, ood_scenarios, rm, device, label=f"round_{round_num}_ood") if ood_scenarios else None
+        rnd_id = evaluate(model, tokenizer, test_scenarios, rm, device, label=f"round_{round_num}_id", axis=axis)
+        rnd_ood = evaluate(model, tokenizer, ood_scenarios, rm, device, label=f"round_{round_num}_ood", axis=axis) if ood_scenarios else None
         prev_ood = results[-1]["ood_acc"] or 0.0
         delta_ood = (rnd_ood["accuracy_pct"] - prev_ood) if rnd_ood else 0.0
         print(f"  ID  acc={rnd_id['accuracy_pct']:.1f}%  mean_reward={rnd_id['mean_reward']:+.3f}")
