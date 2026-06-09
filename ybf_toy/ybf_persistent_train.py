@@ -42,18 +42,14 @@ image = (
     modal.Image.debian_slim(python_version="3.11")
     .apt_install("git")
     .pip_install(
-        # Pinned to versions compatible with ybf_dpo_train.py's DPOConfig
-        # API. TRL 1.x removed max_prompt_length; pin to 0.12.x line which
-        # matches the Faz 3 full run (commit 137216b, v1 baseline) that
-        # produced the v0.4.8 §3.9 result.
-        "torch==2.4.1",
-        "transformers==4.46.3",
-        "datasets==3.0.2",
-        "peft==0.13.2",
-        "trl==0.12.2",
-        "accelerate==1.0.1",
-        "bitsandbytes==0.44.1",
-        "numpy<2",
+        "torch",
+        "transformers",
+        "datasets",
+        "peft",
+        "trl",
+        "accelerate",
+        "bitsandbytes",
+        "numpy",
     )
     .run_commands(
         "git clone https://github.com/Guru35/ybf-toy-experiment.git /root/repo",

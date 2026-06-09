@@ -127,7 +127,7 @@ def main():
         num_train_epochs=args.epochs,
         beta=args.beta,
         max_length=args.max_length,
-        max_prompt_length=args.max_length // 2,
+        # max_prompt_length removed in TRL 0.13+; default truncation applies.
         logging_steps=20,
         save_strategy="epoch",
         seed=args.seed,
