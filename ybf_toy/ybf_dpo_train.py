@@ -141,7 +141,7 @@ def main():
         ref_model=None,  # LoRA uses base model as ref automatically
         args=dpo_config,
         train_dataset=train_ds,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,   # TRL 0.13+: renamed from tokenizer=
     )
     trainer.train()
 
