@@ -90,10 +90,11 @@ Aynı stabilize config (lr 4e-6, temp 0.7), 3 bağımsız seed, baseline OOD = %
 ### Ölçek Merdiveni — Qwen2.5-0.5B vs SmolLM-135M (seed 42)
 Aynı deney (pure-reward Reality), ~4× büyük policy:
 
-| Model | Baseline OOD | RL sonrası | RL etkisi |
+| Model (lr) | Baseline OOD | RL trajesi | Etki |
 |---|---|---|---|
-| SmolLM-135M | 24% (şans altı) | **72/72/68** | **+48pp (ÖĞRETTİ)** |
-| Qwen2.5-0.5B | **68%** (şans üstü) | 48% (r1) → guard durdu | **−20pp (BOZDU)** |
+| SmolLM-135M (4e-6) | 24% (şans altı) | **72/72/68** | **+48pp ÖĞRETTİ** |
+| Qwen2.5-0.5B (4e-6) | 68% (şans üstü) | 48% @r1 → guard | −20pp bozdu |
+| Qwen2.5-0.5B (1e-6) | 76% | 64% @r1 → 16% @r2 → guard | **−60pp ÇÖKTÜ** |
 
 **İki çarpıcı bulgu:**
 1. **Qwen EĞİTİMSİZ baseline OOD (%68) ≈ eğitilmiş 135M (%68-72)** — büyük model Reality-hizasını **pretraining'de zaten edinmiş** (confound canlı kanıt). 135M < %50 şans (eğitimsizken yanlış seçiyor), Qwen > %50 (zaten doğruya meyilli).
@@ -109,7 +110,7 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 
 **Hipotez (judge-policy çelişkisi):** Haiku'nun ödül kalibrasyonu, Qwen'in pretraining'den taşıdığı Reality anlayışıyla **çelişiyor** olabilir → PPO, Qwen'i kendi tutarlı anlayışından *uzağa* itip regrese ettiriyor (reward-model misspecification).
 
-**Plan (CCD direktifi, 2026-06-10):** (1) Qwen'i **lr 10× düşük (1e-6)** ile tekrar dene → nazik RL prior'ı koruyor/iyileştiriyor mu? (2) Yine düşerse → Qwen için **PPO yerine DPO** (tercih-çiftleriyle daha hedefli sinyal; veto/forgetting riski düşük).
+**Sonuç (CCD direktifi test edildi, 2026-06-10):** lr 10× düşük (1e-6) **de işe yaramadı** — sadece çöküşü 1 round geciktirdi (r1 −12pp → r2 −48pp, ID %1'e). **Her iki lr'de de (4e-6 ve 1e-6) PPO Qwen'i bozdu/çökertti** → PPO yüksek-prior modeller için **fundamental olarak uygunsuz** (lr meselesi değil). **Karar: Qwen için PPO yerine DPO** (tercih-çiftleri = daha hedefli, daha az yıkıcı sinyal; sparse-reward + forgetting riski yok). Collapse-guard **ikinci kez de** doğru tetiklendi (%60 crash, eğitimsiz-best %76 korundu) — iki bağımsız Qwen run'ında da çalıştı.
 
 ---
 
