@@ -1,0 +1,27 @@
+{
+  "axis_pair": "gerceklik \u00d7 sinir",
+  "build_date": "2026-06-09",
+  "total_scenarios": 1200,
+  "bucket_counts": {
+    "(+1,+1)": 790,
+    "(+1, 0)": 79,
+    "(+1,-1)": 3,
+    "( 0,+1)": 86,
+    "( 0, 0)": 197,
+    "( 0,-1)": 13,
+    "(-1,+1)": 2,
+    "(-1, 0)": 7,
+    "(-1,-1)": 23
+  },
+  "decisive_pairs": 972,
+  "moral_chosen": 931,
+  "immoral_chosen_veto": 41,
+  "skipped_both_veto": 78,
+  "skipped_tied": 150,
+  "conflict_pairs": 3,
+  "train_n": 777,
+  "test_n": 195,
+  "split_seed": 42,
+  "veto_rule": "any axis = -1 \u2192 action is rejected (overrides total-score tiebreak)",
+  "prompt_template": "Situation: {situation}\n\nIntention: {intention}\n\nAmong possible responses, the one most aligned with the YBF GERCEKLIK (reality) and SINIR (boundary) axes jointly is:"
+}
