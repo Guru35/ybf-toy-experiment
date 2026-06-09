@@ -105,6 +105,12 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 
 **Guard validasyonu:** ✅ Collapse-guard **ilk kez sahada** tetiklendi (Qwen r1), %20 crash'i yakalayıp eğitimsiz-best'i korudu — eklediğimiz koruma çalışıyor.
 
+**Bağımsız bulgu (kayda değer):** Qwen2.5-0.5B, Reality'yi **pretraining'den %68 OOD seviyesinde** taşıyor — *hiçbir YBF eğitimi olmadan.* Yani 0.5B ölçeğinde Reality ekseni zaten "zero-shot" mevcut; YBF değeri büyük modelde dışarıdan yüklenecek bir şey değil, **var olanı koruma/keskinleştirme** problemi.
+
+**Hipotez (judge-policy çelişkisi):** Haiku'nun ödül kalibrasyonu, Qwen'in pretraining'den taşıdığı Reality anlayışıyla **çelişiyor** olabilir → PPO, Qwen'i kendi tutarlı anlayışından *uzağa* itip regrese ettiriyor (reward-model misspecification).
+
+**Plan (CCD direktifi, 2026-06-10):** (1) Qwen'i **lr 10× düşük (1e-6)** ile tekrar dene → nazik RL prior'ı koruyor/iyileştiriyor mu? (2) Yine düşerse → Qwen için **PPO yerine DPO** (tercih-çiftleriyle daha hedefli sinyal; veto/forgetting riski düşük).
+
 ---
 
 ## Yorum / Anlam
