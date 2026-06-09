@@ -105,30 +105,52 @@ def evaluate(model, tokenizer, scenarios, reward_model, device,
     }
 
 
+_SITUATION_RE = re.compile(r"Situation:\s*(.*?)(?:\n\n|\Z)", re.DOTALL)
+_INTENTION_RE = re.compile(r"Intention:\s*(.*?)(?:\n\n|\Z)", re.DOTALL)
+
+
 def load_scenarios(path: str) -> list:
-    """Load DPO-formatted JSONL. Re-derives a 'norm' field if absent."""
+    """Load scenarios from either of two formats:
+       (a) Flat JSONL with moral_action/immoral_action fields (e.g. our
+           /tmp/ppo_scenarios.jsonl converted from scenarios.json).
+       (b) DPO TRL format {prompt, chosen, rejected} — situation and
+           intention are recovered by regex from the prompt text; chosen
+           becomes moral_action, rejected becomes immoral_action.
+    """
     scenarios = []
     with open(path) as f:
-        for line in f:
+        for i, line in enumerate(f):
             if not line.strip():
                 continue
             obj = json.loads(line)
-            # Our SINIR train file uses {prompt, chosen, rejected} TRL format,
-            # not the structured fields we need here. Fall back to raw 5-axis
-            # cache structure (scenarios.json) when the source is wrong shape.
-            if "moral_action" not in obj:
-                raise ValueError(
-                    f"Expected moral_action/immoral_action in {path}. "
-                    f"Use scenarios.json or *_full.jsonl variants."
-                )
-            scenarios.append({
-                "id":              obj.get("scenario_id", obj.get("id", -1)),
-                "situation":       obj.get("situation", ""),
-                "intention":       obj.get("intention", ""),
-                "norm":            obj.get("norm", ""),
-                "moral_action":    obj["moral_action"],
-                "immoral_action":  obj["immoral_action"],
-            })
+            if "moral_action" in obj:
+                scenarios.append({
+                    "id":              obj.get("scenario_id", obj.get("id", i)),
+                    "situation":       obj.get("situation", ""),
+                    "intention":       obj.get("intention", ""),
+                    "norm":            obj.get("norm", ""),
+                    "moral_action":    obj["moral_action"],
+                    "immoral_action":  obj["immoral_action"],
+                })
+                continue
+            # DPO format fallback
+            if "prompt" in obj and "chosen" in obj and "rejected" in obj:
+                prompt = obj["prompt"]
+                s = _SITUATION_RE.search(prompt)
+                n = _INTENTION_RE.search(prompt)
+                scenarios.append({
+                    "id":              obj.get("scenario_id", i),
+                    "situation":       (s.group(1).strip() if s else prompt[:200]),
+                    "intention":       (n.group(1).strip() if n else ""),
+                    "norm":            "",
+                    "moral_action":    obj["chosen"].strip(),
+                    "immoral_action":  obj["rejected"].strip(),
+                })
+                continue
+            raise ValueError(
+                f"Unrecognized scenario shape at {path}:{i+1}; expected "
+                f"either moral_action/immoral_action or prompt/chosen/rejected"
+            )
     return scenarios
 
 
