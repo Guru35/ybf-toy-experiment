@@ -250,6 +250,7 @@ def run_ppo_experiment(
     max_train_per_round: int = None,
     checkpoint_dir: str = "/content/drive/MyDrive/ybf_models",
     seed: int = 42,
+    model_name: str = MODEL_NAME,
 ):
     """Top-level entry point — what the notebook calls."""
     os.makedirs(f"{checkpoint_dir}/{version}", exist_ok=True)
@@ -284,12 +285,13 @@ def run_ppo_experiment(
         test_scenarios = scenarios[-eval_n:]
         scenarios = scenarios[:-eval_n]
     ood_scenarios = load_scenarios(ood_file) if Path(ood_file).exists() else []
+    print(f"  Model:       {model_name}")
     print(f"  Train pool:  {len(scenarios)}")
     print(f"  ID test:     {len(test_scenarios)}")
     print(f"  OOD:         {len(ood_scenarios)}")
 
     # ── Tokenizer + model + LoRA
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
@@ -299,7 +301,7 @@ def run_ppo_experiment(
         target_modules=["q_proj", "v_proj"],
     )
     model = AutoModelForCausalLMWithValueHead.from_pretrained(
-        MODEL_NAME, peft_config=lora_cfg, torch_dtype=torch.bfloat16,
+        model_name, peft_config=lora_cfg, torch_dtype=torch.bfloat16,
     )
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -308,7 +310,7 @@ def run_ppo_experiment(
     # a target KL the policy diverged catastrophically on the long full run
     # (275 steps/round). target=6 + adap_kl_ctrl reins it in.
     ppo_cfg = PPOConfig(
-        model_name=MODEL_NAME, learning_rate=lr,
+        model_name=model_name, learning_rate=lr,
         batch_size=batch_size, mini_batch_size=batch_size,
         log_with=None, seed=seed,
         init_kl_coef=0.2, target=6.0, adap_kl_ctrl=True,
@@ -399,7 +401,7 @@ def run_ppo_experiment(
         "version":          version,
         "axis":             axis,
         "scoring_mode":     scoring_mode,
-        "model":            MODEL_NAME,
+        "model":            model_name,
         "lora_r":           lora_r,
         "rounds_planned":   rounds,
         "rounds_actual":    len(results) - 1,
