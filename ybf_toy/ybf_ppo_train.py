@@ -178,9 +178,14 @@ def train_one_round(model, ppo_trainer, tokenizer, scenarios, reward_model,
         queries = [format_policy_prompt(sc, tokenizer, axis=axis) for sc in batch]
         q_tensors = [tokenizer(q, return_tensors="pt").input_ids[0].to(device)
                      for q in queries]
+        # PPO rollout MUST sample (do_sample=True). Greedy decoding makes the
+        # importance-sampling ratio degenerate → KL explodes negative → the
+        # policy collapses within ~150 steps. This is the canonical TRL PPO
+        # generation config.
         r_tensors = ppo_trainer.generate(
-            q_tensors, max_new_tokens=MAX_NEW_TOKENS, do_sample=False,
-            pad_token_id=tokenizer.eos_token_id,
+            q_tensors, max_new_tokens=MAX_NEW_TOKENS,
+            do_sample=True, top_k=0.0, top_p=1.0, temperature=1.0,
+            min_length=-1, pad_token_id=tokenizer.eos_token_id,
         )
         response_texts = [
             tokenizer.decode(r[len(q):], skip_special_tokens=True)
@@ -289,10 +294,15 @@ def run_ppo_experiment(
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # ── PPO config
+    # Adaptive KL control keeps the policy near the reference model. Without
+    # a target KL the policy diverged catastrophically on the long full run
+    # (275 steps/round). target=6 + adap_kl_ctrl reins it in.
     ppo_cfg = PPOConfig(
         model_name=MODEL_NAME, learning_rate=lr,
         batch_size=batch_size, mini_batch_size=batch_size,
         log_with=None, seed=seed,
+        init_kl_coef=0.2, target=6.0, adap_kl_ctrl=True,
+        cliprange=0.2, cliprange_value=0.2,
     )
     ppo_trainer = PPOTrainer(
         config=ppo_cfg, model=model, ref_model=None, tokenizer=tokenizer,
