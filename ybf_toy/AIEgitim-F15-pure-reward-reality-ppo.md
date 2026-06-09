@@ -74,6 +74,18 @@ PPO rollout'unda greedy decoding → importance-sampling oranı dejenere → KL 
 
 **Baseline reward (Round 0):** ID mean_reward −0.390, OOD −0.520 → Round 1'de ID +0.610 / OOD +0.440 (eksiden artıya döndü).
 
+### 3-Seed Replikasyon (Reality, fix + collapse-guard)
+Aynı stabilize config (lr 4e-6, temp 0.7), 3 bağımsız seed, baseline OOD = %24:
+
+| Seed | Best OOD | @ round | Not |
+|---|---|---|---|
+| 42 | **72.0%** | 1 | temiz; r2 hold (%72), r4 collapse |
+| 43 | **72.0%** | 1 | temiz; r2'de drift başladı (%56) |
+| 44 | **40.0%** | 1 | r1 İÇİNDE erken drift (KL −80) → düşük zirve |
+
+**Okuma:** Üç seed de baseline'ın (%24) **ÜSTÜNDE** (72/72/40) → öğrenme her seed'de gerçekleşti, çekirdek iddia replike oldu. Ama **varyans gerçek:** 2 seed güçlü (%72), 1 seed zayıf (%40). 135M PPO seed-hassas; fix istikrarı 2/3 seed'de sağladı ama seed 44 erken drift etti.
+**Dürüst başlık:** *"OOD %24 → 72/72/40 (3 seed); etki gerçek ve replike, istikrar seed-bağımlı."* → Daha sıkı tahmin için n>3 ya da seed-başına early-stop tuning.
+
 ---
 
 ## Yorum / Anlam
