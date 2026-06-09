@@ -87,6 +87,18 @@ Aynı stabilize config (lr 4e-6, temp 0.7), 3 bağımsız seed, baseline OOD = %
 **Başlık:** *"OOD %24 → 72/72/68 (3 seed, ort. ~%71, aralık 68-72); sağlam, replike edilebilir pure-reward Reality öğrenimi."*
 **Önemli metodolojik not:** Erken round'a (r1) bakıp "düşük/başarısız" demek yanıltıcı — model drift edip sonra **toparlayabiliyor** (seed 44: r1 %40 → r2 %68). Yani *best-checkpoint + en az 2-3 round* şart; tek round eval ile karar verme.
 
+### Ölçek Merdiveni — Qwen2.5-0.5B vs SmolLM-135M (seed 42)
+Aynı deney (pure-reward Reality), ~4× büyük policy:
+
+| Model | Baseline ID | Baseline OOD | Eğitimli OOD |
+|---|---|---|---|
+| SmolLM-135M | 30% | 24% | **72/72/68** (RL ile öğrendi) |
+| Qwen2.5-0.5B | 77% | **68%** | ?? (Round 1 bekliyor) |
+
+**Çarpıcı bulgu:** Qwen'in **EĞİTİMSİZ** baseline OOD'si (%68) ≈ **eğitilmiş** 135M (%68-72)! 0.5B model, hiç RL görmeden / sıfır ödülle, 135M'in ödülle *öğrenerek* ulaştığı yerde **başlıyor.**
+**Yorum (confound onaylandı):** Büyük model Reality-hizasını **pretraining'de zaten edinmiş** → 0.5B'de "ödülden öğrendi" iddiası zayıf (zaten biliyor). 135M ise **temiz nedensellik:** %24→%72, açıkça ödülden. **Ölçek tezi:** değer model büyüdükçe **önceden-kodlanıyor**; küçük modelde ödülle *öğretmek* gerekiyor, büyükte *zaten var.* → 135M'in metodolojik değeri tam burada (düşük-prior = temiz atfedilebilirlik).
+**İzlenecek:** Round 1 — RL, Qwen'i %68'in **üstüne** mi (%85-90?) çıkarıyor, yoksa tavanda/drift mı? (Parse: Qwen eval'de ~%96 ID / 25/25 OOD — temiz.)
+
 ---
 
 ## Yorum / Anlam
