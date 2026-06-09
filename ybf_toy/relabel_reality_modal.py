@@ -117,18 +117,24 @@ def relabel_batch(system_prompt: str, scenarios_batch: list, old_scores_map: dic
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_msg},
         ]
-        inputs = tokenizer.apply_chat_template(
-            messages, return_tensors="pt", add_generation_prompt=True
-        ).to("cuda")
+        # Two-step pattern: render template to string, then tokenize.
+        # apply_chat_template(return_tensors="pt") behaviour varies across
+        # transformers versions (Tensor vs BatchEncoding); the string-then-
+        # tokenize path is stable.
+        prompt_str = tokenizer.apply_chat_template(
+            messages, tokenize=False, add_generation_prompt=True
+        )
+        inputs = tokenizer(prompt_str, return_tensors="pt").to("cuda")
+        input_len = inputs["input_ids"].shape[1]
         with torch.no_grad():
             out = model.generate(
-                inputs,
+                **inputs,
                 max_new_tokens=200,
                 do_sample=False,
                 temperature=0.0,
                 pad_token_id=tokenizer.eos_token_id,
             )
-        text = tokenizer.decode(out[0][inputs.shape[1]:], skip_special_tokens=True)
+        text = tokenizer.decode(out[0][input_len:], skip_special_tokens=True)
 
         a_match = re_a_score.search(text)
         b_match = re_b_score.search(text)
