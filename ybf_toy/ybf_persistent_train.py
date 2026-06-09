@@ -165,6 +165,19 @@ def train_dpo_persistent(
     print(f"║ Output:      {model_dir}/")
     print(f"╚{'═'*60}╝\n")
 
+    # ── Pull latest code into the cached /root/repo clone
+    # Modal layer-caches .run_commands("git clone ...") indefinitely; without
+    # this pull, every run sees the repo SHA from the first image build, so
+    # post-build commits to ybf_dpo_train.py never take effect. Single git
+    # pull at runtime gives us the live HEAD every time without rebuilding.
+    pull = subprocess.run(
+        ["git", "-C", "/root/repo", "pull", "--ff-only", "origin", "main"],
+        capture_output=True, text=True,
+    )
+    print(f"[git pull] {pull.stdout.strip()}")
+    if pull.returncode != 0:
+        print(f"[git pull stderr] {pull.stderr.strip()}")
+
     # ── Build training command
     # Note: ybf_dpo_train.py uses epochs not max_steps; --steps is recorded in
     # meta but the inner script controls actual training via epochs. Future work:
