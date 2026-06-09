@@ -120,6 +120,9 @@ def train_dpo_persistent(
     lora_r: int = 8,
     checkpoint_every: int = 100,
     fresh_start: bool = False,
+    train_data: str = "data/ybf_dpo_train.jsonl",
+    test_data: str = "data/ybf_dpo_test.jsonl",
+    ood_data: str = "data/ybf_dpo_ood.jsonl",
 ):
     """
     Train DPO with persistent storage and optional resume from previous version.
@@ -155,6 +158,9 @@ def train_dpo_persistent(
             print(f"║ Resume:      DISABLED (--fresh-start)")
         else:
             print(f"║ Resume:      no previous version (training from base)")
+    print(f"║ Train data:  {train_data}")
+    print(f"║ Test data:   {test_data}")
+    print(f"║ OOD data:    {ood_data}")
     print(f"║ Output:      {model_dir}/")
     print(f"╚{'═'*60}╝\n")
 
@@ -172,6 +178,9 @@ def train_dpo_persistent(
         "--beta", str(beta),
         "--lora_r", str(lora_r),
         "--output_dir", model_dir,
+        "--train_file", train_data,
+        "--test_file", test_data,
+        "--ood_file", ood_data,
     ]
     print(f"$ {' '.join(cmd)}\n")
 
@@ -203,6 +212,9 @@ def train_dpo_persistent(
         "checkpoint_every": checkpoint_every,
         "resumed_from": prev_adapter,
         "fresh_start": fresh_start,
+        "train_data": train_data,
+        "test_data": test_data,
+        "ood_data": ood_data,
         "timestamp_utc": datetime.utcnow().isoformat() + "Z",
         "git_commit": git_commit,
         "exit_code": result.returncode,
@@ -248,6 +260,9 @@ def main(
     checkpoint_every: int = 100,
     fresh_start: bool = False,
     list_versions_flag: bool = False,
+    train_data: str = "data/ybf_dpo_train.jsonl",
+    test_data: str = "data/ybf_dpo_test.jsonl",
+    ood_data: str = "data/ybf_dpo_ood.jsonl",
 ):
     import json
 
@@ -258,10 +273,12 @@ def main(
         return
 
     print(f"Starting persistent DPO training v{version} on Modal T4...\n")
+    print(f"  Dataset: {train_data}\n")
     result = train_dpo_persistent.remote(
         version=version, model=model, steps=steps, epochs=epochs,
         batch_size=batch_size, lr=lr, beta=beta, lora_r=lora_r,
         checkpoint_every=checkpoint_every, fresh_start=fresh_start,
+        train_data=train_data, test_data=test_data, ood_data=ood_data,
     )
 
     print("\n=== Run complete ===")
