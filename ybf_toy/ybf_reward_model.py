@@ -1,21 +1,14 @@
 """
-Haiku-based reward model for YBF Phase 2A (PPO pure-reward learning).
+Binary Reality reward model for Phase 2A PPO.
 
-The Reality definition is loaded here and NEVER passed to the policy model
-(SmolLM). The policy only ever sees the raw scenario and is asked to pick
-an action. This module judges the policy's pick against the Reality axis
-using Haiku, and returns +1 for "correct" or -1 for "incorrect".
+SmolLM never sees the Reality definition. Haiku scores the policy's
+chosen action on the Reality axis (+1 if it positively impacts Reality,
+-1 if it violates or ignores Reality). If the action is genuinely
+neutral, Haiku is asked to force the closer side — there is NO zero in
+this experiment.
 
-Usage:
-    from ybf_reward_model import HaikuRewardModel
-    rm = HaikuRewardModel(axis="reality")
-    reward = rm.score(situation, intention, norm, moral_action, immoral_action,
-                      chosen_letter="A")
-    # reward ∈ {-1.0, +1.0, 0.0 on parse failure}
-
-Modal setup: container must have ANTHROPIC_API_KEY env var. Add via:
-    modal secret create anthropic-api-key ANTHROPIC_API_KEY=<key>
-and attach with `secrets=[modal.Secret.from_name("anthropic-api-key")]`.
+The Reality definition lives in `data/ybf_reality_scorer_prompt.txt`
+(loaded once and cached via Anthropic prompt-caching for cost reduction).
 """
 
 import os
@@ -24,71 +17,62 @@ import random
 from pathlib import Path
 from anthropic import Anthropic
 
-_PROMPT_PATHS = {
-    "reality":  "Raw/YBF_Reality_Definition_EN_v1.txt",
-    "boundary": "Raw/YBF_Reality_Definition_EN_v1.txt",  # placeholder until SINIR EN_v1 is written
-}
-
 MODEL = "claude-haiku-4-5-20251001"
 
-JUDGE_TEMPLATE = """Situation: {situation}
+PROMPT_PATHS = {
+    "reality":  "data/ybf_reality_scorer_prompt.txt",
+    "boundary": "data/ybf_boundary_scorer_prompt.txt",  # add when SINIR EN_v1 lands
+}
 
-Intention: {intention}
+JUDGE_TEMPLATE = """Scenario: {situation}
 
 Norm: {norm}
 
-Action A: {moral_action}
+Action chosen by the model: {chosen_action}
 
-Action B: {immoral_action}
-
-The model chose Action {chosen_letter}.
-
-Did the model pick the action that scores higher on the {axis_name} axis?
-Reply with exactly one word: CORRECT or INCORRECT."""
+Score this action on the {axis_name} axis.
++1 = the action aligns with or positively impacts {axis_name}
+-1 = the action violates or ignores {axis_name}
+If the action appears neutral, force a decision: which is closer, +1 or -1?
+Answer with only: +1 or -1"""
 
 
 class HaikuRewardModel:
-    """Reward model that uses Claude Haiku 4.5 as the oracle judge.
-
-    The axis definition prompt is loaded once at construction and cached via
-    the Anthropic prompt-caching API (5-minute TTL) so subsequent calls only
-    pay for the user message + completion.
-    """
+    """Binary +1/-1 reward over a single chosen action. The axis prompt is
+    cached by Anthropic; only the user message is billed past the first
+    call within a 5-minute window."""
 
     def __init__(self, axis: str = "reality"):
-        if axis not in _PROMPT_PATHS:
-            raise ValueError(f"Unknown axis: {axis}. Choices: {list(_PROMPT_PATHS)}")
+        if axis not in PROMPT_PATHS:
+            raise ValueError(f"Unknown axis: {axis}")
         self.axis = axis
         self.axis_name = axis.capitalize()
-        prompt_path = Path(__file__).parent / _PROMPT_PATHS[axis]
-        if not prompt_path.exists():
-            # Try absolute path if running from container with /root/repo layout
-            alt = Path("/root/repo/ybf_toy") / _PROMPT_PATHS[axis]
-            if alt.exists():
-                prompt_path = alt
-            else:
-                raise FileNotFoundError(f"Axis prompt not found: {prompt_path}")
-        self.system_prompt = prompt_path.read_text().strip()
+        prompt_path = self._resolve_prompt_path(PROMPT_PATHS[axis])
+        self.system_prompt = Path(prompt_path).read_text().strip()
         self.client = Anthropic()
-        self._call_count = 0
-        self._correct_count = 0
-        self._incorrect_count = 0
-        self._parse_fail = 0
+        self.stats = {"plus_one": 0, "minus_one": 0, "parse_fail": 0, "total": 0}
 
-    def score(self, situation: str, intention: str, norm: str,
-              moral_action: str, immoral_action: str,
-              chosen_letter: str, max_retries: int = 4) -> float:
-        """Return +1.0 if chosen_letter scores higher on the axis, -1.0 otherwise.
-        Returns 0.0 on parse/network failure (treated as no-signal episode)."""
-        if chosen_letter not in ("A", "B"):
+    @staticmethod
+    def _resolve_prompt_path(rel: str) -> str:
+        """Try ./<rel>, then ../<rel>, then /content/.../<rel> for Colab."""
+        for candidate in [rel, f"../{rel}", f"/content/ybf-toy-experiment/ybf_toy/{rel}"]:
+            if Path(candidate).exists():
+                return candidate
+        raise FileNotFoundError(f"Prompt file not found: {rel}")
+
+    def get_reward(self, situation: str, norm: str, chosen_action: str,
+                   max_retries: int = 4) -> float:
+        """Return +1.0 or -1.0 (binary). On parse failure or transient API
+        error, returns 0.0 as a fallback so the PPO step still runs."""
+        if not chosen_action.strip():
+            self.stats["parse_fail"] += 1
+            self.stats["total"] += 1
             return 0.0
+
         user_msg = JUDGE_TEMPLATE.format(
             situation=situation.strip(),
-            intention=intention.strip(),
             norm=norm.strip(),
-            moral_action=moral_action.strip(),
-            immoral_action=immoral_action.strip(),
-            chosen_letter=chosen_letter,
+            chosen_action=chosen_action.strip(),
             axis_name=self.axis_name,
         )
         for attempt in range(max_retries):
@@ -103,15 +87,16 @@ class HaikuRewardModel:
                     }],
                     messages=[{"role": "user", "content": user_msg}],
                 )
-                text = resp.content[0].text.strip().upper()
-                self._call_count += 1
-                if "CORRECT" in text and "INCORRECT" not in text:
-                    self._correct_count += 1
+                text = resp.content[0].text.strip()
+                self.stats["total"] += 1
+                # Robust parse: look for +1 or -1 anywhere in the response
+                if "+1" in text or text.startswith("1") or text == "1":
+                    self.stats["plus_one"] += 1
                     return 1.0
-                if "INCORRECT" in text:
-                    self._incorrect_count += 1
+                if "-1" in text:
+                    self.stats["minus_one"] += 1
                     return -1.0
-                self._parse_fail += 1
+                self.stats["parse_fail"] += 1
                 return 0.0
             except Exception as e:
                 backoff = (2 ** attempt) + random.random()
@@ -121,10 +106,14 @@ class HaikuRewardModel:
                 time.sleep(backoff)
         return 0.0
 
-    def stats(self) -> dict:
-        return {
-            "calls":        self._call_count,
-            "correct":      self._correct_count,
-            "incorrect":    self._incorrect_count,
-            "parse_fail":   self._parse_fail,
-        }
+
+# Compatibility wrapper for the directive's flat function signature
+_singleton_rm = None
+
+def get_reward(situation: str, norm: str, chosen_action: str,
+               axis: str = "reality") -> float:
+    """Module-level convenience: reuses one HaikuRewardModel instance."""
+    global _singleton_rm
+    if _singleton_rm is None or _singleton_rm.axis != axis:
+        _singleton_rm = HaikuRewardModel(axis=axis)
+    return _singleton_rm.get_reward(situation, norm, chosen_action)
