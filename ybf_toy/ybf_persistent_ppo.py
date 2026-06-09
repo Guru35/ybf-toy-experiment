@@ -43,6 +43,8 @@ image = (
         "bitsandbytes==0.44.1",
         "numpy<2",
         "anthropic",
+        "rich",          # TRL 0.11.4 transitive — not auto-installed
+        "tyro",          # TRL 0.11.4 CLI helper — also transitive
     )
     .run_commands(
         "git clone https://github.com/Guru35/ybf-toy-experiment.git /root/repo",
