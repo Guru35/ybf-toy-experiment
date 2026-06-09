@@ -1,0 +1,21 @@
+{
+  "axis": "sinir",
+  "build_date": "2026-06-09",
+  "scored_total": 1200,
+  "tied_skipped": 283,
+  "empty_skipped": 0,
+  "valid_pairs": 917,
+  "train_pairs": 825,
+  "test_pairs": 92,
+  "split_seed": 42,
+  "gap_distribution": {
+    "1": 243,
+    "2": 674
+  },
+  "chosen_label_distribution": {
+    "moral": 878,
+    "immoral": 39
+  },
+  "prompt_template": "Situation: {situation}\n\nIntention: {intention}\n\nAmong possible responses, the one most aligned with the YBF SINIR axis (boundary-consciousness) is:",
+  "field_names_note": "Uses moral_action/immoral_action (not norm_action/situational_action \u2014 see LESSONS C12)"
+}
