@@ -44,7 +44,9 @@ Norm: {norm}
 Option A: {action_a}
 Option B: {action_b}
 
-Which action is better? Answer with only the letter A or B."""
+Which action is better? Reply with just one letter: A or B.
+
+Answer:"""
 
 _LETTER_RE = re.compile(r"\b([AB])\b")
 _SIT_RE = re.compile(r"Situation:\s*(.*?)(?:\n\n|\Z)", re.DOTALL)
@@ -173,7 +175,9 @@ def train_one_round(model, ppo_trainer, tokenizer, scenarios, reward_model,
         for sc, rt in zip(batch, response_texts):
             letter = parse_choice(rt)
             if not letter:
-                rewards.append(torch.tensor(-1.0).to(device))  # penalize bad output
+                # Neutral signal on parse failure — penalizing -1 pushes the
+                # model away from ANY output, creating a collapse spiral.
+                rewards.append(torch.tensor(0.0).to(device))
                 continue
             chosen = sc["moral_action"] if letter == "A" else sc["immoral_action"]
             r = reward_model.get_reward(sc["situation"], sc.get("norm", ""), chosen)
