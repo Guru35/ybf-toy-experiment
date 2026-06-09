@@ -369,6 +369,15 @@ def run_ppo_experiment(
             ppo_trainer.save_pretrained(f"{checkpoint_dir}/{version}/best_checkpoint")
             print(f"  *** New best OOD: {best_ood:.1f}% at round {round_num} ***")
 
+        # Collapse guard (F-15): the model converges early then over-trains into
+        # a KL-drift collapse (e.g. seed42 full run: OOD 72% @r1 → 0% @r4). If OOD
+        # crashes ≥20pp below the best seen, stop and keep the best checkpoint.
+        if rnd_ood and best_ood - rnd_ood["accuracy_pct"] >= 20.0:
+            print(f"[Collapse guard] OOD {rnd_ood['accuracy_pct']:.1f}% crashed "
+                  f"{best_ood - rnd_ood['accuracy_pct']:.0f}pp below best "
+                  f"({best_ood:.1f}% @ round {best_round}) — stopping; best checkpoint kept")
+            break
+
         # Early stopping: 3 consecutive rounds with <1pp OOD swing
         if round_num >= 4:
             last3 = [r["ood_acc"] for r in results[-3:] if r["ood_acc"] is not None]

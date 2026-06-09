@@ -62,11 +62,15 @@ PPO rollout'unda greedy decoding → importance-sampling oranı dejenere → KL 
 | 0 (baseline) | 30.0% | 24.0% | — | — | — |
 | 1 | 77.0% | **72.0%** | **+48.0** | 0.032 → 0.017 | **temiz (uyarı yok)** |
 | 2 | 71.0% | 72.0% | +0.0 | 0.016 → 0.008 | hafif (−2 .. −8) |
-| 3 | (durduruldu — drift) | — | — | 0.011 → 0.031 | büyüyor (−7 .. −28) |
+| 3 | (drift) | ~ | — | 0.011 → 0.031 | büyüyor (−7 .. −28) |
+| 4 | **0.0%** | **0.0%** | collapse | — | over-training çöküşü |
 
 - **Round 1 eval:** ID 77.0% (mean_reward **+0.610**), OOD **72.0%** (mean_reward **+0.440**). *** New best OOD 72.0% ***
 - **Round 2:** OOD 72.0% korundu → **yakınsama**.
-- **Round 3+:** post-convergence drift (KL yavaşça büyüyor, ppo_loss artıyor). **KATASTROFİK DEĞİL** (KL −28, eski −2000). En iyi model Round 1'de zaten checkpoint'lendi → kullanıcı bu noktada durdurdu.
+- **Round 3:** post-convergence drift başladı (KL −7 → −28, ppo_loss artıyor).
+- **Round 4:** **tam çöküş** — eval parse %0, OOD %0. Drift, over-training çöküşüne döndü.
+
+> **Önemli reçete (F-15'in çekirdeği):** Stabilizasyon (lr 4e-6) çöküşü round 1'den round 4'e **erteledi** ve model önce yakınsadı (peak %72) — ama training-past-convergence yine çöküşe gidiyor. **En iyi model (Round 1, %72) checkpoint'lendiği için nihai sonuç ETKİLENMEDİ.** Pratik kural: **stabilize + early-stop / best-checkpoint (round 1-2'de yakala); 20 round koşturma.** → Koda `[Collapse guard]` eklendi (commit sonrası): OOD, best'ten ≥20pp düşerse otomatik durur, best checkpoint korunur.
 
 **Baseline reward (Round 0):** ID mean_reward −0.390, OOD −0.520 → Round 1'de ID +0.610 / OOD +0.440 (eksiden artıya döndü).
 
