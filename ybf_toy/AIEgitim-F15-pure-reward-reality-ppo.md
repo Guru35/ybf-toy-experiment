@@ -110,7 +110,11 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 
 **Hipotez (judge-policy çelişkisi):** Haiku'nun ödül kalibrasyonu, Qwen'in pretraining'den taşıdığı Reality anlayışıyla **çelişiyor** olabilir → PPO, Qwen'i kendi tutarlı anlayışından *uzağa* itip regrese ettiriyor (reward-model misspecification).
 
-**Sonuç (CCD direktifi test edildi, 2026-06-10):** lr 10× düşük (1e-6) **de işe yaramadı** — sadece çöküşü 1 round geciktirdi (r1 −12pp → r2 −48pp, ID %1'e). **Her iki lr'de de (4e-6 ve 1e-6) PPO Qwen'i bozdu/çökertti** → PPO yüksek-prior modeller için **fundamental olarak uygunsuz** (lr meselesi değil). **Karar: Qwen için PPO yerine DPO** (tercih-çiftleri = daha hedefli, daha az yıkıcı sinyal; sparse-reward + forgetting riski yok). Collapse-guard **ikinci kez de** doğru tetiklendi (%60 crash, eğitimsiz-best %76 korundu) — iki bağımsız Qwen run'ında da çalıştı.
+**Sonuç (CCD direktifi test edildi, 2026-06-10):** lr 10× düşük (1e-6) **de işe yaramadı** — sadece çöküşü 1 round geciktirdi (r1 −12pp → r2 −48pp, ID **%1**'e = model A/B üretme kapasitesini tamamen kaybetti). **Her iki lr'de de (4e-6 ve 1e-6) PPO Qwen'i bozdu/çökertti** → PPO yüksek-prior modeller için **fundamental olarak uygunsuz** (lr meselesi değil; sinyalin kendisi Qwen'in mevcut bilgisiyle uyumsuz). Collapse-guard **ikinci kez de** doğru tetiklendi (%60 crash, eğitimsiz-best %76 korundu).
+
+**Ölçek yasası (yorum — kullanıcı/strateji):** İki model **~aynı OOD'de** bitiyor (135M PPO-sonrası %72 ≈ Qwen eğitimsiz %76) ama **zıt yollardan:** küçük model bilmiyordu → PPO **öğretti**; büyük model biliyordu → PPO **bozdu**. YBF okuması: *bilgi artışı ≠ kalibrasyon/bilinç artışı* — Qwen daha çok "biliyor" ama YBF-kalibrasyonu açısından PPO-sonrası SmolLM ile aynı noktada. Mekanizma: Qwen'in ağırlıkları **kendi** Reality anlayışına güçlü bağlı; PPO YBF-sinyaliyle çekiyor, ağırlıklar direniyor, model tutarlı çıktı kapasitesini kaybediyor.
+**Açık soru:** Güçlü mevcut bilgiyi **yok etmeden** daha spesifik (YBF) yöne kalibre edilebilir mi? — ya da büyük modelde *"zaten var, üstüne yazmaya gerek yok"* mu?
+**F-16 adayı (ertelendi):** Yüksek-prior modele YBF kalibrasyonu = PPO değil **DPO** (orijinal davranıştan sapmayı sınırlayan gömülü fren → forgetting'siz nazik entegrasyon). Ayrı deney; **F-15 tek başına yeterince güçlü.**
 
 ---
 
