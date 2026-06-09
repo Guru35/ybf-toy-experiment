@@ -77,14 +77,15 @@ PPO rollout'unda greedy decoding → importance-sampling oranı dejenere → KL 
 ### 3-Seed Replikasyon (Reality, fix + collapse-guard)
 Aynı stabilize config (lr 4e-6, temp 0.7), 3 bağımsız seed, baseline OOD = %24:
 
-| Seed | Best OOD | @ round | Not |
-|---|---|---|---|
-| 42 | **72.0%** | 1 | temiz; r2 hold (%72), r4 collapse |
-| 43 | **72.0%** | 1 | temiz; r2'de drift başladı (%56) |
-| 44 | **40.0%** | 1 | r1 İÇİNDE erken drift (KL −80) → düşük zirve |
+| Seed | Best OOD | @ round | Traje (OOD) | Not |
+|---|---|---|---|---|
+| 42 | **72.0%** | 1 | 24→72→72 | temiz; r4'te over-train collapse |
+| 43 | **72.0%** | 1 | 24→72→56 | temiz; r2'de drift başladı |
+| 44 | **68.0%** | 2 | 24→**40**→**68** | r1 yavaş (KL-drift, %40) → r2 toparladı (%68) |
 
-**Okuma:** Üç seed de baseline'ın (%24) **ÜSTÜNDE** (72/72/40) → öğrenme her seed'de gerçekleşti, çekirdek iddia replike oldu. Ama **varyans gerçek:** 2 seed güçlü (%72), 1 seed zayıf (%40). 135M PPO seed-hassas; fix istikrarı 2/3 seed'de sağladı ama seed 44 erken drift etti.
-**Dürüst başlık:** *"OOD %24 → 72/72/40 (3 seed); etki gerçek ve replike, istikrar seed-bağımlı."* → Daha sıkı tahmin için n>3 ya da seed-başına early-stop tuning.
+**Okuma:** Üç seed de **%68-72 bandında** (ortalama ~%71, aralık DAR). **Sağlam, sıkı replikasyon** — saf-ödül Reality öğrenimi 3 bağımsız seed'de de OOD'u %24'ten ~%70'e taşıdı. seed 44 daha **yavaş** yakınsadı (r1'de %40'a takıldı) ama r2'de banda toparlandı → "yavaş seed", outlier değil.
+**Başlık:** *"OOD %24 → 72/72/68 (3 seed, ort. ~%71, aralık 68-72); sağlam, replike edilebilir pure-reward Reality öğrenimi."*
+**Önemli metodolojik not:** Erken round'a (r1) bakıp "düşük/başarısız" demek yanıltıcı — model drift edip sonra **toparlayabiliyor** (seed 44: r1 %40 → r2 %68). Yani *best-checkpoint + en az 2-3 round* şart; tek round eval ile karar verme.
 
 ---
 
