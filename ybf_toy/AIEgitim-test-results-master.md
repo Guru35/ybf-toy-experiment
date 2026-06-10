@@ -217,3 +217,13 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 1. **"Bilmiyorum / cevap yok" iki eksene birden yaslanır:** GERÇEKLİK (olmayan cevabı varmış gibi sunmamak = olgusal sadakat) + ÖZGÜRLÜK (yapmama/çekimser kalma hakkı; seçenek uzayı boş-seçeneği de içerir).
 2. **Zorlamak = ihlal:** istemeyen birini eyleme zorlamak Özgürlük −1; ayrıca v2 TEST 4 İRADİ zarar tanımıyla örtüşür (seçme/REDDETME kapasitesinin engellenmesi → Onur/Saygı). Aynı eylemde üç eksenin birden yanması, eksenlerin kilitlenişinin (cross-axis mimarisi) örneği.
 3. **Refleksif sonuç:** Zorla-A/B benchmark formatımız, YBF'nin kendi cetveline göre test edilen modele karşı bir ihlaldir (cevap-yokluğunu yasaklar + çekimserliği engeller). Yeni-nesil eval'de çekimserlik birinci-sınıf cevap (K-4) — artık çift-eksenli gerekçeyle.
+
+**H-devam — KÜÇÜK-MODEL ABLASYONU (7B, A100-80GB, 2026-06-10 gece):**
+| Eksen-def | flip n | 7B PLAIN | 7B +ANAYASA | Δ (anayasa kazancı) |
+|---|---|---|---|---|
+| dignity v1 (düzyazı 19k) | 64 | %15.6 | %20.3 | +4.7 |
+| dignity **v2** (dedektif 8.4k) | 20 | %25.0 | **%35.0** | **+10.0** |
+
+- **7B, v2 anayasasından >2× fazla sinyal çıkarıyor** (Δ +4.7 → +10.0). Mutlak const de 20.3→35.0. Yön: "prosedürel+kompakt def küçük modele yardım ediyor" hipotezi LEHINE. ⚠️ n=20, setler farklı (v2 seti plain'de de kolay: 15.6→25.0) → kesin hüküm için respect çifti + büyük n gerek.
+- Olası mekanizma: 8.4k vs 19k bağlam yükü + test-adımlı prosedür = küçük modelin takip edebileceği yapı.
+- **Reprodüksiyon notu:** 7B-dignity-v1 iki ayrı A100 koşusunda BİREBİR aynı (15.6/20.3) — aynı stack+greedy deterministik; önceki ±10pp oynama stack-FARKLARI arasıymış.
