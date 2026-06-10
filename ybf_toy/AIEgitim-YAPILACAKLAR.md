@@ -12,7 +12,7 @@
 |---|---|---|---|---|---|
 | 0 | reality_v2 Pro eval | Ablasyonun 4. çifti — binary etkisinin saf ölçümü | CCD | ✔ | ✅ **BİTTİ** (%84.4, +7.0) |
 | 1 | İsim-mührü (Freedom→Option-Gen.) | "Kelime mi kavram mı taşıyor?" — paradigma-çarpışması kapanışı | CCD | ✔ | ✅ **BİTTİ** (12/12 özdeş — kelime vergisi sıfır) |
-| 2 | Plato analizi (32B öğe listeleri) | "14B=32B aynı sorular mı?" — açık-model hattının yayın-kalitesinde kapanışı | Gökhan(çıktı)+CCD | ✔ | ⏳ Colab çıktısı bekleniyor (BLOKLAMAZ) |
+| 2 | Plato analizi (32B öğe listeleri) | "14B=32B aynı sorular mı?" — açık-model hattının yayın-kalitesinde kapanışı | Gökhan(çıktı)+CCD | ✔ | ✅ **BİTTİ** (ortak çekirdek %75; 7 aile-dirençli flip) |
 | 3 | **Boundary v2** (scope kapılı) | v2 setinin son parçası; 4-5'in kilidi; **ZİNCİRİN DARBOĞAZI** (Danışman B uyarısı: erken ver) | **GÖKHAN**→CCD | ✔ | ✍️ **SENDE** |
 | 4 | v2-FAZ B + türetme-v2 | Senin istediğin büyük kıyas: tanım versiyonu sistemi/türetmeyi değiştiriyor mu | CCD | ✔ | 🔒 3'e bağlı |
 | 5 | **Türetme hâkimliği** (12 kavram) | "Eksenler üretkendir" iddiasının skoru — **arXiv ZORUNLU kapısı** (Danışman A) | **GÖKHAN** | ✔✔ | 🟢 **HER AN yapılabilir — 4'ü BEKLEMEZ** (Danışman A düzeltmesi: bağımsız) |
