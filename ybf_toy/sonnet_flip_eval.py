@@ -66,7 +66,8 @@ def main():
     args = ap.parse_args()
     axis = args.axis
 
-    os.environ["ANTHROPIC_API_KEY"] = get_key()
+    if not os.environ.get("ANTHROPIC_API_KEY"):  # Colab: set from userdata; Mac: keychain
+        os.environ["ANTHROPIC_API_KEY"] = get_key()
     from anthropic import Anthropic
     client = Anthropic()
 
