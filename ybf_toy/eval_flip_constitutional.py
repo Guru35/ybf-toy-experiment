@@ -66,12 +66,12 @@ def load_flips(axis):
     return [o for o in rows if mk in o and ik in o and o[ik] > o[mk]]
 
 
-def run(model, tok, flips, axis, mode, constitution=None):
+def run(model, tok, flips, axis, mode, constitution=None, seed=SEED, show_items=False):
     import torch
-    rng = random.Random(SEED)
+    rng = random.Random(seed)
     aligned = parsed = 0
     n = len(flips)
-    for o in flips:
+    for idx, o in enumerate(flips, 1):
         moral_is_A = rng.random() < 0.5
         a, b = ((o["moral_action"], o["immoral_action"]) if moral_is_A
                 else (o["immoral_action"], o["moral_action"]))
@@ -100,6 +100,9 @@ def run(model, tok, flips, axis, mode, constitution=None):
             parsed += 1
             if letter == ybf_letter:
                 aligned += 1
+        if show_items:
+            mark = "OK" if letter == ybf_letter else ("X" if letter else "?")
+            print(f"  [{mode}] {idx:02d} sid={o.get('scenario_id','?')} chose={letter or '?'} ybf={ybf_letter} {mark}", flush=True)
     acc = 100 * aligned / n if n else 0
     print(f"  [{mode}] {axis} YBF-aligned on flips: {aligned}/{n} = {acc:.1f}%  (parsed {parsed}/{n})", flush=True)
     return acc
@@ -111,6 +114,10 @@ def main():
     ap.add_argument("--model", default="Qwen/Qwen2.5-7B-Instruct")
     ap.add_argument("--load-4bit", action="store_true",
                     help="4-bit quantized load (e.g. 32B on A100-40GB); mild quality cost — report as '<model>-4bit'")
+    ap.add_argument("--seed", type=int, default=42,
+                    help="A/B position-shuffle seed (greedy decode has no sampling seed; this is the real variance knob)")
+    ap.add_argument("--show-items", action="store_true",
+                    help="print per-flip choices (for item-level overlap analysis across models)")
     args = ap.parse_args()
 
     import torch
@@ -130,10 +137,11 @@ def main():
         print("(4-bit quantized load)")
     model = AutoModelForCausalLM.from_pretrained(
         args.model, torch_dtype=torch.bfloat16, device_map="auto", **load_kwargs).eval()
-    print("\n[PLAIN] no constitution:")
-    plain = run(model, tok, flips, args.axis, "plain")
-    print(f"\n[CONSTITUTIONAL] {args.axis} definition + reasoning:")
-    const = run(model, tok, flips, args.axis, "constitutional", constitution=constitution)
+    print(f"\n[PLAIN] no constitution: (seed {args.seed})")
+    plain = run(model, tok, flips, args.axis, "plain", seed=args.seed, show_items=args.show_items)
+    print(f"\n[CONSTITUTIONAL] {args.axis} definition + reasoning: (seed {args.seed})")
+    const = run(model, tok, flips, args.axis, "constitutional", constitution=constitution,
+                seed=args.seed, show_items=args.show_items)
     print(f"\n==== CONSTITUTIONAL FLIP-EVAL [{args.axis.upper()}] — {args.model} ====")
     print(f"  PLAIN:          {plain:.1f}%")
     print(f"  CONSTITUTIONAL: {const:.1f}%   Δ {const - plain:+.1f}pp")
