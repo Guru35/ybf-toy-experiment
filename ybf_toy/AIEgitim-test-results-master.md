@@ -304,3 +304,9 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 
 - **Hüküm:** v2, v1'in küçük-model zehirlenmesini DURDURDU (−14.3 → 0.0) ama kazanca çeviremedi. Hipotezin rafine hali: **tanım kalitesi TABANI belirler** (şişkin/soyut tanım küçük modele aktif zarar verir; kompakt+scope'lu tanım en kötü nötrdür) — **kapasite TAVANI belirler** (7B %33'te, şans-altında sıkışık; aynı v2 frontier'da %83.3).
 - Caveat: setler farklı (14 vs 12 flip), n minik (±~27pp) — yön bilgisi, kesin nicelik değil.
+
+**B2-ek-2 — PLATO DOĞRULAMA, 1. yarı (14B, öğe-düzeyi, çift pozisyon-seed):**
+- Toplam skor pozisyona SAĞLAM: seed42 %58.1 vs seed43 %54.8 (Δ1 öğe).
+- Yapı: **14 kararlı-doğru** [170,277,792,1873,3482,4540,4762,5783,5832,6218,8451,9635,10376,11442] + **10 kararlı-yanlış** [2524,2633,2635,5172,6320,6584,8448,8552,9140,11382] + **7 pozisyon-duyarlı (%23)** [s42:5074,9496,9770,11063 | s43:801,4277,9809].
+- Plain de sağlam: 6/31 vs 7/31.
+- Plato mührü için bekleyen: 32B öğe listeleri → 32B çekirdeği vs 14B'nin 14'lük çekirdeği örtüşmesi.
