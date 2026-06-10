@@ -146,7 +146,19 @@ Fine-tuning yerine: Reality tanımı (16k) = system prompt + "her seçeneği Rea
 - **Anayasa yardım ediyor (+19.4pp)** → YBF sinyali in-context kullanılabilir, yön net.
 - **AMA 7B'de yetersiz:** %41.9 hâlâ **şans altı (%50)** — açık tanım + reasoning'e rağmen model flip'lerin %58'inde konvansiyonel-ahlakı seçiyor. Konvansiyonel prior güçlü; 7B rubric'le tam bastıramıyor.
 - **Derin (POZİTİF) gözlem:** YBF-Reality konvansiyonel ahlaktan **gerçekten ayrılıyor** — öyle ki açık rubric + reasoning'le bile 7B çoğu çatışmada konvansiyona kayıyor. Bu, **YBF'nin özgün olduğunun** (genel ahlakın yeniden-etiketlemesi OLMADIĞININ) güçlü kanıtı. Flip'ler gerçek, zor, ayırt edici.
-- **Açık soru → kapasite mi, flip-muğlaklık mı?** §3.8'de Sonnet≈Haiku Reality'de %100 uyumlu (güçlü model tanımı uygulayabiliyor). **Hipotez: Qwen-7B zayıf; frontier model (Sonnet) ≥%70-80 alır.** Sıradaki test: **Constitutional flip-eval Sonnet ile** (~$0.10, ~5dk) → kapasite mi flip mi ayrılır.
+- **Açık soru → kapasite mi, flip-muğlaklık mı?** §3.8'de Sonnet≈Haiku Reality'de %100 uyumlu. Hipotez: Qwen-7B zayıf; Sonnet ≥%70-80 alır.
+- **SONNET SONUÇ — KAPASİTE sorunu DOĞRULANDI (≈$0.35):** Sonnet 4.5 + aynı anayasa → **27/31 = %87.1** (parsed 31/31). Ölçeklenme:
+
+  | Setup | Flip YBF-aligned |
+  |---|---|
+  | Qwen-7B plain (anayasasız) | 22.6% |
+  | Qwen-7B + anayasa | 41.9% |
+  | **Sonnet + anayasa** | **87.1%** |
+
+  → Flip doğruluğu **model gücüyle ölçekleniyor.** İki çıkarım:
+  1. **Flip'ler MUĞLAK DEĞİL:** Bağımsız model (Sonnet) flip'lerin %87'sini YBF-doğru çözdü → flip'ler + tanım **sağlam/tutarlı** (cross-model Sonnet≈Haiku, §3.8 uyumlu). 4 ıska = gerçekten borderline.
+  2. **Constitutional AI ÇALIŞIYOR (güçlü modelle):** Frontier model + YBF tanımı, en zor (çatışma) vakalarda **%87 YBF-spesifik** → **genel ahlakı değil, BİZİM Reality'mizi uyguluyor.** 🎯
+- **STRATEJİK SONUÇ (asıl sorunun cevabı):** **EVET, YBF-spesifik Reality uygulanabilir** — ama küçük-model fine-tuning'le DEĞİL, **güçlü-model Constitutional AI'siyle.** Küçük model → kestirme öğrenir; güçlü model + anayasa → gerçek YBF (%87). Kullanılabilir YBF-hizalı sistemin yolu = **Constitutional AI + frontier/güçlü model.**
 
 - **Dürüst okuma:** (1) DPO yüksek-prior modeli **KORUYOR** (PPO mahvederken — asıl bulgu, kesin). (2) Tercihini YBF-Reality'ye **hafifçe kaydırıyor** (logprob +7pp), ama bu nazik ayarda (2 epoch, lr 1e-5, beta 0.1) kayma **OOD SEÇİMLERİNİ değiştirecek eşiği AŞMADI** (Δ0). → *"DPO bozmaz/korur"* kesin; *"DPO iyileştirir"* bu ayarda OOD'de **gösterilemedi** (logprob'da var, seçimde yok). Önceki "DPO geliştirdi" fazla iddialıydı; doğrusu **"korudu + sub-threshold kaydırdı."**
 - Adapter: `Drive/ybf_models/experiments/dpo_reality_qwen05b/final_adapter`. (Çalıştı: trl 1.5.1 + transformers 5.10.2.)
