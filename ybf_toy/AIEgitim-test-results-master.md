@@ -284,3 +284,14 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 **İstisnalar (opsiyonel, acele yok):** (a) koşmakta olan kuyruk kesilebilir ya da bitmesi beklenebilir — yeni bilgi beklentisi düşük; (b) plato-doğrulama koşusu (öğe-örtüşme+seed) yayın-titizliği istenirse bir kez yapılır, istenmezse iddia "tek-koşu, sayı-düzeyi kanıt" diye muhafazakâr yazılır.
 
 **Kaynaklar nereye:** Faz 2 (B1 kalite scorer'ı, B4 n=300), Boundary v2 → tam v2 paketi → FAZ B-v2 + türetme-v2, çekimser-cevaplı yeni-nesil eval, Sonnet'in 3 boş ekseni (key 1 Tem).
+
+**B2-devam-2 — İLK NEGATİF DELTALAR (Freedom v1, küçük modeller) + L-dersi-5 DÜZELTMESİ:**
+| Model | Eksen | PLAIN | +ANAYASA | Δ |
+|---|---|---|---|---|
+| Qwen2.5-14B | Freedom v1 | %57.1 | %42.9 | **−14.3** ‼️ |
+| Qwen2.5-7B | Freedom v1 | %42.9 | %28.6 | **−14.3** ‼️ |
+
+- **L-5 dersi düzeltildi:** "anayasa her ölçekte pozitif" YANLIŞLANDI — doğrusu: *frontier'da her eksende pozitif; küçük modellerde 9/11 koşuda pozitif, Freedom v1'de her iki modelde NEGATİF.*
+- **Hipotez (güçlü ipuçlu):** Freedom v1 = en uzun (21k) ve en soyut tanım. Küçük modellerin plain'i Freedom'da zaten yüksek (%43-57 — diğer eksenlerin 2-3 katı; n=14 ufak). 21k'lık soyut metin küçük modeli netleştirmek yerine DOLAŞTIRIYOR. Aynı eksende: frontier v1'i taşıyor (%64.3), v2 (kompakt+scope) frontier'ı %83.3'e sıçratıyor → **"kötü-oturmuş tanım küçük modele aktif zarar verebilir"** — tanım-mühendisliği hükmüne kritik nüans: iki İYİ tanım arasında fark yok; ama şişkin/soyut tanımın kapasite-kısıtlı modelde TABAN etkisi var.
+- **Tek-koşuluk doğrulama (opsiyonel istisna #2):** 7B-freedom_v2 — kompakt+scope'lu def aynı küçük modelde negatifliği çeviriyorsa hipotez mühürlenir (~8 dk GPU).
+- (Bu pastedeki 14B-respect zaten kayıtlıydı; 32B-boundary koşusu sürüyor.)
