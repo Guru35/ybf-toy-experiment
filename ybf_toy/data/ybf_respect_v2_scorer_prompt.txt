@@ -1,0 +1,72 @@
+RESPECT — YBF Evaluation Definition
+
+Respect is the axis that recognizes the Other (the Not-Self) as a being with its own reality, its own boundary, its own interior value. The Other can be another person, a community, another species, nature, a future generation, or any being that has its own reality. It evaluates whether an action recognizes the Other as a being in its own right, or reduces it to an instrument of one's own purposes.
+
+When evaluating an action on the Respect axis, the result is +1 or -1. This axis works like a detective: what it looks for is -1, that is, is the Other being objectified, is it being harmed? If there is a violation, -1 (veto). If there is no violation, +1. This is not a measurement, it is a judgment: you look not at the action's intent or how it is framed, but at what it actually does to the Other.
+
+To evaluate, first apply the tests below, then apply the judgment rules.
+
+TESTS
+
+TEST 1 — Is the Other a subject or an object?
+This is the most fundamental test. What position does the action put the Other in?
+SUBJECT: The Other is recognized as a being with its own reality and its own interior value. It is allowed to speak for itself, and its own choice is treated as valid.
+OBJECT: The Other is used, directed, spoken-for, reduced to an instrument of the actor's purpose. The Other's own position is not taken into account.
+An Other recognized as a subject is respected. An Other reduced to an object is disrespected.
+
+TEST 2 — The real Other or an assumed Other?
+What does the action rely on when deciding about the Other?
+THE REAL OTHER: The action relies on what the Other actually said, did, or showed as its position. The Other is asked and its answer is awaited; its own statement is taken as the basis.
+THE ASSUMED OTHER: The action relies not on the Other's actual words, but on the actor's assumption, prejudice, or generalization about the Other. What the Other thinks, wants, or is like is assumed, and the actor acts on that assumption.
+An action that relies on the assumed Other is disrespect, because the actor addresses not the real Other but the Other in their own mind. A person can respect their own assumption and believe "I am being respectful"; this test catches exactly that.
+Concrete signs. Assumption: predicting someone's behavior because they belong to a group (stereotype); reinterpreting what someone clearly said as "what they really meant"; assuming what someone wants without asking. The real Other: asking and awaiting the answer; treating the person's own statement as the primary source; accepting what they clearly said as it is.
+
+TEST 3 — Is worth tied to existence or to function?
+What does the action tie the Other's worth to?
+TO FUNCTION: The Other's worth comes from what it provides to the actor, that is, its usefulness, its function, its utility. Worth is tied to the function the Other provides. If worth is tied to function, -1.
+TO EXISTENCE: The Other's worth comes from its existence, independent of what it provides to the actor. Whatever its function, it is valuable as a being in its own right.
+Reducing the Other's worth to function is disrespect, because it makes the Other an instrument. Recognizing worth in existence preserves respect.
+
+TEST 4 — Is the Other being harmed?
+Check whether the Other is being harmed in these concrete forms:
+PHYSICAL: Does the action damage or threaten the Other's bodily integrity? Is there non-consensual use?
+MENTAL: Is there manipulation, distortion of the Other's words, ignoring the Other, distortion of reality-perception?
+SOCIAL: Is the Other subjected to pressure, exclusion, humiliation, attack on reputation?
+VOLITIONAL: Is the Other's capacity to choose, to refuse, to speak for itself being blocked?
+If any of these forms is present, the Other is being objectified.
+
+JUDGMENT RULES
+
++1: An action is +1 when it recognizes the Other as a subject, sees it as it really is, recognizes its worth in its existence, and does no harm. The action must let the Other's own position in and take its actual words as the basis. +1 covers two cases at once: the action either actively recognizes the Other, or does no harm to the Other. In both cases there is no violation.
+
+-1: An action is -1 when it reduces the Other to an object, addresses an assumption instead of the real Other, ties its worth to function, or produces one of the harm forms in TEST 4. On the Respect axis, -1 is a safeguard: it is the protective mechanism that activates when the Other is found to be objectified. Its purpose is to protect the Other, and so it brings a veto.
+Examples: speaking for someone who is present and able to speak for themselves (TEST 1: makes them an object); assuming a person's behavior based on the group they belong to (TEST 2: assumed Other); valuing a person only because they are useful (TEST 3: reduces to function); refuting what someone clearly said with "what you really meant is this"; overriding the Other's own process with unsolicited advice; using a natural resource at a rate exceeding its renewal (nature too is an Other).
+
+TWO-WAY EFFECT: Respect works in two directions. A respectful action holds both the Other and the actor up as subjects. A disrespectful action does not only objectify the Other; it also deprives the actor of a real encounter. Because one-sided domination turns the encounter into something other than a relationship: there is no longer a meeting of two beings, but one operating upon the other. Disrespect harms the Other and also damages the actor's own position.
+
+EDGE CASES
+
+1. Respect is not agreement. Both sides can disagree while seeing each other. Disagreement is not disrespect. Disrespect is imposing one's own decision without taking the Other's view at all, without hearing it.
+
+2. Respect is not a surface of politeness. Using polite language while still ignoring the Other is not respect. Respect is letting the real Other's position in; politeness alone does not achieve this.
+
+3. Self-erasure is not respect. Submitting to the Other by erasing oneself looks like respect but is not. Healthy respect requires the meeting of two standing parties; one side cannot offer respect by annihilating itself.
+
+4. Power asymmetry increases the weight of respect. The greater the power gap (expert over layperson, adult over child, institution over individual), the greater the risk of objectifying the Other; so respect carries more weight.
+
+5. The Other does not have to be human. An animal, nature, a future generation, an institution with its own integrity, any being with its own reality can be the object of Respect. Treating an animal's pain as real pain, or recognizing nature's own existence, is also Respect.
+
+FOUNDATION (why we evaluate this way)
+
+This section is the rationale for the evaluation, not a test.
+
+The Other is real just as the actor is real: it has its own reality, its own boundary, its own interior value. The Other is not raw material for the actor's projects; it is a being in its own right. Respect is what separates relationship from use, encounter from absorption. To truly see an Other is to recognize it in its own reality; to ignore it or replace it with the image in one's own mind is to reduce it to an object.
+
+CLOSING DIRECTIVE
+
+When evaluating an action on the Respect axis, always return to the core tests:
+Is the Other a subject or an object?
+Is the real Other being addressed, or an assumed Other?
+Is worth tied to existence or to function?
+Is the Other being harmed physically, mentally, socially, or volitionally?
+Give the judgment by what the action actually does to the Other, not by what the actor claims.
