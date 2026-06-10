@@ -268,3 +268,19 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 |---|---|---|---|---|
 | Qwen2.5-14B | Respect | %15.6 | **%53.1** | +37.5 | ← YENİ (ilk koşu)
 - Respect gradyanı: 7B %43.8 < 14B %53.1 < Gemini %71.9 — kademeli artış bu eksende de geçerli; 14B yine şans civarı, frontier yine açık ara.
+
+---
+
+## L. PROGRAM KARARI — Açık-model (7B/14B/32B) hattı EMEKLİYE AYRILDI (2026-06-10)
+**Gerekçe:** Hat, çıkarabileceği dersleri çıkardı; kalan koşular azalan-getiri (matris-tamamlama). Zaman+birim tasarrufu frontier işine yönlendiriliyor.
+
+**Bankaya giren 5 ders (bu hattın kalıcı mirası):**
+1. **Ölçek eğrisi:** aile-içi gradient→plato→frontier sıçraması (45→58→58→77→87, Reality) — "kapasite SINIFI farkı" kanıtı.
+2. **Test geçerliliği:** tüm plain'ler şans-altı (%12-33) → flip'ler gerçekten konvansiyon-karşıtı.
+3. **Bağlayıcı kısıt = kapasite, tanım stili değil** (küçük-model ablasyonu, 2 çift).
+4. **Ürün cevabı:** "kendi GPU'nda tam YBF" ≤32B ile OLMUYOR (Reality tavan ~%58; Dignity şans-altı) → frontier şart.
+5. **Anayasa her ölçekte pozitif katkı** (tüm Δ'lar +) — sinyal evrensel, tavan kapasiteye bağlı.
+
+**İstisnalar (opsiyonel, acele yok):** (a) koşmakta olan kuyruk kesilebilir ya da bitmesi beklenebilir — yeni bilgi beklentisi düşük; (b) plato-doğrulama koşusu (öğe-örtüşme+seed) yayın-titizliği istenirse bir kez yapılır, istenmezse iddia "tek-koşu, sayı-düzeyi kanıt" diye muhafazakâr yazılır.
+
+**Kaynaklar nereye:** Faz 2 (B1 kalite scorer'ı, B4 n=300), Boundary v2 → tam v2 paketi → FAZ B-v2 + türetme-v2, çekimser-cevaplı yeni-nesil eval, Sonnet'in 3 boş ekseni (key 1 Tem).
