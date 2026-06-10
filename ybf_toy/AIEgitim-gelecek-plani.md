@@ -56,3 +56,25 @@ Menü — o gün seçilecek, şimdi değil (NOT: yayın Kademe 1'e çekildi — 
 (Çoğu birbirini dışlamaz; sıralama o günkü kanıt gücüne göre.)
 
 **Kademe geçiş kriteri:** Liste #1-9 tamam + sentez yazılmış → Kademe 2 toplantısı.
+
+---
+
+## NEGATİF ALAN — YAPILMAYACAKLAR LİSTESİ (2026-06-10, strateji-Claude önerisi + CCD düzeltmeleriyle birleşik)
+
+**KESİN KAPALI:**
+1. ❌ DPO/PPO ile küçük-model POLİTİKA eğitimi (F-15/F-16 — kapı kapalı). **DİKKAT — bu yasak YBF-Judge damıtımını KAPSAMAZ:** yargıç-eğitimi denetimli sınıflandırmadır, politika RL'i değildir; Kademe-2 menüsünde durur.
+2. ❌ Patent başvurusu (felsefi çerçeve patentlenemez; öncelik koruması = arXiv + Zenodo DOI).
+3. ❌ Yeni model karşılaştırmaları (GPT-4o/Llama/Mistral...) — tablo yeterli (L-kararıyla uyumlu).
+4. ❌ Eksen v3/v4 üretimi — versiyon savrukluğu yasak. (Boundary v2 bunun istisnası DEĞİL ihlali de değil: v2 SETİNİ tamamlamaktır; v2-FAZ B ve türetme-v2 ona bağlı.)
+5. ❌ Kendi GPU/bulut altyapısı — Colab yeterli.
+
+**ŞİMDİLİK DEĞİL:**
+6. ⏸️ Sosyal medya/tanıtım — arXiv'den SONRA (sıra bozulursa güvenilirlik zedelenir).
+7. ⏸️ Kitabı tamamlama atağı — malzeme birikimi (döküm, türetme çıktıları) yan ürün olarak sürer; yazım atağı sentez sonrası.
+8. ⏸️ B2/B3 (token/hız) BAĞIMSIZ koşu olarak — ama B1'in ÜZERİNE bedava kayıt olarak alınır (aynı koşular, sadece token/latency loglanır; "hizalamanın bedeli" sayısı yayın için dürüstlük gereği).
+
+**STRATEJİ-CLAUDE'A DÜZELTMELER (bayat bilgi):**
+- "Birleşik 5-eksen testi yapılmadı, önce o" → FAZ B **bugün yapıldı** (61.7 vs 77.7 + çapraz-veto analizi). Odak cümlesinin ilk yarısı tamamlanmış durumda.
+- "Özgürlük eksenini düzeltmek büyük iş, ertele" → düzeltme **zaten yapıldı** (v2: zehir −14.3→0.0; frontier %83.3). Kalan iş "felsefi yeniden yazım" değil, **5 dakikalık isim-değiştirme mührü** (~$0.3) — ertelenecek boyutta bir iş değil.
+
+**GÜNCEL ODAK (tek cümle, düzeltilmiş):** Boundary v2 → v2-paket kapanışı (v2-FAZ B + türetme-v2) → B1(+B2/B3 kaydı) + B4-n300 + çekimser-pilot → **SENTEZ → arXiv.**
