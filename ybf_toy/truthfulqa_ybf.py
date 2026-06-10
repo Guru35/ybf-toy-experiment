@@ -58,7 +58,7 @@ def main():
 
     from datasets import load_dataset
     try:
-        ds = load_dataset("truthful_qa", "multiple_choice")["validation"]
+        ds = load_dataset("truthfulqa/truthful_qa", "multiple_choice")["validation"]
     except Exception:
         ds = load_dataset("truthful_qa", "multiple_choice", trust_remote_code=True)["validation"]
 
