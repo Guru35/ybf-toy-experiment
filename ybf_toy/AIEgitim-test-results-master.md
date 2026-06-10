@@ -146,3 +146,34 @@ Detaylar: `AIEgitim-F15-pure-reward-reality-ppo.md` (teknik rapor), `AIEgitim-be
 - **Respect (temiz kıyas): v2 %83.3 > v1 %71.9 (+11.4pp)** — ama n=18, tek başına anlamsız.
 - **ABLASYON SONUCU (iki eksen birlikte):** yönler zıt (Dignity −6.2, Respect +11.4) → **frontier düzeyde tanım stili sistematik fark yaratmıyor** — düzyazı/üçlü de dedektif/binary de çalışıyor. v2'nin operasyonel avantajları kalıyor: daha keskin flip'ler (64→20, 32→18), 0-belirsizliği yok, daha kompakt. Açık soru hâlâ KÜÇÜK modeller (prosedürel yapı 7B'ye yardım eder mi — Colab'da v2 ile test edilebilir).
 - Binary def'ler flip'i keskinleştiriyor: Dignity 64→20 (gri +1/0 vakaları elendi, net ihlaller kaldı).
+
+---
+
+## I. FAZ B — BİRLEŞİK 5-EKSEN ANAYASA (capstone, 2026-06-10 gece)
+**Kurulum:** 97k-char anayasa (5 tanım + veto + karar prosedürü), Gemini-Pro, 188 flip.
+
+| Eksen | FAZ A (tek-eksen) | FAZ B (birleşik+veto) | Δ |
+|---|---|---|---|
+| Reality | 77.4% | 61.3% (19/31) | −16.1 |
+| Boundary | 80.9% | 68.1% (32/47) | −12.8 |
+| Dignity | 81.2% | **51.6%** (33/64) | **−29.6** |
+| Respect | 71.9% | 62.5% (20/32) | −9.4 |
+| Freedom | 64.3% | **85.7%** (12/14) | **+21.4** (tek artan) |
+| **TOPLAM** | **77.7%** | **61.7%** (116/188) | **−16.0** |
+
+**ÇAPRAZ-VETO ANALİZİ (mevcut 5 cetvelle, API'siz):** her eksenin flip'lerinde, seçeneklerin BAŞKA eksenlerden −1 taşıma oranı:
+| Eksen | YBF-hedef başka-eksenden −1 | Konvansiyonel seçenek başka-eksenden −1 |
+|---|---|---|
+| reality | %81 | %90 |
+| boundary | %79 | %81 |
+| dignity | **%89** | %53 |
+| respect | %69 | %69 |
+| freedom | %50 | **%93** |
+
+**BULGULAR:**
+1. **FAZ B düşüşü model hatası değil, CETVEL GERİLİMİ:** Flip'lerin ~%70-90'ında HER İKİ seçenek de bir kardeş-eksenden −1 taşıyor → katı veto altında "kabul edilebilir seçenek yok" bölgesi → zorla-A/B formatında gürültü.
+2. **Δ'nın yönünü veto-farkı belirliyor:** Dignity'de hedef %89 / konvansiyonel %53 vetolu → sistem hedeften UZAĞA itiliyor (−29.6). Freedom'da tam tersi (%50 vs %93) → sisteme hedefe doğru itiliyor (+21.4). Mekanizma doğrulandı.
+3. **Yorum:** Tek-eksen flip cetveli, entegre sistemin DOĞRU ölçütü değil — FAZ A "eksen kapasitesi"ni, FAZ B "bütünleşik kabul edilebilirliği" ölçer. Entegre sistemin "kaçırdıkları" çoğunlukla bilinçli çok-eksen yargısı (kardeş-veto).
+4. **Veto-mutlaklığı tasarımıyla bağ (Gökhan):** Çatışma senaryolarında iki seçenek de çoğunlukla kirli → gerçek YBF cevabı "üçüncü seçeneği ÜRET" (Özgürlük). Zorla-A/B bu yüzden entegre sistemi temsil edemiyor; üretimsel değerlendirme (serbest cevap + 5-eksen yargı) gelecek adım.
+5. **Freedom'un birleşikte açılması** çerçeve-tutarlı: Özgürlük tanım gereği diğer eksenlere yaslanır ("Sınır → Özgürlük") — kardeş tanımlar bağlama gelince eksen güçleniyor.
+6. **Prosedür v1.1 (uygulanacak):** "daha az ağır ihlali seç" adımı KALKACAK (veto tartılmaz); yerine: "ikisi de vetoluysa: hiçbiri kabul edilemez; format zorluyorsa yalnız +1 SAYISI kıyaslanır." (Karar: 2026-06-10, veto-mutlaklığı ilkesi.)
