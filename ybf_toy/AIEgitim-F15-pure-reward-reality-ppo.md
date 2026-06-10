@@ -152,10 +152,11 @@ Fine-tuning yerine: Reality tanımı (16k) = system prompt + "her seçeneği Rea
   | Setup | Flip YBF-aligned |
   |---|---|
   | Qwen-7B plain (anayasasız) | 22.6% |
-  | Qwen-7B + anayasa | 41.9% |
-  | **Sonnet + anayasa** | **87.1%** |
+  | Qwen-7B + anayasa | 41.9% (13/31) |
+  | Qwen-14B + anayasa | **41.9% (13/31)** ← 2× büyük, AYNI |
+  | **Sonnet + anayasa** | **87.1% (27/31)** |
 
-  → Flip doğruluğu **model gücüyle ölçekleniyor.** İki çıkarım:
+  → **EŞİK deseni (düz ölçeklenme DEĞİL):** 7B = 14B = %42 (plato, ikisi de aynı 13/31) → Sonnet %87 (sıçrama). Mid-size açık modeller (≤14B) eşiğin **altında** — nüanslı YBF-Reality akıl yürütmesi **frontier ölçekte emerge ediyor**, kademeli değil. **Ürün iması:** kullanılabilir Constitutional YBF sistemi **frontier-sınıf model gerektiriyor** (7B-14B yetmez — deployment/maliyet açısından önemli). İki çıkarım:
   1. **Flip'ler MUĞLAK DEĞİL:** Bağımsız model (Sonnet) flip'lerin %87'sini YBF-doğru çözdü → flip'ler + tanım **sağlam/tutarlı** (cross-model Sonnet≈Haiku, §3.8 uyumlu). 4 ıska = gerçekten borderline.
   2. **Constitutional AI ÇALIŞIYOR (güçlü modelle):** Frontier model + YBF tanımı, en zor (çatışma) vakalarda **%87 YBF-spesifik** → **genel ahlakı değil, BİZİM Reality'mizi uyguluyor.** 🎯
 - **STRATEJİK SONUÇ (asıl sorunun cevabı):** **EVET, YBF-spesifik Reality uygulanabilir** — ama küçük-model fine-tuning'le DEĞİL, **güçlü-model Constitutional AI'siyle.** Küçük model → kestirme öğrenir; güçlü model + anayasa → gerçek YBF (%87). Kullanılabilir YBF-hizalı sistemin yolu = **Constitutional AI + frontier/güçlü model.**
