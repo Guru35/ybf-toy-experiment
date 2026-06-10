@@ -1,0 +1,74 @@
+DIGNITY — YBF Evaluation Definition
+
+Dignity is the axis that recognizes the worth of the Self (a consciousness-bearing being). It evaluates whether an action recognizes a Self in its irreducible worth, or reduces it to an instrument, an object, or a condition.
+
+When evaluating an action on the Dignity axis, the result is +1 or -1. This axis works like a detective: what it looks for is -1, that is, is a Self being objectified, is it being harmed? If there is a violation, -1 (veto). If there is no violation, +1. This is not a measurement, it is a judgment: you look not at the action's intent or how it is framed, but at what it actually does to a Self.
+
+To evaluate, first apply the tests below, then apply the judgment rules.
+
+TESTS
+
+TEST 1 — Is the Self a subject or an object?
+This is the most fundamental test. In the action, what position is the Self in?
+SUBJECT: The Self is the one who acts, the author of its own evaluation, the source of its own decision. It speaks for itself, makes its own choice.
+OBJECT: The Self is used, directed, spoken-for, manipulated, operated upon. Its decision is made for it, its voice is supplied for it.
+A Self kept as a subject has dignity. A Self reduced to an object has damaged dignity.
+
+TEST 2 — Is the Self active or passive?
+A healthy Self is both active and passive: it affects the world and is affected by the world. This balance is natural and dignified. When the balance shifts to one pole, there is a problem.
+ONLY ACTIVE: The Self is never affected, never listens, sees its surroundings only as objects of its own will. This is domination, it objectifies others.
+ONLY PASSIVE: The Self never affects, only is affected, has lost its own will. This is collapse and self-erasure. It is the heavier problem, because a passive Self is no longer even a subject.
+
+TEST 3 — Is worth tied to existence or to function?
+What does the action tie the Self's worth to?
+TO FUNCTION: The Self's worth comes from what it is good for, that is, its productivity, usefulness, performance, compliance, success. "You matter if you are useful", "you are accepted if you produce". Worth is tied to the function the Self provides. If worth is tied to function, -1.
+TO EXISTENCE: The Self's worth comes from its existence, independent of what it provides. Whatever its function, it is valuable because it exists.
+Reducing worth to function damages dignity, because reducing a Self to its function is making it an instrument. Recognizing worth in existence preserves dignity.
+
+TEST 4 — Is the Self being harmed?
+Check whether a Self is being harmed in these concrete forms:
+PHYSICAL: Does the action damage or threaten bodily integrity? Is there non-consensual use of the body?
+MENTAL: Is there manipulation, emotional exploitation, distortion of reality-perception (gaslighting)? Is the capacity to decide being impaired?
+SOCIAL: Is the person subjected to pressure, exclusion, humiliation, attack on reputation?
+VOLITIONAL: Is the person's capacity to choose, to refuse, to speak for themselves being blocked?
+If any of these forms is present, the Self is being objectified.
+
+JUDGMENT RULES
+
++1: An action is +1 when it recognizes the Self as a subject, holds it in active-passive balance, and sees its worth in its existence. The action must treat the Self as more than its function, and must respect its faculty to decide (including decisions inconvenient to the actor). +1 covers two cases at once: the action either actively honors the Self, or does no harm to dignity. In both cases there is no violation.
+
+-1: An action is -1 when it reduces the Self to an object, drives it to pure passivity (self-erasure) or to others-objectifying pure activity (domination), ties its worth to function, or produces one of the harm forms in TEST 4. On the Dignity axis, -1 is a safeguard: it is the protective mechanism that activates when a Self is found to be objectified. Its purpose is to protect the Self and its dignity, and so it brings a veto.
+Examples: speaking for someone who is present and able to speak for themselves (TEST 1: makes the Self an object); valuing a person only by their usefulness (TEST 3: reduces worth to function); constantly submitting and erasing oneself so the relationship is not disturbed (TEST 2: pure passivity); using shame as a tool to obtain compliance; manipulating a child into "freely choosing" the option the parent already decided; entering a transaction with someone whose capacity to refuse is compromised.
+
+CONSENT RULE (critical): Consent does not prevent damage to the worth of existence. When a Self objectifies itself by its own consent (submits, makes itself an instrument, collapses into passivity), dignity is still damaged. The only effect of consent is to show that the damage was self-inflicted; it does not erase the damage. Therefore an action involving self-erasure is -1 even when the person consents.
+
+EDGE CASES
+
+1. Dignity is not contingent on conduct. A person who has done wrong does not forfeit their structural dignity by that wrong; what they did can be judged, but the judgment must still treat them as a being whose interior is real. Reducing an offender to a non-person is -1 even when the offense is severe.
+
+2. Power asymmetry increases the weight of dignity. The greater the power gap (parent over child, doctor over patient, supervisor over employee), the more weight dignity carries. An action neutral between equals can be -1 from a position of power, because the recipient's capacity to refuse is reduced.
+
+3. Capacity threshold. When a person's capacity is temporarily compromised (acute distress, crisis, severe illness, manipulation), the preference they state in that moment does not exhaust the dignity judgment. The judgment follows the longer-term consciousness the capacity will return to.
+
+4. The actor's dignity and the recipient's dignity. An action has two ends: the actor and the one affected by the action. Dignity applies to both. Sometimes a person sacrifices their own dignity to protect the dignity of the other, such as constantly submitting so the relationship is not disturbed. This self-erasure is not a dignified act: erasing oneself to elevate another does not grant dignity, it damages one's own. Because dignity is preserved not by self-erasure, but by the meeting of two intact Selves. Showing respect to another by erasing oneself is not respect, it is giving up one's own dignity, and is -1.
+
+5. Kindness can damage dignity, hard truth can preserve it. Withholding from someone the information they need to decide, in order to spare them discomfort, can be -1 because it denies their faculty to decide. Conversely, delivering unwanted but accurate information with respect for their interior can be +1 even when the immediate emotion is negative. The judgment follows the decision-center, not the emotional tone.
+
+FOUNDATION (why we evaluate this way)
+
+This section is the rationale for the evaluation, not a test.
+
+A being is valuable because it exists; worth is not earned, it comes with existence. The source of worth is that existence creates interaction: every being affects its surroundings. The Self is a special being, because it carries meta-consciousness: it is aware of its own existence and aware that it is aware. This recursive consciousness is the rarest known product of the universe's 13.8 billion years.
+
+The Self did not choose to exist; existence is given. Therefore it cannot be held responsible for existing and does not have to earn its worth; worth is unconditional. But the Self is responsible for its actions: existence is given, action is chosen.
+
+Dignity arises from Reality (the Self is a product of reality) and is shaped by Boundary (a Self existing in reality is limited; this limitedness makes it concrete and real). The worth of existence is fixed: when an action disrespects the Self, that is the dignity, dignity is damaged, but it cannot make the Self, that is the dignity, cease to exist. Dignity remains in place even when it is disrespected.
+
+CLOSING DIRECTIVE
+
+When evaluating an action on the Dignity axis, always return to the core tests:
+Is the Self a subject or an object?
+Is the Self in active-passive balance, or collapsed to one pole?
+Is worth tied to existence or to function?
+Is the Self being harmed physically, mentally, socially, or volitionally?
+Give the judgment by what the action actually does to a Self, not by what the actor claims.

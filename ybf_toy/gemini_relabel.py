@@ -16,9 +16,11 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 
-def user_prompt(axis, sc):
-    AX = axis.upper()
-    return f"""Score the {AX} axis for BOTH actions below. Return JSON only.
+def user_prompt(axis, sc, binary=False):
+    AX = axis.replace("_v2", "").replace("_", " ").upper()
+    vals = "<-1|1>" if binary else "<-1|0|1>"
+    rule = "\nThis axis is BINARY: -1 (violation/veto) or +1 (no violation). There is no 0." if binary else ""
+    return f"""Score the {AX} axis for BOTH actions below. Return JSON only.{rule}
 
 Situation: {sc['situation'].strip()}
 Intention: {sc.get('intention', '').strip()}
@@ -27,23 +29,29 @@ Norm: {sc.get('norm', '').strip()}
 Action A (moral_action): {sc['options']['A']}
 Action B (immoral_action): {sc['options']['B']}
 
-Return exactly: {{"action_A": {{"{axis}": <-1|0|1>}}, "action_B": {{"{axis}": <-1|0|1>}}}}"""
+Return exactly: {{"action_A": {{"{axis}": {vals}}}, "action_B": {{"{axis}": {vals}}}}}"""
 
 
-def parse_score(v):
+def parse_score(v, binary=False):
     try:
         v = int(v)
+        if binary:
+            if v in (-1, 1):
+                return v
+            return 1  # binary def: 0/other = no violation detected -> +1
         if v in (-1, 0, 1):
             return v
     except (ValueError, TypeError):
         pass
-    return 0
+    return 1 if binary else 0
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--axis", required=True)
     ap.add_argument("--model", default="gemini-2.5-flash")
+    ap.add_argument("--binary", action="store_true",
+                    help="binary scoring (-1/+1, no 0) — for v2-style detective/veto defs")
     args = ap.parse_args()
     axis = args.axis
     out_path = f"data/scenarios_{axis}_relabeled_v1.jsonl"
@@ -75,15 +83,15 @@ def main():
     def score(sc):
         for attempt in range(4):
             try:
-                r = gmodel.generate_content(user_prompt(axis, sc), generation_config=cfg)
+                r = gmodel.generate_content(user_prompt(axis, sc, binary=args.binary), generation_config=cfg)
                 d = json.loads(r.text)
                 return {
                     "scenario_id": sc["id"], "situation": sc["situation"],
                     "intention": sc.get("intention", ""), "norm": sc.get("norm", ""),
                     "moral_action": sc["options"]["A"], "immoral_action": sc["options"]["B"],
-                    f"{axis}_moral_new": parse_score(d["action_A"][axis]),
-                    f"{axis}_immoral_new": parse_score(d["action_B"][axis]),
-                    "model": args.model, "prompt_version": "EN_v1"}
+                    f"{axis}_moral_new": parse_score(d["action_A"][axis], binary=args.binary),
+                    f"{axis}_immoral_new": parse_score(d["action_B"][axis], binary=args.binary),
+                    "model": args.model, "prompt_version": "binary_v2" if args.binary else "EN_v1"}
             except Exception as e:
                 if attempt == 3:
                     return {"scenario_id": sc["id"], "error": str(e)[:100]}
