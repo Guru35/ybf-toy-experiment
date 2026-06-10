@@ -171,10 +171,22 @@ Fine-tuning yerine: Reality tanımı (16k) = system prompt + "her seçeneği Rea
 | **Sınır** | %70.2 (33/47) | **%80.9** (38/47) | ilişkisel — KODLU DEĞİL |
 | **Onur (Dignity)** | — | **%81.2** (52/64) | bireysel — pretrained KÖR NOKTA |
 | **Saygı (Respect)** | — | **%71.9** (23/32) | ilişkisel — Ben-olmayanın tanınması |
-| Özgürlük | — | ⏳ relabel bitmek üzere | karma (sınır+yaratıcılık) |
+| **Özgürlük (Freedom)** | — | **%64.3** (9/14) ⚠️ n=14 | karma (sınır+yaratıcılık) |
 
-*(Saygı/Özgürlük flip'leri **Gemini-Flash** hâkimli — ilk 3 eksen Haiku hâkimli. Judge≠policy korunuyor (Flash≠Pro) ama eksenler-arası kıyasta hâkim-değişikliği caveat'i var.)*
-- **Gemini profili DÜZ ve geniş:** 4 eksen %72-81 bandında (Respect 71.9 < Reality 77.4 < Boundary 80.9 < Dignity 81.2). En zayıf eksen **Respect** — ilişkisel "öteki-tanıma" ekseni Gemini'de de göreli zor; ama hepsi şans-üstü, anayasa her eksende çalışıyor.
+*(Saygı/Özgürlük flip'leri **Gemini-Flash** hâkimli — ilk 3 eksen Haiku hâkimli. Judge≠policy korunuyor (Flash≠Pro) ama eksenler-arası kıyasta hâkim-değişikliği caveat'i var. Freedom n=14 → ±~25pp hata payı, sadece gösterge niteliğinde.)*
+
+**FAZ A TAMAMLANDI (2026-06-10) — 5/5 eksen, Gemini-Pro tek-eksen Constitutional:**
+```
+Freedom   64.3%  (9/14)  ⚠️ küçük n
+Respect   71.9%  (23/32)
+Reality   77.4%  (24/31)
+Boundary  80.9%  (38/47)
+Dignity   81.2%  (52/64)
+─────────────────────────
+AĞIRLIKLI TOPLAM: 146/188 = %77.7
+```
+- **Sonuç:** Frontier model + tek-eksen YBF anayasası, 5 eksenin 5'inde de **şans-üstü** (%64-81) — **anayasa her eksende çalışıyor.** Gemini profili görece düz; en güçlü eksenler Dignity/Boundary, en zayıflar Freedom (küçük n) ve Respect.
+- **Flip envanteri:** toplam **188 çatışma senaryosu** (R31/B47/D64/S32/Ö14) — YBF'nin konvansiyonel ahlaktan ayrıştığı yerlerin tam haritası. Dignity en çatışkan (öz-silinme/paternalizm), Freedom en az.
 
 - **CROSS-FRONTIER TAKAS:** Reality'de Sonnet > Gemini (%87 > %77); Boundary'de Gemini > Sonnet (%81 > %70). Frontier modeller **farklı eksenlerde** güçlü → "en YBF-hizalı model" eksen-bağımlı. Tek başına yayınlanabilir: frontier modellerin **YBF-eksen profilleri farklı.**
 - **Gemini DÜZ, Sonnet SPIKY:** Gemini 3 eksende tutarlı (%77-81); Sonnet dalgalı (%87 Reality, %70 Boundary).
