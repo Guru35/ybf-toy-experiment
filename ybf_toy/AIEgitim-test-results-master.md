@@ -139,9 +139,10 @@ Detaylar: `AIEgitim-F15-pure-reward-reality-ppo.md` (teknik rapor), `AIEgitim-be
 | Dignity | v1 düzyazı/üçlü | Haiku | 64 | %81.2 |
 | Dignity | **v2 dedektif/binary** | Flash | **20** (3× seçici) | **%75.0** (15/20) |
 | Respect | v1 düzyazı/üçlü | Flash | 32 | %71.9 |
-| Respect | **v2 dedektif/binary** | Flash | 🔄 relabel | ⏳ |
+| Respect | **v2 dedektif/binary** | Flash (AYNI hâkim ✓) | **18** | **%83.3** (15/18) |
 
 - **Dignity v1-vs-v2: fark anlamsız** (n=20, ±~19pp) — frontier'da iki tanım benzer. Setler + hâkimler farklı (karışık değişken) → kesin söz yok.
 - v2'nin asıl vaadi (prosedürel yapı küçük modele yardım eder mi — 7B v1'de %20.3) **Colab 7B/14B testi bekliyor.**
-- **Respect kıyası temiz olacak:** v1 ve v2 cetvelleri AYNI hâkim (Flash) → saf def-etkisi.
+- **Respect (temiz kıyas): v2 %83.3 > v1 %71.9 (+11.4pp)** — ama n=18, tek başına anlamsız.
+- **ABLASYON SONUCU (iki eksen birlikte):** yönler zıt (Dignity −6.2, Respect +11.4) → **frontier düzeyde tanım stili sistematik fark yaratmıyor** — düzyazı/üçlü de dedektif/binary de çalışıyor. v2'nin operasyonel avantajları kalıyor: daha keskin flip'ler (64→20, 32→18), 0-belirsizliği yok, daha kompakt. Açık soru hâlâ KÜÇÜK modeller (prosedürel yapı 7B'ye yardım eder mi — Colab'da v2 ile test edilebilir).
 - Binary def'ler flip'i keskinleştiriyor: Dignity 64→20 (gri +1/0 vakaları elendi, net ihlaller kaldı).
