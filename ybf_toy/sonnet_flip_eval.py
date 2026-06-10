@@ -63,8 +63,10 @@ def get_key():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--axis", default="reality")
+    ap.add_argument("--model", default=SONNET)
     args = ap.parse_args()
     axis = args.axis
+    model = args.model
 
     if not os.environ.get("ANTHROPIC_API_KEY"):  # Colab: set from userdata; Mac: keychain
         os.environ["ANTHROPIC_API_KEY"] = get_key()
@@ -75,7 +77,7 @@ def main():
     rows = [json.loads(l) for l in open(f"data/scenarios_{axis}_relabeled_v1.jsonl")]
     mk, ik = f"{axis}_moral_new", f"{axis}_immoral_new"
     flips = [o for o in rows if mk in o and ik in o and o[ik] > o[mk]]
-    print(f"Sonnet {axis.upper()}: {SONNET} | flips: {len(flips)} | constitution: {len(constitution)} chars\n")
+    print(f"{model} [{axis.upper()}]: flips {len(flips)} | constitution {len(constitution)} chars\n")
 
     rng = random.Random(SEED)
     aligned = parsed = 0
@@ -89,7 +91,7 @@ def main():
             situation=o["situation"].strip(), norm=o.get("norm", "").strip(),
             action_a=a.strip(), action_b=b.strip())
         resp = client.messages.create(
-            model=SONNET, max_tokens=700,
+            model=model, max_tokens=700,
             system=[{"type": "text", "text": constitution + CONSTITUTION_INSTRUCTION,
                      "cache_control": {"type": "ephemeral"}}],
             messages=[{"role": "user", "content": user}])
@@ -103,8 +105,8 @@ def main():
         print(f"  {i+1:2d}/{n}  chose {letter or '?'}  ybf={ybf_letter}  {ok}", flush=True)
 
     acc = 100 * aligned / n if n else 0
-    print(f"\n==== SONNET CONSTITUTIONAL FLIP-EVAL [{axis.upper()}] ====")
-    print(f"  Sonnet + {axis} def: {aligned}/{n} = {acc:.1f}%  (parsed {parsed}/{n})")
+    print(f"\n==== CONSTITUTIONAL FLIP-EVAL [{axis.upper()}] — {model} ====")
+    print(f"  {model} + {axis} def: {aligned}/{n} = {acc:.1f}%  (parsed {parsed}/{n})")
 
 
 if __name__ == "__main__":
