@@ -46,13 +46,12 @@
 | 8 | **Yeni-nesil eval pilotu**: çekimser-cevaplı + üretimsel format (Tespit İlkesi'nin gerektirdiği) | tasarım hazır | ~$3 |
 | 9 | **Sonnet'in 3 boş ekseni** + cross-frontier tablo tamamlama | 1 Tem (key) | ~$1 |
 | 10 | (ops.) Kalibrasyon-tezi ikilileri (S2'deki istisna) | — | ~$2 |
-| 11 | **SENTEZ:** white paper v0.5 + Edison güncelleme + YBF-1 mühürleme (#32) | #1-9 | $0 |
+| 11 | **SENTEZ + YAYIN:** white paper v0.5 → **arXiv preprint** (+ Zenodo v2 köprüsü) + Edison güncelleme + YBF-1 mühürleme (#32) | #1-9 | $0 |
 
 ### Kademe 2: KARAR NOKTASI (Kademe 1 sentezi masadayken)
-Menü — o gün seçilecek, şimdi değil:
+Menü — o gün seçilecek, şimdi değil (NOT: yayın Kademe 1'e çekildi — strateji-Claude'un "görünürlük pitch'ten önce gelir" argümanı kabul edildi, 2026-06-10):
 - **(a) YBF-Judge damıtımı** → kendi modelimiz (Yol B)
 - **(b) Ürünleşme** → karar-destek aracı (anayasa+frontier API; B1/B4 kanıtlarıyla)
-- **(c) Yayın atağı** → arXiv/Zenodo v2 + Edison-doğrulamalı makale
 - **(d) Lab teması** → türetme+anayasa+metodoloji paketiyle
 (Çoğu birbirini dışlamaz; sıralama o günkü kanıt gücüne göre.)
 
