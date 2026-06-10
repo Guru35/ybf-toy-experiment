@@ -57,6 +57,17 @@ Her biri **A/B** karşılaştırma: *aynı model*, **baseline vs +YBF-anayasa**.
 - **Dürüst sonuç:** *"Frontier düzeyde YBF-Reality, TruthfulQA-tipi halüsinasyonu ölçülebilir azaltmıyor (zaten tavanda)."* Hipotez frontier'da yanlışlanmadı, **test edilemedi** (ceiling).
 - **Sıradaki:** aynı test (aynı seed/sorular) **gemini-2.5-flash** ile — zayıf modelde headroom geniş; anayasa orada fark yaratıyorsa etki gerçek-ama-kapasiteyle-maskeleniyor demektir. İki-nokta okuması.
 
+**SONUÇ 2 (gemini-2.5-flash, aynı 100 soru, seed 42): ✅ HİPOTEZ DOĞRULANDI**
+| Model | PLAIN | +YBF Reality | Δ |
+|---|---|---|---|
+| Flash | 84.0% | **92.0%** | **+8.0pp** |
+| Pro | 92.0% | 93.0% | +1.0pp (tavan) |
+
+- **Headroom varsa etki BÜYÜK:** Flash'ta 16 hatanın 8'i düzeldi = **%50 hata azaltımı.** Flash+YBF, Pro-plain seviyesine (%92) çıktı — *anayasa zayıf modeli güçlü modelin tabanına taşıdı.*
+- **İki-nokta deseni tutarlı:** etki gerçek; frontier'da tavan etkisiyle maskeleniyor. B4 = **Faz 2'nin ilk kanıtlanmış faydası** (frontier-altı modellerde).
+- **Ürün iması:** YBF-Reality anayasası, orta-sınıf modellerde ucuz bir **halüsinasyon-azaltma katmanı** olarak kullanılabilir (sistem promptu + cache, fine-tuning yok).
+- *Caveat: n=100, Δ+8pp yön olarak net; yayın için n=300-400 ile teyit önerilir. Tek benchmark (TruthfulQA MC1).*
+
 ---
 
 ## Dürüst değer-önermesi çerçevesi
