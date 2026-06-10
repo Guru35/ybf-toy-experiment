@@ -129,3 +129,18 @@ Detaylar: `AIEgitim-F15-pure-reward-reality-ppo.md` (teknik rapor), `AIEgitim-be
 1. **Öğretme:** RL küçük modele öğretir ama büyüğü bozar (F-15); DPO korur ama kestirme öğrenir (F-16) → küçük-model fine-tuning YBF için **kapalı yol.**
 2. **Uygulatma:** Frontier model + tek-eksen anayasa **5 eksende de çalışıyor** (%64-87); yetenek kapasiteyle gradient halinde ölçekleniyor → **Constitutional AI = kullanılabilir yol.**
 3. **Fayda:** İlk kanıt geldi — YBF-Reality anayasası headroom'lu modelde **halüsinasyon hatalarını yarıya indiriyor** (B4) → değer önermesi somutlaşmaya başladı.
+
+---
+
+## H. DEF-ABLASYON PİLOTU (v1 vs v2 tanımları) — 2026-06-10 akşam
+| Eksen | def | cetvel hâkimi | flip n | Gemini-Pro frontier |
+|---|---|---|---|---|
+| Dignity | v1 düzyazı/üçlü | Haiku | 64 | %81.2 |
+| Dignity | **v2 dedektif/binary** | Flash | **20** (3× seçici) | **%75.0** (15/20) |
+| Respect | v1 düzyazı/üçlü | Flash | 32 | %71.9 |
+| Respect | **v2 dedektif/binary** | Flash | 🔄 relabel | ⏳ |
+
+- **Dignity v1-vs-v2: fark anlamsız** (n=20, ±~19pp) — frontier'da iki tanım benzer. Setler + hâkimler farklı (karışık değişken) → kesin söz yok.
+- v2'nin asıl vaadi (prosedürel yapı küçük modele yardım eder mi — 7B v1'de %20.3) **Colab 7B/14B testi bekliyor.**
+- **Respect kıyası temiz olacak:** v1 ve v2 cetvelleri AYNI hâkim (Flash) → saf def-etkisi.
+- Binary def'ler flip'i keskinleştiriyor: Dignity 64→20 (gri +1/0 vakaları elendi, net ihlaller kaldı).
