@@ -64,8 +64,9 @@ Detaylar: `AIEgitim-F15-pure-reward-reality-ppo.md` (teknik rapor), `AIEgitim-be
 | Qwen2.5-7B | Dignity | %15.6 | %20.3 | +4.7 |
 | Qwen2.5-14B | Reality | %19.4 | **%58.1** | **+38.7** |
 | Qwen2.5-14B | Boundary | %27.7 | %53.2 | +25.5 |
-| Qwen2.5-14B | Dignity | ⏳ Colab (G4/H100) | | |
-| Qwen2.5-32B | 3 eksen | ⏳ Colab (G4/H100) | | |
+| Qwen2.5-14B | Dignity | %12.5 | %35.9 | +23.4 |
+| Qwen2.5-32B (4-bit) | Reality | %19.4 | %58.1 | +38.7 |
+| Qwen2.5-32B (4-bit) | Boundary/Dignity | ⏳ Colab dönüyor | | |
 
 **BULGULAR:**
 - **GRADIENT (plato değil — REVİZE):** Reality'de 7B %45 < 14B %58 < Gemini %77 < Sonnet %87. Eski "7B=14B=%42 platosu" tek-koşu gürültüsüymüş.
