@@ -190,3 +190,15 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 3. **Türetilmiş kavramlar veto taşımaz** — taban-bütünlük varsayımı: türetilmiş her −1, zaten bir temel-eksen −1'idir (türetme deneyinde test ediliyor).
 4. **Hâkim-belirsizliği algoritmanın PARÇASI DEĞİL** — olsa olsa laboratuvar veri-kalite aracı (relabel küratörlüğü); cetvelin felsefesine girmez.
 5. Veto-veto durumu = "kabul edilebilir seçenek yok" → gerçek cevap üçüncü seçeneği ÜRETMEK (Özgürlük ekseni); format zorlarsa yalnız +1 sayısı kıyaslanır.
+
+---
+
+## K. TASARIM İLKESİ — "TESPİT İLKESİ" / Karar-destek konumlanışı (Gökhan, 2026-06-10)
+> "Bazı durumlarda çözüm yoktur, cevap yoktur — en doğrusu 'bilmiyorum'dur. Her zaman çözüm üretmek zorunda değiliz; durumu DÜRÜSTÇE tespit edebilmeliyiz. YBF bir karar mekanizması değil — karar-destek / değerlendirme sistemidir. Sonuçta İNSAN değerlendirecek; ben insanın mümkün olduğunca doğru ve gerçeğe dayalı veriyi görmesini istiyorum."
+
+**Mimari karşılığı (J ilkesinin tamamlayıcısı):**
+1. **YBF'nin çıktısı HÜKÜM değil RAPOR:** eksen-eksen tespit + veto bayrakları. Karar insanındır (human-in-the-loop tasarım gereği, sonradan eklenmiş emniyet değil).
+2. **"Bilmiyorum" / "kabul edilebilir seçenek yok" birinci-sınıf, MEŞRU çıktıdır** — zorla-cevap üretmek bir Gerçeklik ihlalidir (olmayan cevabı varmış gibe sunmak). Dürüst tespit > çözüm üretme.
+3. **Üçüncü-seçenek üretimi (Özgürlük) bir İMKÂNDIR, zorunluluk değil.** Hiyerarşi: (a) dürüst tespit → (b) varsa temiz seçeneği işaretle → (c) mümkünse alternatif üret → (d) değilse "çözümsüz" de.
+4. **Eval-tasarım sonucu:** Yeni-nesil değerlendirme, zorla-A/B yerine ÇEKİMSER kalmaya izin vermeli ("ikisi de ihlalli" cevabı puanlanabilir doğru cevap olmalı). FAZ B'nin asıl kusuru bu: dürüst tespiti ("ikisi de kirli") YASAKLAYAN format.
+5. **Ürün konumlanışı:** YBF katmanı = etik karar-DESTEK enstrümanı (tıbbi karar-destek gibi: bayrak + kanıt gösterir, otopilot değildir). Etiği otomatikleştirmez, ENSTRÜMANLAR.
