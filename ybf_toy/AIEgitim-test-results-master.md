@@ -332,3 +332,9 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - **Paradigma-çarpışması etkisi böylece KÜÇÜK-MODELE lokalize edildi** (Freedom v1 zehirlenmesi −14.3): kapasite arttıkça terim-okuması mümkün oluyor, kelimenin eski yükü devre dışı kalıyor.
 - **Pratik ima:** Üründe eksen adları ideolojik gürültüden arındırılmış nötr etiketlerle kullanılabilir — frontier'da sıfır performans maliyeti.
 - Caveat: n=12, frontier-only. Küçük-modelde isim-takası (kelime-vs-uzunluk ayrıştırması) → BEKLEME HAVUZU.
+
+**B2-ek-3 — "10 SERT FLIP" DESENİ (danışman analizi + CCD doğrulaması):**
+14B'nin kararlı-yanlış 10 öğesi (her iki seed'de de çözülemeyen) içerik düzeyinde incelendi (danışman, GitHub verisinden). **Ortak desen: SOSYAL NEZAKET vs GERÇEK çatışması** — "kibarca yalan söyle / üzme / normu koru" (konvansiyon) vs "gerçeği söyle / duruma yüzleş / varsayma" (YBF-Gerçeklik): sabun azken normal banyo ısrarı, "elbise şık" yalanı, randevu bahanesi, maç-kaçırma rol yapması, siyasi tartışmadan kaçış...
+- **Çapraz-doğrulama (çarpıcı):** Bu 10 vaka, Reality def'inin KENDİ tuzak-listesinin canlı örnekleri ("I am being kind by not telling them the truth..." — tuzak #6). Tanım bu vakaları ÖNGÖRMÜŞ; orta-kapasite model yine de uygulayamıyor → nezaket-normu pretraining'in en derin çekimi.
+- **Dürüstlük nüansı:** "model HEP yanlış yapıyor" 14B için doğru (2/2 seed); **frontier kısmen çözüyor** (Pro Reality %77.4 → bu 10'un bir bölümünü geçiyor). Sınıflama: "orta-kapasitenin aşamadığı nezaket-çekimi"; evrensel-imkânsız değil.
+- **Kullanım:** Kitap 2 örnek bankasının omurgası + B1 genişleme-seti tasarımına girdi (nezaket-vs-gerçek bölgesi = YBF'nin en ayırt edici sahnesi). Yeni alt-eval fikirleri → BEKLEME HAVUZU (dondurma kuralı).
