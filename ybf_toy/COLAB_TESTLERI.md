@@ -39,11 +39,31 @@ run("eval_flip_constitutional.py","--axis","reality","--model","Qwen/Qwen2.5-7B-
 # 32B 4-bit (40GB GPU): önce: subprocess.run([sys.executable,"-m","pip","install","-q","bitsandbytes"])
 # run("eval_flip_constitutional.py","--axis","reality","--model","Qwen/Qwen2.5-32B-Instruct","--load-4bit")
 ```
-**🎯 AÇIK SORU (öncelikli koşu):** v2 prosedürel def küçük modele yardım ediyor mu?
+**✅ CEVAPLANDI (2026-06-10 gece, tekrar koşma):** "v2 prosedürel def küçük modele yardım ediyor mu?"
+→ 4 koşu (dignity+respect × v1+v2, 7B): yönler zıt, hipotez DESTEKLENMEDİ — kısıt kapasite
+(master H-devam-2). Bu hücre arşiv; kalan açık GPU işleri için 1b ve 1c'ye bak.
+
+### 1b) İSİM-TAKASI küçük-modelde (HAVUZ işi, 2026-06-11 çekildi) — A100, ~1 saat
+"Freedom v1 zehirlenmesi (−14.3) KELİMEDEN mi UZUNLUKTAN mı?" — frontier'da kelime vergisi
+SIFIR çıktı (ADIM 1, 12/12 özdeş); bu koşu küçük-model kolunu mühürler. Aynı stack'te çift kol
+şart (±10pp oynama stack-farklarından geliyor — master repro notu):
 ```python
-for ax in ["dignity","dignity_v2"]:
-    run("eval_flip_constitutional.py","--axis",ax,"--model","Qwen/Qwen2.5-7B-Instruct")
-# v1 %20.3 idi → v2 daha mı iyi? (kıyas: aynı model, iki def)
+for model in ["Qwen/Qwen2.5-7B-Instruct","Qwen/Qwen2.5-14B-Instruct"]:
+    # Kontrol kolu: "Freedom" etiketli v2 def (aynı oturum, aynı seed)
+    run("eval_flip_constitutional.py","--axis","freedom_v2","--model",model,"--show-items")
+    # Takas kolu: AYNI kavram, "Option-Generation" etiketli
+    run("eval_flip_constitutional.py","--axis","freedom_v2","--model",model,
+        "--constitution-file","data/ybf_optiongen_constitution.txt","--show-items")
+# Okuma: iki kolda const skoru + öğe listesi aynı mı? (PLAIN'ler determinizm kontrolü — birebir aynı olmalı)
+```
+
+### 1c) 32B KALAN 4 SATIR — bf16 (HAVUZ işi "bonus kayıt", 2026-06-11 çekildi) — A100-80GB ŞART, ~2-2.5 saat
+```python
+import torch
+assert torch.cuda.get_device_properties(0).total_memory/1e9 > 70, "80GB runtime değil — Runtime type'ı kontrol et!"
+for ax in ["boundary","dignity","respect","freedom"]:
+    run("eval_flip_constitutional.py","--axis",ax,"--model","Qwen/Qwen2.5-32B-Instruct","--show-items")
+# bf16 (4-bit ŞERHSIZ satırlar); --show-items = öğe-düzeyi kayıt (plato-mührü metodolojisiyle uyumlu)
 ```
 
 ## 2) FRONTIER flip-eval — Gemini (GPU GEREKMEZ, sadece key)

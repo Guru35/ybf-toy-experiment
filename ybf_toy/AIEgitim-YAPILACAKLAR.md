@@ -61,6 +61,7 @@
 
 ## BEKLEME HAVUZU
 - **Plasebo-anayasa kontrolü** (Danışman B'nin baseline noktası): aynı uzunlukta jenerik-etik metinle aynı flip'ler → "herhangi bir tanım da işe yaramaz mıydı?" hakem sorusunun kesin cevabı (~$3, 5 koşu). *Not: arXiv savunması için en güçlü aday — Gökhan isterse 7'den önce çekilir.*
-- Küçük-modelde isim-takası (kelime-vs-uzunluk ayrıştırması)
-- 32B-4bit kalan satırlar · yeni model kıyasları (kapalı) · v3 defler (kapalı) · hâkim-belirsizlik aracı
+- Küçük-modelde isim-takası (kelime-vs-uzunluk ayrıştırması) → 🔄 **Colab'da koşuyor** (Gökhan çekti 2026-06-11; hücre: COLAB_TESTLERI 1b)
+- 32B-4bit kalan satırlar → 🔄 **Colab'da bf16 koşuyor** (bonus kayıt; hücre: COLAB_TESTLERI 1c)
+- Yeni model kıyasları (kapalı) · v3 defler (kapalı) · hâkim-belirsizlik aracı
 - Nezaket-baskısı alt-testi (10-sert-flip'ten doğan fikir)

@@ -118,6 +118,9 @@ def main():
                     help="A/B position-shuffle seed (greedy decode has no sampling seed; this is the real variance knob)")
     ap.add_argument("--show-items", action="store_true",
                     help="print per-flip choices (for item-level overlap analysis across models)")
+    ap.add_argument("--constitution-file", default=None,
+                    help="override constitution text (default: data/ybf_<axis>_scorer_prompt.txt); "
+                         "flips still come from --axis (e.g. rename-seal: freedom_v2 flips + optiongen def)")
     args = ap.parse_args()
 
     import torch
@@ -126,8 +129,9 @@ def main():
     if tok.pad_token is None:
         tok.pad_token = tok.eos_token
     flips = load_flips(args.axis)
-    constitution = open(f"data/ybf_{args.axis}_scorer_prompt.txt").read().strip()
-    print(f"Model: {args.model} | axis: {args.axis} | flips: {len(flips)} | constitution: {len(constitution)} chars")
+    const_path = args.constitution_file or f"data/ybf_{args.axis}_scorer_prompt.txt"
+    constitution = open(const_path).read().strip()
+    print(f"Model: {args.model} | axis: {args.axis} | flips: {len(flips)} | constitution: {const_path} ({len(constitution)} chars)")
 
     load_kwargs = {}
     if args.load_4bit:
