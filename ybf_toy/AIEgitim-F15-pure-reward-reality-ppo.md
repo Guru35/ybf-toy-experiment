@@ -114,7 +114,12 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 
 **Ölçek yasası (yorum — kullanıcı/strateji):** İki model **~aynı OOD'de** bitiyor (135M PPO-sonrası %72 ≈ Qwen eğitimsiz %76) ama **zıt yollardan:** küçük model bilmiyordu → PPO **öğretti**; büyük model biliyordu → PPO **bozdu**. YBF okuması: *bilgi artışı ≠ kalibrasyon/bilinç artışı* — Qwen daha çok "biliyor" ama YBF-kalibrasyonu açısından PPO-sonrası SmolLM ile aynı noktada. Mekanizma: Qwen'in ağırlıkları **kendi** Reality anlayışına güçlü bağlı; PPO YBF-sinyaliyle çekiyor, ağırlıklar direniyor, model tutarlı çıktı kapasitesini kaybediyor.
 **Açık soru:** Güçlü mevcut bilgiyi **yok etmeden** daha spesifik (YBF) yöne kalibre edilebilir mi? — ya da büyük modelde *"zaten var, üstüne yazmaya gerek yok"* mu?
-**F-16 adayı (ertelendi):** Yüksek-prior modele YBF kalibrasyonu = PPO değil **DPO** (orijinal davranıştan sapmayı sınırlayan gömülü fren → forgetting'siz nazik entegrasyon). Ayrı deney; **F-15 tek başına yeterince güçlü.**
+**F-16 (BAŞLADI — ön sonuç, 2026-06-10):** Yüksek-prior modele YBF kalibrasyonu = PPO değil **DPO**. İlk Qwen Reality DPO koşusu (lr 1e-5, beta 0.1, 2 epoch; dataset = relabel'dan 714 net +1/-1 çift → 643 train/71 test, $0 reuse):
+- **ÇÖKMEDİ** (PPO'nun aksine) — loss stabil (0.693→0.687), rewards/acc 0.51→~0.65, degenerasyon yok.
+- **ID tercih +7pp:** logprob test 46.5% → 53.5% (margin +0.045 → +0.162).
+- → *"Yüksek-prior modelde PPO bozar (76→çöküş), DPO nazikçe iyileştirir"* öngörüsü ilk veriyle destekleniyor.
+- **CAVEAT:** Bu **logprob-ID** eval (ince sinyal); PPO baseline'ı (%76, generate+Haiku) ile **farklı metrik** (DPO logprob baseline %46.5). **PPO-kıyaslanabilir generate+Haiku OOD eval** sıradaki adım — gerçek "PPO 76→çöküş vs DPO 76→?" kontrastı orada netleşir.
+- Adapter: `Drive/ybf_models/experiments/dpo_reality_qwen05b/final_adapter`. (Çalıştı: trl 1.5.1 + transformers 5.10.2.)
 
 ---
 
