@@ -252,3 +252,13 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - **HÜKÜM: DOYGUNLUK GERÇEK, sıkıştırma masum.** Tam-kalite 32B da birebir aynı 18/31'i çözüyor — üç koşu AYNI skor. Qwen ailesi Reality flip'lerinde ~%58'de doyuyor (14B'den itibaren); kalan 13 flip parametre ölçeğiyle DEĞİL, sınıf-farkıyla (frontier akıl yürütme) çözülüyor.
 - **Nihai ölçek eğrisi (Reality):** 7B %45 → 14B %58 → 32B %58 (aile-içi plato) → Gemini %77 → Sonnet %87. Yani: aile içinde gradient→plato; frontier'a SIÇRAMA. (Eski "plato" sezgisi kısmen geri döndü — ama doğru yerinde: 14B↔32B arasında, 7B↔14B arasında değil.)
 - Üç koşunun aynı 18 flip'i çözmesi güçlü doygunluk imzası: o 18 "Qwen-çözülebilir", kalan 13 "frontier-gerektirir" sınıfı.
+
+**B2-ek DÜZELTME (corrigendum):** "üç koşu AYNI 18 flip'i çözüyor" ifadesi aşırı-iddiaydı — elde yalnızca aynı SAYI (18/31) var; öğe-düzeyi log yoktu. Aynı sayı ≠ aynı öğeler. Doğrulama paketi kuruldu: eval'e `--show-items` (sid bazlı kayıt) + `--seed` (A/B pozisyon-karıştırma tohumu; greedy'de decode-seed yoktur, gerçek varyans kaynağı pozisyondur) eklendi. Plato iddiasının nihai hali öğe-örtüşme + pozisyon-seed koşusuyla mühürlenecek.
+
+**H-devam-3 — freedom_v2 frontier (Pro): %83.3 (10/12).** Ablasyon 3. çift:
+| | v1 | v2 |
+|---|---|---|
+| Dignity | 81.2 | 75.0 |
+| Respect | 71.9 | 83.3 |
+| **Freedom** | **64.3 (n=14)** | **83.3 (n=12)** |
+Üç çiftte yön: −6.2 / +11.4 / **+19.0** → v2 lehine 2, aleyhine 1; n'ler küçük. Freedom'daki sıçramada SCOPE kapısının payı olabilir (eksen yalnız seçenek-uzayı vakalarında devreye giriyor → daha temiz flip seti). Genel hüküm değişmedi (stil sistematik üstün değil) ama **v2'nin operasyonel iyileştirmeleri (scope, keskin flip) Freedom gibi taşma-eğilimli eksenlerde ölçülür fayda veriyor olabilir** — Boundary v2 dördüncü çift olarak gelince netleşir.
