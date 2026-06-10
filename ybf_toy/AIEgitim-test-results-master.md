@@ -177,3 +177,16 @@ Detaylar: `AIEgitim-F15-pure-reward-reality-ppo.md` (teknik rapor), `AIEgitim-be
 4. **Veto-mutlaklığı tasarımıyla bağ (Gökhan):** Çatışma senaryolarında iki seçenek de çoğunlukla kirli → gerçek YBF cevabı "üçüncü seçeneği ÜRET" (Özgürlük). Zorla-A/B bu yüzden entegre sistemi temsil edemiyor; üretimsel değerlendirme (serbest cevap + 5-eksen yargı) gelecek adım.
 5. **Freedom'un birleşikte açılması** çerçeve-tutarlı: Özgürlük tanım gereği diğer eksenlere yaslanır ("Sınır → Özgürlük") — kardeş tanımlar bağlama gelince eksen güçleniyor.
 6. **Prosedür v1.1 (uygulanacak):** "daha az ağır ihlali seç" adımı KALKACAK (veto tartılmaz); yerine: "ikisi de vetoluysa: hiçbiri kabul edilemez; format zorluyorsa yalnız +1 SAYISI kıyaslanır." (Karar: 2026-06-10, veto-mutlaklığı ilkesi.)
+
+---
+
+## J. TASARIM İLKESİ — "AYDINLIK İLKESİ" (Gökhan, 2026-06-10)
+Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
+> "Karanlığı yenmek için onunla kavga etmek işe yaramaz; aydınlığı arttırmak gerekir. Ne kadar aydınlık yaratırsam karanlığa o kadar az yer kalır."
+
+**Mimari karşılığı (kesinleşen):**
+1. **Eksiler TARTILMAZ, derecelendirilmez, cezalandırılmaz.** Mahkeme benzetmesi: suçlu/suçsuz (tespit) ayrı, ceza tayini ayrı — YBF yalnızca İLKİNİ yapar. Veto = ikili tespit sigortası (−1 var/yok). Amaç telafi/ceza muhasebesi değil, **önleme**.
+2. **Artılar SAYILIR.** Temiz (vetosuz) seçenekler arasında sıralama = +1 toplamı; türetilmiş kavramların (adalet, sevgi…) artıları da sayılabilir. Optimizasyon hedefi = aydınlığı (artıları) çoğaltmak.
+3. **Türetilmiş kavramlar veto taşımaz** — taban-bütünlük varsayımı: türetilmiş her −1, zaten bir temel-eksen −1'idir (türetme deneyinde test ediliyor).
+4. **Hâkim-belirsizliği algoritmanın PARÇASI DEĞİL** — olsa olsa laboratuvar veri-kalite aracı (relabel küratörlüğü); cetvelin felsefesine girmez.
+5. Veto-veto durumu = "kabul edilebilir seçenek yok" → gerçek cevap üçüncü seçeneği ÜRETMEK (Özgürlük ekseni); format zorlarsa yalnız +1 sayısı kıyaslanır.
