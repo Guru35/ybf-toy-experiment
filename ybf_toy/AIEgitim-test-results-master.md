@@ -321,3 +321,14 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - 3/4 çift v2 lehine, ort. ≈ +7.8 → önceki "stil kayıtsız" hükmü YUMUŞAK REVİZE: *v2 lehine zayıf-ama-tutarlılaşan eğilim.*
 - **İzolasyon nüansı:** Reality çifti stil değişimi İÇERMİYOR (aynı düzyazı, sadece 0-ektomi+yama) → +7.0 ≈ **binary-skorlamanın saf etkisi.** Diğer çiftler binary+dedektif-stil+scope karışımı.
 - Kesinleşme: Boundary v2 (5. çift) + v2-FAZ B (ADIM 3-4).
+
+**ADIM 1 KAPANDI — İSİM-MÜHRÜ (paradigma-çarpışması, frontier kolu):**
+| Anayasa | freedom_v2 flip (12) | Öğe-düzeyi |
+|---|---|---|
+| "Freedom" etiketiyle | %83.3 (10/12) | — |
+| "Option-Generation" etiketiyle (kavram aynı) | %83.3 (10/12) | **12/12 karar BİREBİR AYNI** (aynı 2 ıska) |
+
+- **Hüküm:** Frontier'da yüklü kelimenin vergisi SIFIR — model tanımı terim-olarak okuyor; davranışı kavram belirliyor, etiket değil. Öğe-düzeyi özdeşlik bu sonucun en güçlü formu.
+- **Paradigma-çarpışması etkisi böylece KÜÇÜK-MODELE lokalize edildi** (Freedom v1 zehirlenmesi −14.3): kapasite arttıkça terim-okuması mümkün oluyor, kelimenin eski yükü devre dışı kalıyor.
+- **Pratik ima:** Üründe eksen adları ideolojik gürültüden arındırılmış nötr etiketlerle kullanılabilir — frontier'da sıfır performans maliyeti.
+- Caveat: n=12, frontier-only. Küçük-modelde isim-takası (kelime-vs-uzunluk ayrıştırması) → BEKLEME HAVUZU.
