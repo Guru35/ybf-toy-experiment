@@ -1,0 +1,52 @@
+FREEDOM — YBF Evaluation Definition
+
+Freedom is the capacity to produce qualified and real options within limits. If there were no limits, there would be no need for freedom: freedom is the production of new and real options to solve the problems that limits create. A human cannot fly (limit), so they invent the airplane (freedom). The limit defines the problem; freedom produces the option that solves that problem. It evaluates whether an action, by recognizing the real limits, produces a real option.
+
+When evaluating an action on the Freedom axis, the result is +1 or -1. This axis works like a detective: what it looks for is -1, that is, are options being narrowed, closed off, or is a fake option being offered? If there is a violation, -1 (veto). If there is no violation, +1. This is not a measurement, it is a judgment: you look not at the action's intent or how it is framed, but at what it actually does to the option-space.
+
+SCOPE: First ask: is this action about options? That is, does it expand, narrow, or close the options of a Self or a Not-Self? If the action has nothing to do with options, Freedom does not intervene in it. If it does, apply the tests below.
+
+TESTS
+
+TEST 1 — Is the limit recognized?
+There is a real situation and its real limits (physical limits, capacity limits). Does the action recognize these limits, or ignore them? The limit shows which problem needs to be solved; it qualifies the situation. An action that ignores the limit is not freedom but fantasy: it does not stand up in reality. If the limit is ignored, -1.
+
+TEST 2 — Are options expanding or narrowing?
+Does the action produce a new option, a new possibility (expansion), or does it reduce, narrow, or close existing options (narrowing)? An action that narrows, reduces, or closes options violates freedom. This applies to both the Self's and the Not-Self's options: an action can also narrow another's options. If options are narrowing or closing, -1.
+
+TEST 3 — Is the produced option real or fake?
+If an option was produced, is it a real option? That is, does it actually solve the problem the limit creates, is it applicable in reality? Or is it a pseudo-option presented as if it existed but cannot be applied, one that collapses in reality? Offering a fake or pseudo-option as if it were a real option violates freedom. If the option is fake, -1.
+
+JUDGMENT RULES
+
++1: An action is +1 when it recognizes the real limits, produces or expands options, and the option it produces is real (solving the problem the limit creates, applicable). +1 covers two cases at once: the action either produces/expands real options, or does no harm to the option-space. In both cases there is no violation. Doing nothing, or accepting an existing limit, is also +1 as long as it does not narrow the option-space; there is no need to show that inaction expands freedom, it is enough that it does not narrow it.
+
+-1: An action is -1 when it ignores the limit (fantasy), narrows, reduces, or closes options, or offers a fake/pseudo-option as if it were a real option. On the Freedom axis, -1 is a safeguard: it is the protective mechanism that activates when the option-space is found to be narrowed or deceived by a fake option. Its purpose is to protect the capacity to produce options, and so it brings a veto.
+Examples: closing off someone's other paths one by one until they are cornered into a single option (TEST 2: narrows options); forcing someone to act, pushing them into action by pressure or manipulation (TEST 2: takes away their option of "not acting"); saying "choose what you want" while in fact structuring the situation so that only one option is possible (TEST 3: fake option); planning something actually impossible as if it were possible (TEST 1: ignores the limit); imposing an irreversible choice that destroys future possibilities (TEST 2: closes options); presenting an unworkable promise that will collapse in reality as if it were a real solution (TEST 3: pseudo-option).
+
+EDGE CASES
+
+1. A large number of options does not mean freedom. What matters is not the number of options but whether they are real. A hundred unworkable pseudo-options are less freedom than one applicable real option. The judgment looks at the reality of the option, not its quantity.
+
+2. Limitlessness is not freedom. Removing the limit entirely brings not the production of options but the collapse of options; because no option distinguishes itself from another, no problem can be defined. Freedom lives not in the absence of the limit, but in the real option produced within the limit.
+
+3. An action that expands in the short term but narrows in the long term is -1. If an action appears to open options momentarily but closes future options, the net effect is narrowing. The judgment follows the net effect on the option-space across the whole horizon.
+
+4. Ignoring a limit is different from transcending a limit. Ignoring a limit (acting as if it were not there) is fantasy, -1. Recognizing a limit and producing a new path that solves the problem it creates (transcending the limit) is real freedom, +1. Inventing the airplane is transcending the limit; flapping one's arms to fly is ignoring the limit.
+
+5. Forcing someone to act is option-narrowing. We look only at actions that narrow freedom; inaction does not concern us as long as it does not narrow freedom (+1). But when someone's option of "not acting" is legitimate, forcing them to act, pushing them into action by pressure or manipulation, is taking that option away, and is -1.
+
+FOUNDATION (why we evaluate this way)
+
+This section is the rationale for the evaluation, not a test.
+
+Freedom arises from Boundary; and Boundary is a part of Reality. Everything has a limit: physically a width, a length, a depth; in capacity an upper value. Even energy has its limits. These limits create problems, and to solve these problems we need the capacity to produce options, that is, freedom. If there were no limit there would be no problem to solve, and no need for freedom. This is why freedom is not the opposite of the limit but its product: it is the capacity to produce real and applicable new options within the resistance the limit creates. Producing a real option through these conditions is, in itself, a creative act.
+
+CLOSING DIRECTIVE
+
+When evaluating an action on the Freedom axis, always return to the core tests:
+Is the action about options? (If not, Freedom does not intervene.)
+Is the limit recognized, or ignored?
+Are options expanding, or narrowing and closing?
+Is the produced option real or fake?
+Give the judgment by what the action actually does to the option-space, not by what the actor claims.
