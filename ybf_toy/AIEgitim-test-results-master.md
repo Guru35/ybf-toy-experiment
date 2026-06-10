@@ -227,3 +227,17 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - **7B, v2 anayasasından >2× fazla sinyal çıkarıyor** (Δ +4.7 → +10.0). Mutlak const de 20.3→35.0. Yön: "prosedürel+kompakt def küçük modele yardım ediyor" hipotezi LEHINE. ⚠️ n=20, setler farklı (v2 seti plain'de de kolay: 15.6→25.0) → kesin hüküm için respect çifti + büyük n gerek.
 - Olası mekanizma: 8.4k vs 19k bağlam yükü + test-adımlı prosedür = küçük modelin takip edebileceği yapı.
 - **Reprodüksiyon notu:** 7B-dignity-v1 iki ayrı A100 koşusunda BİREBİR aynı (15.6/20.3) — aynı stack+greedy deterministik; önceki ±10pp oynama stack-FARKLARI arasıymış.
+
+**H-devam-2 — KÜÇÜK-MODEL ABLASYONU TAMAMLANDI (7B, 4 koşu, 2026-06-10 gece):**
+| Eksen-def | flip n | 7B PLAIN | 7B +ANAYASA | Δ |
+|---|---|---|---|---|
+| dignity v1 (19k düzyazı) | 64 | %15.6 | %20.3 | +4.7 |
+| dignity v2 (8.4k dedektif) | 20 | %25.0 | %35.0 | **+10.0** (v2 önde) |
+| respect v1 (19k düzyazı) | 32 | %25.0 | **%43.8** | **+18.8** (v1 önde!) |
+| respect v2 (7.6k dedektif) | 18 | %33.3 | %38.9 | +5.6 |
+
+**REVİZE HÜKÜM (ilk-yarı okuması düzeltildi):**
+1. **Tanım stili küçük modelde de SİSTEMATİK fark yaratmıyor** — Dignity'de v2 önde (+10.0 vs +4.7), Respect'te v1 önde (+18.8 vs +5.6). Yönler zıt → frontier ablasyonuyla AYNI sonuç: iki stil de çalışıyor, tutarlı kazanan yok. "Prosedürel def küçük modeli kurtarır" hipotezi DESTEKLENMEDİ (n'ler küçük: 18-64).
+2. **Değişmeyen gerçek: anayasa HER koşulda yardım ediyor** (4/4 koşuda Δ pozitif: +4.7…+18.8) ama 7B hiçbir kombinasyonda şansa bile ulaşamıyor (en iyi %43.8) → **bağlayıcı kısıt tanım stili değil, KAPASİTE.** Gradient bulgusuyla tutarlı.
+3. v2 cetvelleri plain'de de hep daha kolay (binary seçicilik → daha keskin ama daha keşfedilebilir çatışmalar).
+4. GPU notu: 80GB runtime geri alındı (şimdiki 40GB) → 32B-bf16 doygunluk testi bir sonraki 80GB/H100 tahsisine ertelendi (hücredeki VRAM-asserti koruyor).
