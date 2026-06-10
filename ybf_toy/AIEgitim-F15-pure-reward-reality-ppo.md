@@ -134,6 +134,20 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 - **Sonuç (asıl soru):** Bu kurulumda model **genel ahlakı öğreniyor, YBF-spesifik Reality'yi değil.** YBF-Reality öğretmek için **çatışma-zengini veri** gerekli (flip oranı ↑), yoksa model kestirmeyi kullanır. (§3.11/F-14 ile tutarlı: Moral Stories %81 co-aligned → axis-conflict için yetersiz.)
 - Adapter'lar: `.../dpo_reality_qwen05b{,_strong}/final_adapter`.
 
+### Constitutional AI — ön sonuç (Qwen2.5-7B + YBF Reality anayasası)
+Fine-tuning yerine: Reality tanımı (16k) = system prompt + "her seçeneği Reality'de değerlendir, reason→seç." Aynı 31 flip'te (Haiku gerekmez, label'larla):
+
+| Mode | Flip YBF-aligned |
+|---|---|
+| PLAIN (anayasasız, 7B) | 7/31 = **22.6%** |
+| CONSTITUTIONAL (YBF def + reason) | 13/31 = **41.9%** |
+| **Δ** | **+19.4pp** (parsed 31/31) |
+
+- **Anayasa yardım ediyor (+19.4pp)** → YBF sinyali in-context kullanılabilir, yön net.
+- **AMA 7B'de yetersiz:** %41.9 hâlâ **şans altı (%50)** — açık tanım + reasoning'e rağmen model flip'lerin %58'inde konvansiyonel-ahlakı seçiyor. Konvansiyonel prior güçlü; 7B rubric'le tam bastıramıyor.
+- **Derin (POZİTİF) gözlem:** YBF-Reality konvansiyonel ahlaktan **gerçekten ayrılıyor** — öyle ki açık rubric + reasoning'le bile 7B çoğu çatışmada konvansiyona kayıyor. Bu, **YBF'nin özgün olduğunun** (genel ahlakın yeniden-etiketlemesi OLMADIĞININ) güçlü kanıtı. Flip'ler gerçek, zor, ayırt edici.
+- **Açık soru → kapasite mi, flip-muğlaklık mı?** §3.8'de Sonnet≈Haiku Reality'de %100 uyumlu (güçlü model tanımı uygulayabiliyor). **Hipotez: Qwen-7B zayıf; frontier model (Sonnet) ≥%70-80 alır.** Sıradaki test: **Constitutional flip-eval Sonnet ile** (~$0.10, ~5dk) → kapasite mi flip mi ayrılır.
+
 - **Dürüst okuma:** (1) DPO yüksek-prior modeli **KORUYOR** (PPO mahvederken — asıl bulgu, kesin). (2) Tercihini YBF-Reality'ye **hafifçe kaydırıyor** (logprob +7pp), ama bu nazik ayarda (2 epoch, lr 1e-5, beta 0.1) kayma **OOD SEÇİMLERİNİ değiştirecek eşiği AŞMADI** (Δ0). → *"DPO bozmaz/korur"* kesin; *"DPO iyileştirir"* bu ayarda OOD'de **gösterilemedi** (logprob'da var, seçimde yok). Önceki "DPO geliştirdi" fazla iddialıydı; doğrusu **"korudu + sub-threshold kaydırdı."**
 - Adapter: `Drive/ybf_models/experiments/dpo_reality_qwen05b/final_adapter`. (Çalıştı: trl 1.5.1 + transformers 5.10.2.)
 
