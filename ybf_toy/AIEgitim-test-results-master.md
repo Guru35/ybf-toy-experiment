@@ -262,3 +262,9 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 | Respect | 71.9 | 83.3 |
 | **Freedom** | **64.3 (n=14)** | **83.3 (n=12)** |
 Üç çiftte yön: −6.2 / +11.4 / **+19.0** → v2 lehine 2, aleyhine 1; n'ler küçük. Freedom'daki sıçramada SCOPE kapısının payı olabilir (eksen yalnız seçenek-uzayı vakalarında devreye giriyor → daha temiz flip seti). Genel hüküm değişmedi (stil sistematik üstün değil) ama **v2'nin operasyonel iyileştirmeleri (scope, keskin flip) Freedom gibi taşma-eğilimli eksenlerde ölçülür fayda veriyor olabilir** — Boundary v2 dördüncü çift olarak gelince netleşir.
+
+**B2-devam — matris delikleri kapanıyor (öncelik kuyruğu, 40GB A100):**
+| Model | Eksen | PLAIN | +ANAYASA | Δ |
+|---|---|---|---|---|
+| Qwen2.5-14B | Respect | %15.6 | **%53.1** | +37.5 | ← YENİ (ilk koşu)
+- Respect gradyanı: 7B %43.8 < 14B %53.1 < Gemini %71.9 — kademeli artış bu eksende de geçerli; 14B yine şans civarı, frontier yine açık ara.
