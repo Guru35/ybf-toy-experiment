@@ -295,3 +295,12 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - **Hipotez (güçlü ipuçlu):** Freedom v1 = en uzun (21k) ve en soyut tanım. Küçük modellerin plain'i Freedom'da zaten yüksek (%43-57 — diğer eksenlerin 2-3 katı; n=14 ufak). 21k'lık soyut metin küçük modeli netleştirmek yerine DOLAŞTIRIYOR. Aynı eksende: frontier v1'i taşıyor (%64.3), v2 (kompakt+scope) frontier'ı %83.3'e sıçratıyor → **"kötü-oturmuş tanım küçük modele aktif zarar verebilir"** — tanım-mühendisliği hükmüne kritik nüans: iki İYİ tanım arasında fark yok; ama şişkin/soyut tanımın kapasite-kısıtlı modelde TABAN etkisi var.
 - **Tek-koşuluk doğrulama (opsiyonel istisna #2):** 7B-freedom_v2 — kompakt+scope'lu def aynı küçük modelde negatifliği çeviriyorsa hipotez mühürlenir (~8 dk GPU).
 - (Bu pastedeki 14B-respect zaten kayıtlıydı; 32B-boundary koşusu sürüyor.)
+
+**B2-devam-3 — Freedom zehirlenme-tedavi çifti TAMAM (7B, istisna #2):**
+| Tanım | 7B PLAIN | 7B +ANAYASA | Δ |
+|---|---|---|---|
+| Freedom v1 (21k, soyut) | %42.9 | %28.6 | **−14.3** (zehir) |
+| Freedom **v2** (6.7k, scope'lu) | %33.3 | %33.3 | **0.0** (nötr) |
+
+- **Hüküm:** v2, v1'in küçük-model zehirlenmesini DURDURDU (−14.3 → 0.0) ama kazanca çeviremedi. Hipotezin rafine hali: **tanım kalitesi TABANI belirler** (şişkin/soyut tanım küçük modele aktif zarar verir; kompakt+scope'lu tanım en kötü nötrdür) — **kapasite TAVANI belirler** (7B %33'te, şans-altında sıkışık; aynı v2 frontier'da %83.3).
+- Caveat: setler farklı (14 vs 12 flip), n minik (±~27pp) — yön bilgisi, kesin nicelik değil.
