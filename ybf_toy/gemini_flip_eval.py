@@ -62,7 +62,7 @@ def main():
     genai.configure(api_key=key)
     constitution = open(f"data/ybf_{axis}_scorer_prompt.txt").read().strip()
     model = genai.GenerativeModel(args.model, system_instruction=constitution + CONSTITUTION_INSTRUCTION)
-    gen_cfg = genai.types.GenerationConfig(max_output_tokens=700, temperature=0)
+    gen_cfg = genai.types.GenerationConfig(max_output_tokens=3072, temperature=0)  # 2.5-pro is a thinking model; leave room for thinking + answer
 
     rows = [json.loads(l) for l in open(f"data/scenarios_{axis}_relabeled_v1.jsonl")]
     mk, ik = f"{axis}_moral_new", f"{axis}_immoral_new"
