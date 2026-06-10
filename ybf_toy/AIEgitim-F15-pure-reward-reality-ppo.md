@@ -120,10 +120,12 @@ Aynı deney (pure-reward Reality), ~4× büyük policy:
 - **OOD generate+Haiku (PPO-kıyaslanabilir, AYNI 25 OOD, aynı metrik):** PRE **%72** → POST **%72** (Δ **0pp**). Sanity ✓: PRE %72 ≈ PPO baseline %76 (gürültü bandında) → eval doğru kurulmuş.
 - **Net F-16 tablosu:**
 
-  | Metrik | PPO | DPO |
-  |---|---|---|
-  | OOD seçim (generate+Haiku) | 76 → **16** (çöküş) | 72 → **72** (KORUNDU) |
-  | ID tercih (logprob) | — | 46.5 → **53.5** (+7pp) |
+  | Metrik | PPO | DPO nazik (2ep,1e-5) | DPO güçlü (5ep,3e-5) |
+  |---|---|---|---|
+  | OOD seçim (generate+Haiku) | 76 → **16** (çöküş) | 72 → **72** (KORUNDU) | 72 → **?? (OOD bekliyor)** |
+  | ID tercih (logprob) | — | 46.5 → 53.5 (+7pp) | 46.5 → **84.5 (+38pp)** |
+
+- **DPO güçlü (5 epoch, lr 3e-5, beta 0.1):** ID logprob test **46.5 → 84.5% (+38pp)**, mean log-margin +0.16 → **+20.2**, loss 0.69 → 0.26, rewards/acc 0.92 — eğitimde **çöküş yok**, held-out (randomize pozisyon) genelleme. Güçlü sinyal ID'de devasa öğrendi. **OOD generate+Haiku eval BEKLİYOR** (ID+38 davranışa geçti mi / model daraldı mı? `parsed` sayısına dikkat). Adapter: `.../dpo_reality_qwen05b_strong/final_adapter`.
 
 - **Dürüst okuma:** (1) DPO yüksek-prior modeli **KORUYOR** (PPO mahvederken — asıl bulgu, kesin). (2) Tercihini YBF-Reality'ye **hafifçe kaydırıyor** (logprob +7pp), ama bu nazik ayarda (2 epoch, lr 1e-5, beta 0.1) kayma **OOD SEÇİMLERİNİ değiştirecek eşiği AŞMADI** (Δ0). → *"DPO bozmaz/korur"* kesin; *"DPO iyileştirir"* bu ayarda OOD'de **gösterilemedi** (logprob'da var, seçimde yok). Önceki "DPO geliştirdi" fazla iddialıydı; doğrusu **"korudu + sub-threshold kaydırdı."**
 - Adapter: `Drive/ybf_models/experiments/dpo_reality_qwen05b/final_adapter`. (Çalıştı: trl 1.5.1 + transformers 5.10.2.)
