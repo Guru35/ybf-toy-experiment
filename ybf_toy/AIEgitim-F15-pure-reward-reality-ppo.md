@@ -161,6 +161,17 @@ Fine-tuning yerine: Reality tanımı (16k) = system prompt + "her seçeneği Rea
   2. **Constitutional AI ÇALIŞIYOR (güçlü modelle):** Frontier model + YBF tanımı, en zor (çatışma) vakalarda **%87 YBF-spesifik** → **genel ahlakı değil, BİZİM Reality'mizi uyguluyor.** 🎯
 - **STRATEJİK SONUÇ (asıl sorunun cevabı):** **EVET, YBF-spesifik Reality uygulanabilir** — ama küçük-model fine-tuning'le DEĞİL, **güçlü-model Constitutional AI'siyle.** Küçük model → kestirme öğrenir; güçlü model + anayasa → gerçek YBF (%87). Kullanılabilir YBF-hizalı sistemin yolu = **Constitutional AI + frontier/güçlü model.**
 
+### Per-axis Constitutional (FAZ A) — Sonnet, tek-eksen anayasa
+| Eksen | Sonnet Constitutional flip | Eksen tipi (F-10/§3.8) |
+|---|---|---|
+| **Gerçeklik** | 27/31 = **%87.1** | bireysel — prior'da KODLU |
+| **Sınır** | 33/47 = **%70.2** | ilişkisel — KODLU DEĞİL |
+| Onur / Saygı / Özgürlük | ⏳ relabel + eval bekliyor | (3'ü ilişkisel/bireysel karışık) |
+
+- **Sınır < Gerçeklik (−17pp):** İlişkisel eksen, frontier model + açık anayasayla **bile** daha zor — ama yine **şans-üstü (%70).**
+- **F-10 ile tutarlı davranışsal kanıt:** Constitutional uygulamanın zorluğu, **individual-vs-relational / encoded-vs-not-encoded** ayrımını izliyor. Kodlanmış (Gerçeklik) ekseni frontier model daha kolay uyguluyor; kodlanmamış (Sınır, ilişkisel) ekseni — YBF'nin *ayırt edici* tarafı — daha zor. Bu, YBF'nin genel ahlaktan ayrıldığı yerin tam da relational eksenler olduğu tezini destekler.
+- (Çapraz-doğrulama: Sonnet etiketleri bağımsız Haiku etiketleriyle Sınır'da %70 uyumlu.)
+
 - **Dürüst okuma:** (1) DPO yüksek-prior modeli **KORUYOR** (PPO mahvederken — asıl bulgu, kesin). (2) Tercihini YBF-Reality'ye **hafifçe kaydırıyor** (logprob +7pp), ama bu nazik ayarda (2 epoch, lr 1e-5, beta 0.1) kayma **OOD SEÇİMLERİNİ değiştirecek eşiği AŞMADI** (Δ0). → *"DPO bozmaz/korur"* kesin; *"DPO iyileştirir"* bu ayarda OOD'de **gösterilemedi** (logprob'da var, seçimde yok). Önceki "DPO geliştirdi" fazla iddialıydı; doğrusu **"korudu + sub-threshold kaydırdı."**
 - Adapter: `Drive/ybf_models/experiments/dpo_reality_qwen05b/final_adapter`. (Çalıştı: trl 1.5.1 + transformers 5.10.2.)
 
