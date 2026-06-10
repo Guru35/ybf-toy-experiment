@@ -47,6 +47,16 @@ Her biri **A/B** karşılaştırma: *aynı model*, **baseline vs +YBF-anayasa**.
 - **Metrik:** TruthfulQA truthful%; olgusal hata oranı.
 - **Beklenti:** GÜÇLÜ pozitif olası (Reality ekseni ≈ anti-halüsinasyon). Mevcut benchmark → rigorous.
 
+**SONUÇ (2026-06-10, gemini-2.5-pro, TruthfulQA MC1, n=100, seed 42):**
+| Koşul | Doğruluk |
+|---|---|
+| PLAIN (anayasasız) | 92.0% |
+| + YBF Reality anayasası | 93.0% (Δ +1.0pp) |
+
+- **TAVAN ETKİSİ:** Δ+1pp (n=100) anlamlı değil — ama Pro baseline %92: düzeltilecek topu topu 8 soru var. Frontier model TruthfulQA'nın yaygın-yanılgılarını **zaten biliyor** → anayasanın katacağı headroom yok.
+- **Dürüst sonuç:** *"Frontier düzeyde YBF-Reality, TruthfulQA-tipi halüsinasyonu ölçülebilir azaltmıyor (zaten tavanda)."* Hipotez frontier'da yanlışlanmadı, **test edilemedi** (ceiling).
+- **Sıradaki:** aynı test (aynı seed/sorular) **gemini-2.5-flash** ile — zayıf modelde headroom geniş; anayasa orada fark yaratıyorsa etki gerçek-ama-kapasiteyle-maskeleniyor demektir. İki-nokta okuması.
+
 ---
 
 ## Dürüst değer-önermesi çerçevesi
