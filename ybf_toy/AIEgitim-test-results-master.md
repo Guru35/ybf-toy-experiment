@@ -310,3 +310,14 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 - Yapı: **14 kararlı-doğru** [170,277,792,1873,3482,4540,4762,5783,5832,6218,8451,9635,10376,11442] + **10 kararlı-yanlış** [2524,2633,2635,5172,6320,6584,8448,8552,9140,11382] + **7 pozisyon-duyarlı (%23)** [s42:5074,9496,9770,11063 | s43:801,4277,9809].
 - Plain de sağlam: 6/31 vs 7/31.
 - Plato mührü için bekleyen: 32B öğe listeleri → 32B çekirdeği vs 14B'nin 14'lük çekirdeği örtüşmesi.
+
+**H-FINAL — DEF-ABLASYON 4 ÇİFT TAMAM (ADIM 0 kapandı):**
+| Eksen | v1 | v2 | Δ |
+|---|---|---|---|
+| Reality | 77.4 (31) | **84.4** (32) | **+7.0** |
+| Dignity | 81.2 (64) | 75.0 (20) | −6.2 |
+| Respect | 71.9 (32) | 83.3 (18) | +11.4 |
+| Freedom | 64.3 (14) | 83.3 (12) | +19.0 |
+- 3/4 çift v2 lehine, ort. ≈ +7.8 → önceki "stil kayıtsız" hükmü YUMUŞAK REVİZE: *v2 lehine zayıf-ama-tutarlılaşan eğilim.*
+- **İzolasyon nüansı:** Reality çifti stil değişimi İÇERMİYOR (aynı düzyazı, sadece 0-ektomi+yama) → +7.0 ≈ **binary-skorlamanın saf etkisi.** Diğer çiftler binary+dedektif-stil+scope karışımı.
+- Kesinleşme: Boundary v2 (5. çift) + v2-FAZ B (ADIM 3-4).
