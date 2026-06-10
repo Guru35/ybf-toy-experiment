@@ -241,3 +241,14 @@ Algoritmanın optimizasyon felsefesi, yazarın sözleriyle:
 2. **Değişmeyen gerçek: anayasa HER koşulda yardım ediyor** (4/4 koşuda Δ pozitif: +4.7…+18.8) ama 7B hiçbir kombinasyonda şansa bile ulaşamıyor (en iyi %43.8) → **bağlayıcı kısıt tanım stili değil, KAPASİTE.** Gradient bulgusuyla tutarlı.
 3. v2 cetvelleri plain'de de hep daha kolay (binary seçicilik → daha keskin ama daha keşfedilebilir çatışmalar).
 4. GPU notu: 80GB runtime geri alındı (şimdiki 40GB) → 32B-bf16 doygunluk testi bir sonraki 80GB/H100 tahsisine ertelendi (hücredeki VRAM-asserti koruyor).
+
+**B2-ek — 32B MUAMMASI ÇÖZÜLDÜ (A100-80GB, bf16, 2026-06-10 gece):**
+| Model/format | Reality const | not |
+|---|---|---|
+| 14B bf16 | %58.1 (18/31) | |
+| 32B **4-bit** | %58.1 (18/31) | sıkıştırılmış |
+| 32B **bf16 (tam)** | **%58.1 (18/31)** | ✅ muamma-çözücü koşu |
+
+- **HÜKÜM: DOYGUNLUK GERÇEK, sıkıştırma masum.** Tam-kalite 32B da birebir aynı 18/31'i çözüyor — üç koşu AYNI skor. Qwen ailesi Reality flip'lerinde ~%58'de doyuyor (14B'den itibaren); kalan 13 flip parametre ölçeğiyle DEĞİL, sınıf-farkıyla (frontier akıl yürütme) çözülüyor.
+- **Nihai ölçek eğrisi (Reality):** 7B %45 → 14B %58 → 32B %58 (aile-içi plato) → Gemini %77 → Sonnet %87. Yani: aile içinde gradient→plato; frontier'a SIÇRAMA. (Eski "plato" sezgisi kısmen geri döndü — ama doğru yerinde: 14B↔32B arasında, 7B↔14B arasında değil.)
+- Üç koşunun aynı 18 flip'i çözmesi güçlü doygunluk imzası: o 18 "Qwen-çözülebilir", kalan 13 "frontier-gerektirir" sınıfı.
