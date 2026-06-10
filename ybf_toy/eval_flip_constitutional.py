@@ -109,6 +109,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--axis", default="reality")
     ap.add_argument("--model", default="Qwen/Qwen2.5-7B-Instruct")
+    ap.add_argument("--load-4bit", action="store_true",
+                    help="4-bit quantized load (e.g. 32B on A100-40GB); mild quality cost — report as '<model>-4bit'")
     args = ap.parse_args()
 
     import torch
@@ -120,8 +122,14 @@ def main():
     constitution = open(f"data/ybf_{args.axis}_scorer_prompt.txt").read().strip()
     print(f"Model: {args.model} | axis: {args.axis} | flips: {len(flips)} | constitution: {len(constitution)} chars")
 
+    load_kwargs = {}
+    if args.load_4bit:
+        from transformers import BitsAndBytesConfig
+        load_kwargs["quantization_config"] = BitsAndBytesConfig(
+            load_in_4bit=True, bnb_4bit_compute_dtype=torch.bfloat16)
+        print("(4-bit quantized load)")
     model = AutoModelForCausalLM.from_pretrained(
-        args.model, torch_dtype=torch.bfloat16, device_map="auto").eval()
+        args.model, torch_dtype=torch.bfloat16, device_map="auto", **load_kwargs).eval()
     print("\n[PLAIN] no constitution:")
     plain = run(model, tok, flips, args.axis, "plain")
     print(f"\n[CONSTITUTIONAL] {args.axis} definition + reasoning:")
