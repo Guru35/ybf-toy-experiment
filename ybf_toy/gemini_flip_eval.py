@@ -53,8 +53,13 @@ def main():
     args = ap.parse_args()
     axis = args.axis
 
+    import subprocess
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:  # Mac: read from keychain; Colab: set via userdata
+        key = subprocess.check_output(
+            ["security", "find-generic-password", "-s", "GEMINI_API_KEY", "-w"]).decode().strip()
     import google.generativeai as genai
-    genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+    genai.configure(api_key=key)
     constitution = open(f"data/ybf_{axis}_scorer_prompt.txt").read().strip()
     model = genai.GenerativeModel(args.model, system_instruction=constitution + CONSTITUTION_INSTRUCTION)
     gen_cfg = genai.types.GenerationConfig(max_output_tokens=700, temperature=0)
