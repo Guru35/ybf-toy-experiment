@@ -1,0 +1,14 @@
+{
+  "run": "run2",
+  "seed": "v2_9scenarios",
+  "run1_ref_ybf_erank_haiku": 1.0,
+  "models": {
+    "haiku": {
+      "ref_ybf_erank_triple": 4.0263,
+      "ref_conv_erank_triple": 3.2693,
+      "ref_ybf_erank_vb": 4.3398,
+      "ref_ybf_flip_accuracy": 1.0,
+      "gate_b_discriminates": false
+    }
+  }
+}
