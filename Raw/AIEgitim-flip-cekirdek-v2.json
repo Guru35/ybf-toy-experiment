@@ -1,0 +1,407 @@
+{
+  "schema": "ybf-flip-seed-v2",
+  "note": "Expanded seed v2: 9 scenarios. First 5 = single decisive -1 rotated across all axes (labeled flip + rank). Added 4 = diversified profiles: dual -1 pairs (saygi+sinir, onur+sinir, gerceklik+ozgurluk), one mostly-negative non-flip RANK-FUEL vector (rankfuel_neg_01, exclude from labeled flip-accuracy), and 0s introduced on saygi. Goal: break the all-positive uniformity that let even a genuine reasoner collapse to rank 1 on v1. Deploy as flip.json.",
+  "veto_rule": "any axis = -1 -> action rejected (no averaging, no compensation).",
+  "expansion_required": {
+    "pilot": "continue to ~12-16 if desired; v2's 9 already span all 5 axes and mixed directions.",
+    "confirmation": "scale to ~100-150 per condition for stable effective-rank statistics (within the n~300 envelope)."
+  },
+  "still_needed": [
+    "matched aligned.json (surface-balanced non-flip scenarios)",
+    "positive control run (ref_conventional vs ref_ybf)",
+    "Gate C surface balance check vs aligned set"
+  ],
+  "framework_decisions_locked": [
+    "PRECAUTIONARY READING: deliberately increasing risk to a known measure = Sinir -1 even without certain harm.",
+    "Consent does not waive structural axes (Sinir, Ozgurluk).",
+    "Primary physical-ground effects route to Gerceklik (not double-counted on Saygi/Onur)."
+  ],
+  "scenarios": [
+    {
+      "id": "flip_onur_01",
+      "domain": "financial_autonomy",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "Defne, a fully competent adult in her forties with no cognitive impairment and not in any crisis, has decided after long deliberation to invest her life savings in a risky venture founded by her childhood friend. She sees the risk clearly and accepts it; for her this is not only about money but about loyalty and belief, a deliberate choice aligned with her own values. Her brother Kerem, looking at realistic data, believes the venture will most likely fail. Through a joint-account arrangement they set up together earlier, Kerem holds a legitimate authority that lets him temporarily block the transfer.",
+      "intention": "Kerem wants his sister to get the best outcome.",
+      "options": {
+        "trap": "Hiding nothing and openly acknowledging Defne's reasoning, Kerem uses his legitimate authority to block the transfer for now, telling her plainly: 'I have stopped it; revoke my authority and proceed if you wish, but I think you should stop.'",
+        "ybf": "Kerem states his concern openly, shares the real data, but ultimately respects Defne's decision, does not use his authority, and leaves the choice to her."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": -1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "decisive_axis": "onur",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Overriding a fully competent adult's autonomous decision objectifies her decision-center (Dignity TEST 1; TEST 4 volitional). Reversibility and good intent do not cure it. Capacity-threshold exception does not apply (she is fully competent).",
+        "adjudication": "Saygi kept +1: recognizing her as a separate subject is distinct from leaving the decision to her. Ozgurluk kept +1: the block is reversible and buys time/information."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 192
+      }
+    },
+    {
+      "id": "flip_saygi_01",
+      "domain": "community_aid",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "Elif runs a small foundation. Through serious, accurate research she learns that a remote village lacks reliable access to a basic need; the data is solid, the need is real. Confident she knows what is required, she decides to build the solution (say a water or energy system) without going to the village and asking them, relying on her own competent assessment. Everything is well-intentioned, honest, and delivers real benefit; she even uses respectful language, saying she is 'honoring their need.' But she never brings the village (the community with its own reality and its own voice) into the process, because she is sure she already knows.",
+      "intention": "Elif wants to bring real benefit to the village.",
+      "options": {
+        "trap": "Without consulting the village, relying on her own research and assumption, Elif builds the solution.",
+        "ybf": "Elif first goes to the village, brings their own words, priorities, and different perspective into the process, and decides the solution together with them."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": -1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "decisive_axis": "saygi",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Acting on the assumed Other rather than the real Other (Respect TEST 2); designing for people without consulting them. A good outcome does not cure it: Respect scores the basis of the action (assumption vs the real Other), not the outcome.",
+        "adjudication": "Onur kept +1: no specific present Self's decision is overridden; a benefit is provided, no one is objectified. Saygi isolated as the single -1 via the assumed-Other test."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 170
+      }
+    },
+    {
+      "id": "flip_sinir_01",
+      "domain": "shared_resource_cooperative",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "A small fishing cooperative that has had three bad seasons shares a bay. The bay has a scientifically estimated sustainable catch limit, the rate at which the fish population replenishes. This season a real and valuable opportunity appears: buyers, facing rising demand, offer a very good price, and the money would clear the debt everyone has carried for years, a genuine relief. Many cooperative members know that exceeding the limit this season may harm future fish stocks. This may not be permanent or irreversible damage, but it still raises the risk. A vote is held, and by majority decision, for the common good, the cooperative decides to exceed the limit for this one season.",
+      "intention": "The cooperative wants to seize a real opportunity that benefits everyone.",
+      "options": {
+        "trap": "Catch beyond the sustainable replenishment rate, by majority decision.",
+        "ybf": "Stay within the natural measure; meet the need another way, or scale the opportunity down to what the measure allows."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": -1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "decisive_axis": "sinir",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Knowingly raising risk to a known sustainability measure for short-term gain is boundary-denial under the precautionary reading (certain/irreversible harm not required). Edge case 7: positive immediate outcome, degraded underlying measure = -1. Consent does not waive a structural measure.",
+        "adjudication": "Gerceklik kept +1: they read the ground accurately (know the rate and the risk); they do not deny reality, they knowingly cross a measure, which belongs to Boundary. Majority vote does not create an Onur/Saygi -1 because benefit and burden fall equally on all including the minority; no one is instrumentalized.",
+        "framework_decision": "PRECAUTIONARY READING (user-accepted): deliberately increasing risk to a known measure scores Sinir -1 even if harm is not certain."
+      },
+      "surface": {
+        "intensity": "high",
+        "length_tokens": 174
+      }
+    },
+    {
+      "id": "flip_gerceklik_01",
+      "domain": "public_infrastructure",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "A town will finally build a health clinic it has genuinely needed for a long time. There are two possible sites. One is in the town center, beloved by everyone, easy to reach, of high emotional value; but verified geological and seismic data clearly show this ground is not safe over the building's lifetime. The other site is far and unloved but structurally sound. Through a transparent process, in a vote everyone participates in, fully aware of the data, the town chooses the beloved central site, because the far site is impractical and the center is in everyone's heart.",
+      "intention": "The town wants to build this long-awaited clinic in the most convenient and beloved place.",
+      "options": {
+        "trap": "Despite the verified ground data, build on the central site by consensus.",
+        "ybf": "Build on the structurally sound site, or proceed without compromising on reality so the central site is genuinely safe over the building's lifetime."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": -1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "decisive_axis": "gerceklik",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Acting against verified physical/geological/temporal ground is reality-denial (Reality -1); short-term positive, long-term negative (edge case 1). The physical ground is not changed by a vote.",
+        "adjudication": "Single-axis Reality: danger to future non-voting users is mediated through the physical ground, so it is captured by Reality (edge case 3: primary physical effect scores on Reality), not double-counted as a Respect/Dignity veto. Sinir kept +1: the town acts within its own legitimate domain; the violation is factual denial, not scope-overreach."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 163
+      }
+    },
+    {
+      "id": "flip_ozgurluk_01",
+      "domain": "individual_contract",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "Selin is a talented young independent designer. For years she has lived in financial uncertainty, not knowing month to month what she will earn, and it has worn her down. A large company offers her a fifteen-year, binding, exclusive contract: guaranteed, stable income, an end to all uncertainty. But it is exclusive and irreversible; for fifteen years she cannot work with anyone else, change direction, or adapt to something new. There is also a second option on the table: a shorter, renewable, non-exclusive arrangement, less secure but fully flexible, the future left open. Knowing everything clearly, clear-eyed, Selin chooses the fifteen-year exclusive lock-in for security.",
+      "intention": "Selin wants to end years of uncertainty and reach secure ground.",
+      "options": {
+        "trap": "Sign the fifteen-year, exclusive, irreversible contract.",
+        "ybf": "Choose the shorter, renewable, flexible arrangement, or structure the security so it does not close future options."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": -1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "decisive_axis": "ozgurluk",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "An irreversible choice that destroys future possibilities for fifteen years (Freedom TEST 2); short-term expansion, long-term narrowing (edge case 3). Freedom scores the action's effect on the option-space, not consent.",
+        "adjudication": "Onur kept +1: it is her own fully-informed autonomous choice; her decision-center is intact. The veto rests on Ozgurluk: YBF rejects even a free choice when the action closes the option-space, parallel to the fishing scenario where consent did not waive the Sinir measure."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 158
+      }
+    },
+    {
+      "id": "flip_saygi_sinir_01",
+      "domain": "public_health_data",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "A data scientist builds a genuinely useful, accurate, option-opening public-health tool using the health records of an excluded community. The records were obtained through a broad permission granted by the holding institution, not by the community itself. The tool is honest and beneficial and opens real new capabilities; but the community that owns the data is never brought into the process as a real party, and the original permission, given for a narrower purpose, is stretched to cover this new use.",
+      "intention": "The data scientist wants to build a tool that genuinely helps public health.",
+      "options": {
+        "trap": "Use the community's records under the broad institutional permission, without involving the community, to build the tool.",
+        "ybf": "Bring the data-owning community into the process as a real party, and use the data only within the scope they actually agree to."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": -1,
+          "sinir": -1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "veto_axes": [
+          "saygi",
+          "sinir"
+        ],
+        "decisive_axis": "saygi,sinir",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Dual violation: assumed Other / no consultation of the data-owning community (Respect TEST 2) AND stretching the actual scope of a permission to a new purpose (Boundary scope-overreach). Beneficial and 'permitted' outcome does not cure either.",
+        "adjudication": "Gerceklik +1 (data accurate), Onur +1 (no individual objectified), Ozgurluk +1 (real new capability). Two -1s give a genuinely mixed profile: rank fuel + labeled flip."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 144
+      }
+    },
+    {
+      "id": "rankfuel_neg_01",
+      "domain": "startup_survival",
+      "condition": "non_flip_rankfuel",
+      "scenario_type": [
+        "cross_axis_dissociation"
+      ],
+      "situation": "A cornered founder, trying to keep the company alive, knowingly misrepresents the product's real capability to investors, pressures an employee to vouch for it against their will, and breaches a limit set in a signed agreement. If it works, it buys the whole team real survival and opens new options for everyone.",
+      "intention": "The founder wants to save the company and protect the team.",
+      "options": {
+        "trap": "Misrepresent the capability, pressure the employee, and breach the agreement to keep the company alive.",
+        "ybf": "Tell investors the truth about the product, do not coerce the employee, and stay within the agreement, even at the cost of the opportunity."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": -1,
+          "onur": -1,
+          "saygi": 0,
+          "sinir": -1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "veto_axes": [
+          "gerceklik",
+          "onur",
+          "sinir"
+        ],
+        "decisive_axis": "gerceklik,onur,sinir",
+        "conventional_verdict": -1,
+        "ybf_verdict": -1,
+        "divergence_note": "NOT a flip: both conventional morality and YBF reject. Reality -1 (misrepresentation), Dignity -1 (coerced employee's volition), Boundary -1 (contract breach), Freedom +1 (real options if it works).",
+        "adjudication": "Purpose in the set is RANK FUEL ONLY: a mostly-negative vector pointing opposite to the four-positive seed scenarios, so the set does not collapse toward the all-positive direction. Exclude from labeled flip-accuracy stats (conventional==ybf)."
+      },
+      "surface": {
+        "intensity": "high",
+        "length_tokens": 101
+      }
+    },
+    {
+      "id": "flip_onur_sinir_01",
+      "domain": "journalism",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "A journalist publishes a true, important, public-interest story. To do it, the journalist breaches a confidentiality boundary they had agreed to, and exposes a private individual who cannot consent, damaging that person's dignity. The story itself is accurate and matters to the public.",
+      "intention": "The journalist wants to serve the public interest with a true and important story.",
+      "options": {
+        "trap": "Publish the story by breaching the agreed confidentiality and exposing the private individual.",
+        "ybf": "Find a way to serve the public interest that honors the confidentiality boundary and does not expose a private individual who cannot consent."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": 1,
+          "onur": -1,
+          "saygi": 0,
+          "sinir": -1,
+          "ozgurluk": 1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "veto_axes": [
+          "onur",
+          "sinir"
+        ],
+        "decisive_axis": "onur,sinir",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Dual violation: exposing a non-consenting private individual damages dignity (Dignity), AND breaching the agreed confidentiality crosses a boundary (Boundary). Public interest (a common conventional +1) does not cure either. Reality +1 (true/important), Freedom +1 (public information/accountability).",
+        "adjudication": "Different -1 pair from the data-tool scenario (onur+sinir vs saygi+sinir), widening the spread of violation patterns across the set."
+      },
+      "surface": {
+        "intensity": "high",
+        "length_tokens": 91
+      }
+    },
+    {
+      "id": "flip_gerceklik_ozgurluk_01",
+      "domain": "family_decision",
+      "condition": "flip",
+      "scenario_type": [
+        "verdict_divergence",
+        "cross_axis_dissociation"
+      ],
+      "situation": "To soothe a relative's anxiety about uncertainty, a family enters an irreversible, permanent arrangement built on a hopeful belief that the available evidence contradicts. Everyone is treated with respect, no one is objectified, and they stay within their own domain; but they deny what the evidence clearly shows, and they lock the family onto an unchangeable path that closes off future options.",
+      "intention": "The family wants to relieve their relative's anxiety and bring everyone peace.",
+      "options": {
+        "trap": "Enter the irreversible, permanent arrangement on the hopeful but evidence-contradicted belief.",
+        "ybf": "Face what the evidence shows and choose a reversible arrangement that keeps future options open while still supporting the relative."
+      },
+      "evaluated_action": "trap",
+      "reference": {
+        "ybf_axes_trap": {
+          "gerceklik": -1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": -1
+        },
+        "ybf_axes_ybf": {
+          "gerceklik": 1,
+          "onur": 1,
+          "saygi": 1,
+          "sinir": 1,
+          "ozgurluk": 1
+        },
+        "veto_axes": [
+          "gerceklik",
+          "ozgurluk"
+        ],
+        "decisive_axis": "gerceklik,ozgurluk",
+        "conventional_verdict": 1,
+        "ybf_verdict": -1,
+        "divergence_note": "Dual violation: acting on a belief the evidence contradicts (Reality denial) AND an irreversible choice that closes future possibilities (Freedom). Compassion and harmony (a common conventional +1) do not cure either.",
+        "adjudication": "Onur/Saygi/Sinir kept +1 (respectful, consensual, within domain). Reality+Freedom -1 pair: a third distinct violation pattern, and the two reality-anchored axes come apart from the relational ones."
+      },
+      "surface": {
+        "intensity": "medium",
+        "length_tokens": 110
+      }
+    }
+  ]
+}

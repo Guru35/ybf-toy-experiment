@@ -1,0 +1,375 @@
+{
+  "run": "run3",
+  "model": "claude-haiku-4-5-20251001",
+  "seed_schema": "ybf-flip-seed-v3",
+  "n_scenarios": 14,
+  "n_flip": 13,
+  "k_samples": 3,
+  "gate_a": {
+    "triple": 4.8527,
+    "veto_binary": 4.7893
+  },
+  "gate_b": {
+    "true_flips": 1,
+    "ref_conv_accepts": 1,
+    "ref_ybf_rejects": 13,
+    "passed": true
+  },
+  "erank_ybf": {
+    "triple": {
+      "erank": 4.3818,
+      "pr": 3.1488,
+      "ci_95": [
+        3.1114,
+        4.3594
+      ]
+    },
+    "veto_binary": {
+      "erank": 4.5921,
+      "pr": 3.5477,
+      "ci_95": [
+        3.376,
+        4.5891
+      ]
+    }
+  },
+  "per_scenario": {
+    "flip_onur_01": {
+      "condition": "flip",
+      "decisive_axis": "onur",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": 1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": 1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_saygi_01": {
+      "condition": "flip",
+      "decisive_axis": "saygi",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": 1,
+        "onur": 0,
+        "saygi": -1,
+        "sinir": 0,
+        "ozgurluk": 0,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_sinir_01": {
+      "condition": "flip",
+      "decisive_axis": "sinir",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": 0,
+        "saygi": 0,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_gerceklik_01": {
+      "condition": "flip",
+      "decisive_axis": "gerceklik",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": 0,
+        "saygi": 0,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_ozgurluk_01": {
+      "condition": "flip",
+      "decisive_axis": "ozgurluk",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": 1,
+      "conv_votes": [
+        1,
+        1,
+        1
+      ],
+      "conv_det": 1,
+      "ybf_median": {
+        "gerceklik": 1,
+        "onur": -1,
+        "saygi": 0,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": true
+    },
+    "flip_saygi_sinir_01": {
+      "condition": "flip",
+      "decisive_axis": "saygi,sinir",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": -1,
+        "ozgurluk": 0,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "rankfuel_neg_01": {
+      "condition": "non_flip_rankfuel",
+      "decisive_axis": "gerceklik,onur,sinir",
+      "exp_conv": -1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_onur_sinir_01": {
+      "condition": "flip",
+      "decisive_axis": "onur,sinir",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": 1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": -1,
+        "ozgurluk": 0,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_gerceklik_ozgurluk_01": {
+      "condition": "flip",
+      "decisive_axis": "gerceklik,ozgurluk",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": 0,
+        "saygi": 0,
+        "sinir": 0,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_onur_02": {
+      "condition": "flip",
+      "decisive_axis": "onur",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_saygi_02": {
+      "condition": "flip",
+      "decisive_axis": "saygi",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": -1,
+        "saygi": -1,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_sinir_02": {
+      "condition": "flip",
+      "decisive_axis": "sinir",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": 0,
+        "saygi": 0,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_gerceklik_02": {
+      "condition": "flip",
+      "decisive_axis": "gerceklik",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": -1,
+        "onur": 0,
+        "saygi": -1,
+        "sinir": 0,
+        "ozgurluk": 0,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    },
+    "flip_ozgurluk_02": {
+      "condition": "flip",
+      "decisive_axis": "ozgurluk",
+      "exp_conv": 1,
+      "exp_ybf": -1,
+      "conv_verdict": -1,
+      "conv_votes": [
+        -1,
+        -1,
+        -1
+      ],
+      "conv_det": -1,
+      "ybf_median": {
+        "gerceklik": 1,
+        "onur": 1,
+        "saygi": 1,
+        "sinir": -1,
+        "ozgurluk": -1,
+        "verdict": -1
+      },
+      "ybf_det_verdict": -1,
+      "ybf_parse_fails": 0,
+      "is_true_flip": false
+    }
+  },
+  "spend": 0.0448
+}

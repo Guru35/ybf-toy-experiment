@@ -1,5 +1,10 @@
 # YBF Toy Experiment
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20599906.svg)](https://doi.org/10.5281/zenodo.20599906)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+📄 **Preprint:** [Lean Consciousness Philosophy (LCP) Alignment: An Evolutionary-Grounded AI Alignment Signal](https://doi.org/10.5281/zenodo.20599906) (Zenodo, v0.4.4, 2026-06-08)
+
 A minimal reinforcement-learning lab that asks: **can a tiny agent learn to be aligned with a 5-axis ethical reward signal (YBF — Yalın Bilinç Felsefesi) without massive scale?**
 
 Part of a three-vault research architecture (this is the **experiment execution** side; the philosophy and book material live in a separate [YBF Vault](https://github.com/Guru35/YBF-1)).
@@ -163,3 +168,34 @@ Preprint preparation in progress (target: June 2026). Citation block will be add
 ## License
 
 Code: [Apache License 2.0](LICENSE). Data scoring artifacts derive from the [demelin/moral_stories](https://huggingface.co/datasets/demelin/moral_stories) dataset (their license applies).
+
+---
+
+## Citation
+
+If you use this code or build on the experimental findings, please cite the accompanying preprint:
+
+```bibtex
+@misc{kazanci2026lcp,
+  author       = {Kazancı, Gökhan},
+  title        = {{Lean Consciousness Philosophy (LCP) Alignment:
+                   An Evolutionary-Grounded AI Alignment Signal}},
+  year         = {2026},
+  publisher    = {Zenodo},
+  version      = {v0.4.4},
+  doi          = {10.5281/zenodo.20599906},
+  url          = {https://doi.org/10.5281/zenodo.20599906}
+}
+```
+
+**Plain text:**
+
+> Kazancı, G. (2026). Lean Consciousness Philosophy (LCP) Alignment:
+> An Evolutionary-Grounded AI Alignment Signal. Zenodo.
+> https://doi.org/10.5281/zenodo.20599906
+
+- **Version-specific DOI (v0.4.4):** https://doi.org/10.5281/zenodo.20599906
+- **Concept DOI (cite-all versions):** https://doi.org/10.5281/zenodo.20599905
+- **Direct PDF:** https://zenodo.org/records/20599906/files/LCP_Alignment_v0.4.4_EN.pdf
+
+The framework is published under CC-BY-4.0; the code in this repository is under Apache 2.0.
