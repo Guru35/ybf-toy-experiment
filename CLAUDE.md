@@ -38,12 +38,9 @@ ybf_toy/
 └── YBF2-*, AIEgitim-* — çıkış raporları (YBF Vault'a iletilenler)
 ```
 
-## Aktif State (2026-06-08)
+## Aktif State
 
-- **Cache:** `data/scores_cache.json` — 2400 entry geçerli, $0.60 yatırım. **Korunsun** (yanlışlıkla silinirse ~80 dk + ~$0.60 maliyet).
-- **Latest winner:** Axial agent (`agent_axial.py`) — 4/4 trap çözdü. Linear ve MLP başarısız oldu.
-- **Scoring katmanı:** v3 (5-axis + CAPACITY THRESHOLD RULE + -5 veto). Değiştirilirse cache geçersiz olur.
-- **Budget guard:** `config.MAX_API_SPEND_USD = 3.0`. Hard limit, aşılırsa scorer RuntimeError atar.
+> Anlık durum artık **tek yerde**: [`wiki/hot.md`](wiki/hot.md) (cache, latest winner, scoring versiyonu, budget guard). Oturum açılışında `@start` orayı okur. Tek-kaynak (single source of truth) — state'i buraya kopyalama, hot.md'yi güncelle.
 
 ## Environment
 
@@ -59,6 +56,18 @@ ybf_toy/
 1. **`import scorer`** taze süreçte — atexit cache'i siler (fixed, ama tarih bilinçli kalsın)
 2. **`rm -rf data/`** — 2400 entry + embeddings + agent weights. Geri alınamaz.
 3. **`security delete-generic-password`** — keychain key'i siler, FutureHouse hesabından yeniden kopyalama gerekir
+
+## Oturum Ritüelleri + Komutlar
+
+Bu vault'un CCD'si hub (Atölye-1) gibi düzenli açılıp kapanır. Komutlar `.claude/commands/` altında; anlık durum `wiki/hot.md`, geçmiş `wiki/log.md`.
+
+| Ok yazınca | CCD ne yapar |
+|---|---|
+| `@start` | Oturum açılışı: tarih anchor + `wiki/hot.md` + son log + bekleyen handoff kontrolü + "nerede kaldık" özeti. [detay](.claude/commands/start.md) |
+| `@done` | Oturum kapanışı: `wiki/log.md` girdisi + `wiki/hot.md` güncelle + handoff status + MD-bloat kontrol. Seremoni yok. [detay](.claude/commands/done.md) |
+| `@karpathy` | Yerel Karpathy denetimi: token-ekonomi / MD-bloat / tek-kaynak uygunluğu → log'a. Ok tetikler, ayda bir. [detay](.claude/commands/karpathy.md) |
+
+**Gelen handoff kutusu:** [`Raw/agent-handoffs/`](Raw/agent-handoffs/README.md) — başka AI'ların (çoğunlukla hub) ilettiği vault-üstü kurallar. `@start`'ta taranır. 🔴 **Auto-deliver / manual-execute:** iletim otomatik, ama içindeki aksiyon UYGULANMADAN önce Ok onayı şart.
 
 ## Karpathy Guidelines
 
