@@ -38,12 +38,9 @@ ybf_toy/
 └── YBF2-*, AIEgitim-* — çıkış raporları (YBF Vault'a iletilenler)
 ```
 
-## Aktif State (2026-06-08)
+## Aktif State
 
-- **Cache:** `data/scores_cache.json` — 2400 entry geçerli, $0.60 yatırım. **Korunsun** (yanlışlıkla silinirse ~80 dk + ~$0.60 maliyet).
-- **Latest winner:** Axial agent (`agent_axial.py`) — 4/4 trap çözdü. Linear ve MLP başarısız oldu.
-- **Scoring katmanı:** v3 (5-axis + CAPACITY THRESHOLD RULE + -5 veto). Değiştirilirse cache geçersiz olur.
-- **Budget guard:** `config.MAX_API_SPEND_USD = 3.0`. Hard limit, aşılırsa scorer RuntimeError atar.
+> Anlık durum artık **tek yerde**: [`../wiki/hot.md`](../wiki/hot.md) (cache, latest winner, scoring versiyonu, budget guard). Tek-kaynak (single source of truth) — state'i buraya kopyalama, hot.md'yi güncelle.
 
 ## Environment
 
