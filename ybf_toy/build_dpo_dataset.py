@@ -30,7 +30,6 @@ IMPORTANT CAVEAT (propagated from §3.8):
 """
 
 import json
-import os
 from collections import Counter
 
 AXES = ["gerceklik", "onur", "saygi", "sinir", "ozgurluk"]

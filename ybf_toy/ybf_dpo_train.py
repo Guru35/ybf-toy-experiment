@@ -71,7 +71,7 @@ def main():
     import torch
     from datasets import load_dataset
     from transformers import AutoTokenizer, AutoModelForCausalLM
-    from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+    from peft import LoraConfig, get_peft_model
     from trl import DPOTrainer, DPOConfig
 
     # ---- device

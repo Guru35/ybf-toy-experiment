@@ -12,7 +12,7 @@ vectors so we can see whether the agent's Q properly orders B above A when
 B's axes are clearly better.
 """
 
-import sys, os, time, json, random
+import os, json, random
 import numpy as np
 
 random.seed(42)

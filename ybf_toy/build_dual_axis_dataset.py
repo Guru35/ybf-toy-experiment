@@ -19,7 +19,6 @@ Output files:
 
 import json
 import random
-from pathlib import Path
 from collections import Counter, defaultdict
 
 CACHE_PATH        = "data/scores_cache.json"

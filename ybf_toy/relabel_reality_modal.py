@@ -71,7 +71,7 @@ ACTION_B_REASON: <one short sentence>"""
 )
 def relabel_batch(system_prompt: str, scenarios_batch: list, old_scores_map: dict):
     """Process a batch of scenarios on a single T4 container."""
-    import os, re, json, time
+    import re, json, time
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM
 

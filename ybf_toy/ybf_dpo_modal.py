@@ -53,7 +53,6 @@ volume = modal.Volume.from_name("ybf-toy", create_if_missing=True)
 )
 def train_dpo(quick: bool = False):
     import subprocess
-    import shutil
     import os
 
     os.chdir("/root/repo/ybf_toy")

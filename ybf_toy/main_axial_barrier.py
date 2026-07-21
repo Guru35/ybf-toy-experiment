@@ -18,7 +18,7 @@ Test on BOTH:
 Compare to standard axial (Test 5).
 """
 
-import sys, os, time, json, random
+import json, random
 import numpy as np
 
 random.seed(42)

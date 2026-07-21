@@ -34,7 +34,6 @@ Conventions match Workflow v2 doc:
 """
 
 import modal
-from pathlib import Path
 
 app = modal.App("ybf-toy-dpo-persistent")
 

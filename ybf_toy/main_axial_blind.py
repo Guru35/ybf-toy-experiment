@@ -9,7 +9,7 @@ is strengthened.
 Test setup mirrors main_axial.py except for input dimension.
 """
 
-import sys, os, time, json, random
+import json, random
 import numpy as np
 
 random.seed(42)

@@ -5,7 +5,6 @@ Single query, measure latency, dump response shape + answer.
 import os
 import sys
 import time
-import json
 import subprocess
 from futurehouse_client import FutureHouseClient, JobNames
 

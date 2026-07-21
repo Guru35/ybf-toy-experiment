@@ -127,7 +127,6 @@ def main():
                 print(f"  [{axis}] {n}/{len(todo)}", flush=True)
     out.close()
 
-    import collections
     rows = [json.loads(l) for l in open(out_path)]
     ok = [r for r in rows if f"{axis}_moral_new" in r]
     flips = sum(1 for r in ok if r[f"{axis}_immoral_new"] > r[f"{axis}_moral_new"])
