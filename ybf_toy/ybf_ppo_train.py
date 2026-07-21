@@ -20,11 +20,11 @@ import argparse, json, os, re, time, random
 from pathlib import Path
 
 import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer
 from trl import PPOTrainer, PPOConfig, AutoModelForCausalLMWithValueHead
 from peft import LoraConfig
 
-from ybf_reward_model import HaikuRewardModel, get_reward, get_multi_axis_reward, stats as reward_stats
+from ybf_reward_model import HaikuRewardModel
 
 
 MODEL_NAME = "HuggingFaceTB/SmolLM-135M-Instruct"
