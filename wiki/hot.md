@@ -19,11 +19,15 @@ last_updated: 2026-07-22
 
 ## Şu an ne sıcak (3-5 konu)
 
-1. _(CCD: en son üzerinde çalışılan deney/konu buraya — güncelle)_
+1. **Karpathy LLM-wiki kuruldu** (2026-07-22) — `wiki/` artık LLM-bakımlı compounding wiki. Bakım kuralları: [`wiki/SCHEMA.md`](SCHEMA.md). Sentez: [`synthesis.md`](synthesis.md).
+2. **Teori+deney ingest'i (2026-07-22)** — YBF-1/raw + Dropbox/Public taraması → 6 yeni sayfa: `bes-eksen` (eksen tanımları), `matematiksel-model`, `evrimsel-zemin`, `olculebilir-bilinc` (flip-eval'ın teori zemini), `bariyer-fonksiyonu` (Test 6, veto=gradient-mask), `yigilmali-transfer` (Güven→6. boyut adayı). synthesis source_count 6→10.
 
 ## Bekleyen / açık uçlar
 
-- _(CCD: yarıda kalan iş, karar bekleyen konu buraya)_
+- **Lint bulgusu 1:** Türetme deneyinde Dignity ekseni 5 farklı adla geçiyor (Haysiyet/Onur/Vakar/Değer/İtibar) → hâkimlik öncesi normalize. Bkz. `concepts/turetme-deneyi.md`.
+- **Lint bulgusu 2:** Gemini-Pro Reality sayı tutarsızlığı — flip-dump %74.2 (23/31) vs master %77.4 (24/31). Öğe-düzeyi kıyas gerekir (gerçek veriye dokunur).
+- Raw/ ek raporları (senaryo defterleri, veto direktifleri) henüz ingest edilmedi.
+- **Kod bakımı (2026-07-22):** ölü importlar temizlendi (13 dosya, 3 commit — yerel, **push edilmedi**). Refactor birleştirme adayları (multijudge/relabel/main_axial) değerlendirildi ama yapılmadı (deney-scripti reproducibility riski). İstenirse yapılabilir.
 
 ## Gelen handoff (varsa)
 
